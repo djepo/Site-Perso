@@ -34,6 +34,10 @@ class ArticlesController extends Controller {
         }        
     }
     
+     /**     
+     * @Route("/articles/edit/{id}", requirements={"id" = "\d+"}, name="articles_edition")
+     * @Template()     
+     */
     public function modifierAction($id) {
         $em=$this->getDoctrine()->getEntityManager();
         $article=$em->getRepository('comainBundle:article')->find($id);
