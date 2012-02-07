@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use co\mainBundle\Entity\article;
+
 class ArticlesController extends Controller {
 
     /**
@@ -38,7 +40,7 @@ class ArticlesController extends Controller {
      * @Route("/articles/edit/{id}", requirements={"id" = "\d+"}, name="articles_edition")
      * @Template()     
      */
-    public function modifierAction($id) {
+    public function editAction($id) {
         $em=$this->getDoctrine()->getEntityManager();
         $article=$em->getRepository('comainBundle:article')->find($id);
         
@@ -47,8 +49,42 @@ class ArticlesController extends Controller {
         }
         else{
             return $this->render('comainBundle:article:edit.html.twig', array('article' => $article,));
+        }            
+    }
+    
+     /**     
+     * @Route("/articles/add/", name="articles_ajout")
+     * @Template()     
+     */
+    public function addAction() {
+        //$em=$this->getDoctrine()->getEntityManager();
+        //$article=$em->getRepository('comainBundle:article')->find($id);
+        $article=new article();
+                
+        if (!$article){
+            throw $this->createNotFoundException('Impossible de créer un nouvel article.');   //on lance une exception
         }
+        else{
             
+            // On crée le FormBuilder grâce à la méthode du contrôleur.
+            $formBuilder = $this->createFormBuilder($article);
+            
+            $formBuilder->add('title','text');
+            $formBuilder->add('author','text');
+            $formBuilder->add('article','textarea');
+            $formBuilder->add('created','date');
+            $formBuilder->add('updated','date');
+            
+            $article->setAuthor("test");    //test de valeur par défaut
+            $article->setcreated(new \Datetime());    //test de valeur par défaut
+            $article->setupdated(new \Datetime());    //test de valeur par défaut
+            
+            
+            // À partir du formBuilder, on génère le formulaire.
+            $form = $formBuilder->getForm();
+            
+            return $this->render('comainBundle:article:add.html.twig', array('form'=>$form->createView(),));
+        }            
     }
 
 }
