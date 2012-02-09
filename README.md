@@ -10,4 +10,4 @@ Symfony 2 est utilisé pour le framework, et quelques bundles également.
 FOSUser                 (pour la gestion des utilisateurs)
 Stfalcon TinymceBundle  (pour l'intégration tiny mce)
 
-Les bindles standards de symfony 2.
+Les bundles standards de symfony 2.
