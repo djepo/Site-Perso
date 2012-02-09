@@ -5,16 +5,16 @@ namespace co\mainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;    //pour les exceptions d'utilisateurs non connectés
 use co\mainBundle\Entity\article;
 
 class ArticlesController extends Controller {
 
-    /**
+    /**     
      * @Route("/articles")
-     * @Route("/articles/{id}", defaults={"id" = 1}, requirements={"id" = "\d+"}, name="articles")
+     * @Route("/articles/{id}", defaults={"id" = 1}, requirements={"id" = "\d+"}, name="articles")     
      * @Template()
-     * @method({"GET"})
+     * @method({"GET"|"POST"})
      */
     public function articlesAction($id = 0) {
         if ($id > 0) {
@@ -25,66 +25,85 @@ class ArticlesController extends Controller {
                 throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
             }
 
-            //sinon on lance un rendu de la page article avec en paramètre, l'array représentant l'article            
+            //sinon on lance un rendu de la page article avec en paramètre, l'array représentant l'article
             return $this->render('comainBundle:article:show.html.twig', array('article' => $article,));
-        } 
-        else {
-            //$em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager            
-            //$em->createquery("SELECT * FROM articles");            
-            
-            return $this->render('comainBundle:indexarticles:index.html.twig',array('articles'=>$em->getResult()));
-        }        
+        } else {
+            //$em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+            //$em->createquery("SELECT * FROM articles");
+
+            return $this->render('comainBundle:indexarticles:index.html.twig', array('articles' => $em->getResult()));
+        }
     }
-    
-     /**     
+
+    /**
      * @Route("/articles/edit/{id}", requirements={"id" = "\d+"}, name="articles_edition")
-     * @Template()     
+     * @Template()
      */
     public function editAction($id) {
-        $em=$this->getDoctrine()->getEntityManager();
-        $article=$em->getRepository('comainBundle:article')->find($id);
-        
-        if (!$article){
+        $em = $this->getDoctrine()->getEntityManager();
+        $article = $em->getRepository('comainBundle:article')->find($id);
+
+        if (!$article) {
             throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
-        }
-        else{
+        } else {
             return $this->render('comainBundle:article:edit.html.twig', array('article' => $article,));
-        }            
+        }
     }
-    
-     /**     
+
+    /**
      * @Route("/articles/add/", name="articles_ajout")
-     * @Template()     
+     * @Template()
      */
     public function addAction() {
-        //$em=$this->getDoctrine()->getEntityManager();
-        //$article=$em->getRepository('comainBundle:article')->find($id);
-        $article=new article();
-                
-        if (!$article){
-            throw $this->createNotFoundException('Impossible de créer un nouvel article.');   //on lance une exception
+        $username = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($username)) {
+            throw new AccessDeniedException('Vous n\'êtes pas authentifié.');
         }
-        else{
-            
+        //$userid=$this->container->get('fos_user.user_manager');
+
+
+        $article = new article();
+
+        if (!$article) {
+            throw $this->createNotFoundException('Impossible de créer un nouvel article.');   //on lance une exception
+        } else {
+
             // On crée le FormBuilder grâce à la méthode du contrôleur.
             $formBuilder = $this->createFormBuilder($article);
-            
-            $formBuilder->add('title','text');
-            $formBuilder->add('author','text');
-            $formBuilder->add('article','textarea');
-            $formBuilder->add('created','date');
-            $formBuilder->add('updated','date');
-            
-            $article->setAuthor("test");    //test de valeur par défaut
+
+            $formBuilder->add('title', 'text');
+            //$formBuilder->add('author','text');                        
+            $formBuilder->add('author', 'fos_user_username');
+            $formBuilder->add('article', 'textarea');
+            $formBuilder->add('created', 'datetime');
+            $formBuilder->add('updated', 'datetime');
+
+            $article->setAuthor($username);    //test de valeur par défaut
             $article->setcreated(new \Datetime());    //test de valeur par défaut
             $article->setupdated(new \Datetime());    //test de valeur par défaut
             
-            
             // À partir du formBuilder, on génère le formulaire.
             $form = $formBuilder->getForm();
-            
-            return $this->render('comainBundle:article:add.html.twig', array('form'=>$form->createView(),));
-        }            
+
+            //au cas ou l'on arrive sur cette page avec une requete post
+            $request = $this->get('request');
+            if ($request->getMethod() == 'POST') {
+                $form->bindRequest($request);
+                //if ($form->isValid()) {
+                    $em = $this->getDoctrine()->getEntityManager();
+
+                    $em->persist($article);
+                    //$id=$article->getId();
+                    $em->flush();
+
+                    return $this->redirect($this->generateUrl('articles',array('id'=>$article->getId())));
+                    
+                //}
+            }
+
+
+            return $this->render('comainBundle:article:add.html.twig', array('form' => $form->createView(),));
+        }
     }
 
 }
