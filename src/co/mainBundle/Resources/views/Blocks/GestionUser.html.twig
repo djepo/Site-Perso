@@ -1,0 +1,50 @@
+<!-- Script pour le dropdown du menu User -->
+<script>
+    $(document).ready(function () {
+        //Ouverture ou Fermeture du menu lorsque l'on clique dessus
+        $('.myaccount').click(function (event) {
+            $('.dropdown').slideToggle(100);
+            event.stopPropagation();    //Vu que l'on referme le menu lorsque l'on clique n'importe ou sur la page, on empeche que cela se produise lorsque l'on clique sur cet élément
+        });
+
+        //Sur un clic n'importe ou dans la page, on cache le menu déroulant
+        $('html').click(function() {
+            if ($('.dropdown').is(':visible')){     //on teste si le menu est visible
+                $('.dropdown').slideToggle(100);    // si il est visible, on le referme
+            }
+        });
+
+    });
+</script>
+<!-- Fin de script pour le dropdown du menu User -->
+
+{# IS_AUTHENTICATED_REMEMBERED correspond à un utilisateur qui s'est identifié en rentrant son mot de passe, ou à un utilisateur qui s'est identifié automatiquement grâce à son cookie remember_me #}
+{# On pourrait utiliser IS_AUTHENTICATED_FULLY qui correspond à un utilisateur qui s'est forcément identifié en rentrant son mot de passe (utile pour les opérations sensibles comme changer d'email #}
+
+<div class="user">
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <a class="myaccount" > {{app.user.email}} </a>
+
+        <ul class="dropdown">
+            <h3 class="title">Mon Compte</h3>
+
+            <div class="options">
+                <a href="{{path('fos_user_profile_show')}}">Voir Profil</a>
+            </div>
+            <div class="options">
+                <a href="{{path('fos_user_profile_edit')}}">Editer Profil</a>
+            </div>
+            <div class="options">
+                <a href="{{path('fos_user_security_logout')}}">Deconnexion</a>
+            </div>
+        </ul>
+
+        <!-- {#
+        <a class="signout" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+        #} -->
+    {% else %}
+        <a class="signin" href="{{ path('fos_user_security_login') }}">Connexion</a>
+    {% endif %}
+
+</div>

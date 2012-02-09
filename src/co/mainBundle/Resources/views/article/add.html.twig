@@ -1,0 +1,78 @@
+{# src/Blogger/BlogBundle/Resouces/views/Blog/show.html.twig #}
+{% extends 'comainBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}  {# Héritage des feuilles de styles parentes #}
+<link href="{{ asset('bundles/comain/css/articles.css') }}" type="text/css" rel="stylesheet" /> {# Ajout de la nouvelle feuille de style pour les formulaires #}
+{% endblock %}
+
+{% block body %}
+
+<script type="text/javascript" src="{{ asset('bundles/comain/js/tiny_mce/tiny_mce.js') }}"></script>
+<script type="text/javascript">
+!--
+tinyMCE.init({
+mode : "textareas",
+valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compact],-ul[type|compact],-li"
+});
+//-->
+</script>
+
+
+<div class="blog">
+    <header>
+        <h1>Ajout d'un article</h1>
+
+        <form action="{{ path('articles_ajout') }}" method="post" {{ form_enctype(form) }}>
+            <div>
+                <!-- Génération du label. -->
+                    {{ form_label(form.title, "Titre de l'article") }}
+                <!-- Affichage des erreurs pour ce champ précis. -->
+                    {{ form_errors(form.title) }}
+                <!-- Génération de l'input. -->
+                    {{ form_widget(form.title) }}
+            </div>
+            <div>
+                {{ form_label(form.article, "Contenu de l'article") }}
+                {{ form_errors(form.article) }}
+                {{ form_widget(form.article) }}
+            </div>
+            <div>
+                {{ form_label(form.author, "Auteur") }}
+                {{ form_errors(form.author) }}
+                {{ form_widget(form.author) }}
+            </div>
+            <div>
+                {{ form_label(form.created, "Date de Création") }}
+                {{ form_errors(form.created) }}
+                {{ form_widget(form.created) }}
+            </div>
+            <div>
+                {{ form_label(form.updated, "Date de dernière modification") }}
+                {{ form_errors(form.updated) }}
+                {{ form_widget(form.updated) }}
+            </div>
+
+                {#
+                    {{ form_widget(form) }}
+                #}
+
+                            <br>
+                            <input type="submit" />
+                        </form>
+                    </header>  <!-- Fin balise header -->
+
+
+                </div>  <!-- Fin balise blog -->
+
+
+
+
+                <!--
+{#
+<div class="fb-comments" data-href="{{ app.request.uri }}" data-num-posts="10" data-width="550px"></div>
+#}
+                -->
+{% endblock %}
+
+{% block commentaires %}{%endblock%}

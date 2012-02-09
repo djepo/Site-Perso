@@ -1,0 +1,51 @@
+{# src/Blogger/BlogBundle/Resouces/views/Blog/show.html.twig #}
+{% extends 'comainBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}  {# Héritage des feuilles de styles parentes #}
+    <link href="{{ asset('bundles/comain/css/articles.css') }}" type="text/css" rel="stylesheet" /> {# Ajout de la nouvelle feuille de style pour les formulaires #}
+{% endblock %}
+
+{%block arbre %}
+<a href="{{path('homepage')}}">Accueil</a>
+ > <a href="{{path('articles',{'id': article.id})}}">Articles</a>
+ > <a href="{{path('articles_edition',{'id': article.id}) }}">Edition</a>
+{%endblock%}
+
+{% block title %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
+
+{% block body %}
+
+    <div class="blog">
+        <header>
+            <h1>Edition de l'article</h1>
+            <h1>{{ article.title }}</h1>
+            
+            <p>Par {{article.author}}</p>            
+            
+            <img src="{{ asset(['images/', article.image]|join) }}" alt="" class="large" />
+        </header>  <!-- Fin balise header -->
+
+        <div>
+            <textarea>
+                <p>{{ article.article|raw }}</p>
+            </textarea>
+        </div>
+
+        <div class="footer">
+            <div class="date"><time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time></div>
+        </div>  <!-- Fin balise footer -->
+
+    </div>  <!-- Fin balise blog -->
+
+
+
+
+<!--
+{#
+<div class="fb-comments" data-href="{{ app.request.uri }}" data-num-posts="10" data-width="550px"></div>
+#}
+-->
+{% endblock %}
+
+{% block commentaires %}{%endblock%}
