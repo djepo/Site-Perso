@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta description="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
+
+        <title>{% block title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/comain/css/stylesheet.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/comain/css/usermenu.css') }}" type="text/css" media="all" />
+        {% endblock %}
+
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+
+        <meta property="og:url" content="http://djepo.craym.eu/">
+        <meta property="og:title" content="CAILBAUT Olivier - Créateur de Solutions">
+        <meta property="og:description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
+        <meta property="og:image" content="http://djepo.craym.eu/images/VignetteSite.jpg">
+        <meta property="og:type" content="website">
+        <meta property="fb:admins" content="100002583175945">
+        <meta property="fb:app_id" content="232953266786752"/>
+
+
+        <meta itemprop="name" content="CAILBAUT Olivier - Créateur de Solutions">
+        <meta itemprop="description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
+        <meta itemprop="image" content="http://djepo.craym.eu/images/VignetteSite.jpg" >
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/development-bundle/jquery-1.7.1.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/development-bundle/ui/jquery-ui-1.8.17.custom.js') }}"></script>
+        <!-- JQuery -->
+
+    </head>
+
+    <body>
+        
+        <div class="header">
+
+            {% block header %}
+
+                <div id="header_gauche">
+                    <a href="{{ path('homepage') }}" style="color: white;">CAILBAUT Olivier</a>
+                </div>
+
+                <div id="header_droit" style="text-align: center">
+                    <h2>Créateur de Solutions</h2>
+                </div>
+
+                <!-- Inclusion du bloc permettant la gestion utilisateurs (connexions, déconnexions, gestion ... -->
+                {% include 'comainBundle:Blocks:GestionUser.html.twig' %}
+
+            {% endblock %}
+
+        </div>
+
+        <div class="colmask threecol">
+            <div class="colmid">
+		<div class="colleft">
+                    <div class="col1">
+			<!-- Column 1 start (contenu principal du site) -->
+                        <div id="arbre">
+                            
+                            {% block arbre %}
+                                <a href="{{path('homepage')}}">Accueil</a>
+                            {%endblock%}
+                                
+                        </div>
+
+                        {% block body %}
+                        {% endblock %}
+
+                        <div>
+                            <!--
+                            {% block fbshare%}
+                                {# <div class="fb-like" data-href="{{ url(app.request.attributes.get('_route')) }}" data-send="true" data-width="450" data-show-faces="true" data-font="arial"></div> #}
+                            {%endblock%}
+                            -->
+                            {% block commentaires%}
+                                {% include 'comainBundle:Blocks:Commentaires.html.twig' %}
+                            {%endblock%}
+                        </div>
+                    </div>
+
+                    <div class="col2" style="overflow: visible">
+                        <!-- Column 2 start (colonne de gauche) -->
+                         {% block gauche %}
+                            
+                            {# Menu Vertical #}
+                            {% include 'comainBundle:Blocks:MenuVertical.html.twig' %}
+
+                            {# Réseaux sociaux #}
+                            {% include 'comainBundle:Blocks:ReseauxSociaux.html.twig' %}
+                        
+                    {% endblock %}
+                        <!-- Column 2 end -->
+                    </div>
+
+                    <div class="col3">
+                        <!-- Column 3 start (colonne de droite)-->
+                        <!-- Column 3 end -->
+                    </div>
+
+		</div>
+            </div>
+        </div>
+
+        {% block javascripts %}
+            <!-- Bouton Google -->
+            <script type="text/javascript">
+                window.___gcfg = {lang: 'fr'};
+                (function() {
+                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                    po.src = 'https://apis.google.com/js/plusone.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                })();
+            </script>
+            <!-- Bouton Google -->
+
+
+        {% endblock %}
+
+    </body>
+
+    <div id="footer">
+        {%block footer%}
+            <ul>
+                <li>
+                    Le site
+                    <ul>
+                        <li>Plan</li>
+                    </ul>
+                </li>
+                <li>
+                    Contact
+                    <ul>
+                        <li><a href="{{ path('contact') }}">Formulaire de contact</a></li>
+                        <li><a href="http://www.facebook.com/pages/CAILBAUT-Olivier-Cr%C3%A9ateur-de-Solutions/365054276854994" target="_blank">Facebook</a></li>
+                        <li><a href="mailto: contact@djepo.craym.eu">EMail</a></li>
+                    </ul>
+                </li>
+            </ul>
+        {%endblock%}
+    </div>
+
+</html>
