@@ -1,0 +1,6 @@
+mettre en place une feuille de style unique pour les articles (afin que tny mce ailles chercher celle là) ?
+Cela permettra d'éviter d'avoir les balises générales du site.
+
+Bug génant: Quand on ajoute un article, qu'on le valide, l'article est créé (ok).
+Par contre, lorsquel'on revient sur la page précédente, on retrouve bien l'article a l'adresse  /add, mais lorsque l'on valide, on recrée un nouvel article !
+Il faut empécher cela. (comment ?)
