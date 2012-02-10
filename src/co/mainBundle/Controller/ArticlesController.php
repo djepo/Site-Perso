@@ -31,7 +31,7 @@ class ArticlesController extends Controller {
             //$em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
             //$em->createquery("SELECT * FROM articles");
 
-            return $this->render('comainBundle:indexarticles:index.html.twig', array('articles' => $em->getResult()));
+            return $this->render('comainBundle:article:indexarticles.html.twig');
         }
     }
 
@@ -69,40 +69,29 @@ class ArticlesController extends Controller {
             // On crée le FormBuilder grâce à la méthode du contrôleur.
             $formBuilder = $this->createFormBuilder($article);
 
-            $formBuilder->add('title', 'text');
-            //$formBuilder->add('author','text');                        
-            //$formBuilder->add('author', 'fos_user_username');
-            //$formBuilder->add('article', 'textarea'); //commenté pour tester la ligne suivante en intégrant tinymce
+            $formBuilder->add('title', 'text');            
             $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
-            //$formBuilder->add('created', 'datetime');
-            //$formBuilder->add('updated', 'datetime');
 
-            $article->setAuthor($username);    //test de valeur par défaut
-            //$article->setcreated(new \Datetime());    //test de valeur par défaut
-            //$article->setupdated(new \Datetime());    //test de valeur par défaut
+            $article->setAuthor($username);    //Insertion automatique du username (variable initialisée au début de la fonction)
             
             // À partir du formBuilder, on génère le formulaire.
             $form = $formBuilder->getForm();
-
             
             //au cas ou l'on arrive sur cette page avec une requete post
             $request = $this->get('request');            
             if ($request->getMethod() == 'POST') {
-                //echo "<script language='JavaScript'>alert('requete post detectee')</script>"; 
+                
                 $form->bindRequest($request);
-                //echo "<script language='JavaScript'>alert('binrequest lancé')</script>"; 
+                
                 //if ($form->isValid()) {
-                    $em = $this->getDoctrine()->getEntityManager();
-                    echo "<script language='JavaScript'>alert('appel de l'entity manager)</script>"; 
+                    $em = $this->getDoctrine()->getEntityManager();                    
 
-                    $em->persist($article);
-                    //echo "<script language='JavaScript'>alert('article persisté')</script>"; 
+                    $em->persist($article);                    
                     //$id=$article->getId();
                     $em->flush();
-                    echo "<script language='JavaScript'>alert('flush lancé')</script>"; 
-
+                  
                     return $this->redirect($this->generateUrl('articles',array('id'=>$article->getId())));
-                    echo "<script language='JavaScript'>alert('page de l'article affichée)</script>"; 
+                 
                     
                 //}
             }
