@@ -24,7 +24,7 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
     <header>
         <h1>Ajout d'un article</h1>
 
-        <form action="{{ path('articles_ajout') }}" method="post" {{ form_enctype(form) }}>
+        <form action="{{ url('articles_ajout') }}" method="post" {{ form_enctype(form) }}>
             <div>
                 <!-- Génération du label. -->
                     {{ form_label(form.title, "Titre de l'article") }}
@@ -38,45 +38,24 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
                 {{ form_errors(form.article) }}
                 {{ form_widget(form.article) }}
             </div>
-            <div>
-                {{ form_label(form.author, "Auteur") }}
-                {{ form_errors(form.author) }}
-                {{ form_widget(form.author) }}
-            </div>
-            <div>
-                {{ form_label(form.created, "Date de Création") }}
-                {{ form_errors(form.created) }}
-                {{ form_widget(form.created) }}
-            </div>
-            <div>
-                {{ form_label(form.updated, "Date de dernière modification") }}
-                {{ form_errors(form.updated) }}
-                {{ form_widget(form.updated) }}
-            </div>
+
 
                 {#
                     {{ form_widget(form) }}
                 #}
 
-                            <br>
-                            <input type="submit" />
-                        </form>
-                    </header>  <!-- Fin balise header -->
-                </div>  <!-- Fin balise blog -->
-
-
-
-
-                <!--
-{#
-<div class="fb-comments" data-href="{{ app.request.uri }}" data-num-posts="10" data-width="550px"></div>
-#}
-                -->
+            <br>
+            <input type="submit" />
+        </form>
+    </header>  <!-- Fin balise header -->
+</div>  <!-- Fin balise blog -->
+               
 {% endblock %}
 
 {% block commentaires %}{%endblock%}
- {% block javascripts %}                
-    {{ tinymce_init() }}
-{% endblock %}              
 
-    
+{% block javascripts %}
+    {{ parent() }}
+    {{ tinymce_init() }}
+{% endblock %}
+
