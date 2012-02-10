@@ -74,7 +74,8 @@ class ArticlesController extends Controller {
             $formBuilder->add('title', 'text');
             //$formBuilder->add('author','text');                        
             $formBuilder->add('author', 'fos_user_username');
-            $formBuilder->add('article', 'textarea');
+            //$formBuilder->add('article', 'textarea'); //commenté pour tester la ligne suivante en intégrant tinymce
+            $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
             $formBuilder->add('created', 'datetime');
             $formBuilder->add('updated', 'datetime');
 

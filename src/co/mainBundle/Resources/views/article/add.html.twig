@@ -8,6 +8,7 @@
 
 {% block body %}
 
+{#
 <script type="text/javascript" src="{{ asset('bundles/comain/js/tiny_mce/tiny_mce.js') }}"></script>
 <script type="text/javascript">
 !--
@@ -17,7 +18,7 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
 });
 //-->
 </script>
-
+#}
 
 <div class="blog">
     <header>
@@ -61,8 +62,6 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
                             <input type="submit" />
                         </form>
                     </header>  <!-- Fin balise header -->
-
-
                 </div>  <!-- Fin balise blog -->
 
 
@@ -76,3 +75,8 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
 {% endblock %}
 
 {% block commentaires %}{%endblock%}
+ {% block javascripts %}                
+    {{ tinymce_init() }}
+{% endblock %}              
+
+    
