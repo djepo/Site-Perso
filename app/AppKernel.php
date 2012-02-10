@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new co\mainBundle\comainBundle(),
             new co\UserBundle\coUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {            
