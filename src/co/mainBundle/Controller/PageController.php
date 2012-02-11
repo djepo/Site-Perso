@@ -47,12 +47,12 @@ class PageController extends Controller
 
             if ($form->isValid()) {
                 // Perform some action, such as sending an email
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Message envoyé depuis la page de Contact du Site Perso')
-            ->setFrom('contact@djepo.craym.eu')
-            ->setTo($this->container->getParameter('blogger_blog.emails.contact_email'))                
-            ->setBody($this->renderView('comainBundle:Page:contactEmail.txt.twig', array('enquiry' => $enquiry)));
-        $this->get('mailer')->send($message);
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Message envoyé depuis la page de Contact du Site Perso')
+                    ->setFrom('contact@djepo.craym.eu')
+                    ->setTo($this->container->getParameter('blogger_blog.emails.contact_email'))                
+                    ->setBody($this->renderView('comainBundle:Page:contactEmail.txt.twig', array('enquiry' => $enquiry)));
+                $this->get('mailer')->send($message);
                 
                 $this->get('session')->setFlash('blogger-notice', 'Votre message à bien été envoyé. Nous vous répondrons dès que possible.');
                 
