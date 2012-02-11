@@ -39,7 +39,7 @@
 }
 .header .user .myaccount {
     background-color: white;
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAOCAYAAADE84fzAAAAjUlEQVQ4jWO4ePEu//////mAmIHamAFouC6QoUUrw5OAjHhaGb4UyFiES4GZtd9/ECZWHN3wO0DGTUKGIxuETQyX4V+BjK/4FCEbRqzBMMP/Ahl/CSkk1WCY4b+AjN/EKCbFYJjhr4GMt7RKLQeBjKO0MrwJyGilleEuQIYrrQyXAjKkaGU4G5DBTgvDAav1r1NL+Y7BAAAAAElFTkSuQmCC");
+    background-image: url("../images/themes/base/fleche-bas_dropdownmenu.png");
     background-position: right 5px;
     background-repeat: no-repeat;
     border-radius: 3px 3px 3px 3px;
