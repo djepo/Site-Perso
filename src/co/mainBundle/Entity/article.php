@@ -37,13 +37,13 @@ class article
     protected $article;
 
     /**
-     * @ORM\Column(type="string", length="20")
+     * @ORM\Column(type="string", length="20", nullable=true)
      * @Assert\NotBlank()
      */
     protected $image;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true")     
      */
     protected $tags;
 
@@ -214,8 +214,8 @@ class article
     
         public function __construct()
     {
-        $this->setCreated(new \DateTime());
-        $this->setUpdated(new \DateTime());
+        $this->setCreated(new \DateTime()); //lors de la création, on met la date par défaut à celle du jour
+        //$this->setUpdated(new \DateTime());
     }
     
      /**
