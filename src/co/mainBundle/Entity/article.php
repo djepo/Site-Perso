@@ -56,7 +56,7 @@ class article
     protected $created;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime, nullable=true")
      * @Assert\DateTime()
      */
     protected $updated;
