@@ -54,7 +54,7 @@ class PageController extends Controller
                     ->setBody($this->renderView('comainBundle:Page:contactEmail.txt.twig', array('enquiry' => $enquiry)));
                 $this->get('mailer')->send($message);
                 
-                $this->get('session')->setFlash('blogger-notice', 'Votre message à bien été envoyé. Nous vous répondrons dès que possible.');
+                $this->get('session')->setFlash('notification', 'Votre message à bien été envoyé. Nous vous répondrons dès que possible.');
                 
                 // Redirect - This is important to prevent users re-posting
                 // the form if they refresh the page
