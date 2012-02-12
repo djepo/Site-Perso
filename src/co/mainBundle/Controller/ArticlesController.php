@@ -71,7 +71,7 @@ class ArticlesController extends Controller {
 
             $formBuilder->add('title', 'text');            
             $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
-
+            
             $article->setAuthor($username);    //Insertion automatique du username (variable initialisée au début de la fonction)
             
             // À partir du formBuilder, on génère le formulaire.
@@ -95,8 +95,8 @@ class ArticlesController extends Controller {
                     
                 //}
             }
-
-
+            
+            
             return $this->render('comainBundle:article:add.html.twig', array('form' => $form->createView(),));
         }
     }
