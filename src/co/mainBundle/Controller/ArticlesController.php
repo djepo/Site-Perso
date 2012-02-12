@@ -89,7 +89,7 @@ use co\mainBundle\Entity\article;
                     $em->persist($article);
                     //$id=$article->getId();
                     $em->flush();
-                    
+                                        
                     $this->get('session')->setFlash('notification', 'L\'article à bien été ajouté.');
                     return $this->redirect($this->generateUrl('articles_ajout'));
                     
