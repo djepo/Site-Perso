@@ -11,9 +11,9 @@
     </header> 
  
     {# Définition de l'information de réussite d'envoi du formulaire (Envoyé par le controleur) #}
-    {% if app.session.hasFlash('blogger-notice') %}
-        <div class="blogger-notice">
-            {{ app.session.flash('blogger-notice') }}
+    {% if app.session.hasFlash('notification') %}
+        <div class="notification">
+            {{ app.session.flash('notification') }}
         </div>
     {% endif %}
     {# Fin de définition de l'information de réussite d'envoi du formulaire #}
@@ -22,15 +22,18 @@
     
     <form action="{{ path('contact') }}" method="post" {{ form_enctype(form) }} class="blogger">
         {{ form_errors(form) }} {#Gestion des erreurs de saisie#}
-
-        {{ form_row(form.name) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.subject) }}
-        {{ form_row(form.body) }}
+        {{ form_label(form.name, "Nom, prénom") }}
+        {{ form_widget(form.name) }}
+        {{ form_label(form.email, "Adresse Mail") }}
+        {{ form_widget(form.email) }}
+        {{ form_label(form.subject, "Sujet de votre message") }}
+        {{ form_widget(form.subject) }}
+        {{ form_label(form.body, "Votre message") }}
+        {{ form_widget(form.body) }}
 
         {{ form_rest(form) }}   {#Affichage des éventuels champs oubliés#}
-
-        <input type="submit" value="Submit" />
+        <p align="center">
+        <input type="submit" value="Envoyer" />
     </form>
     
 {% endblock %}
