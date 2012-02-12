@@ -43,7 +43,7 @@ class article
     protected $image;
 
     /**
-     * @ORM\Column(type="text", nullable=true")     
+     * @ORM\Column(type="text", nullable=true)     
      */
     protected $tags;
 
@@ -56,7 +56,7 @@ class article
     protected $created;
 
     /**
-     * @ORM\Column(type="datetime, nullable=true")
+     * @ORM\Column(type="datetime", nullable=true)
      * @Assert\DateTime()
      */
     protected $updated;
