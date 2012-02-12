@@ -22,6 +22,13 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
 
 <div class="blog">
     <header>
+            {# Définition de l'information de réussite d'envoi du formulaire (Envoyé par le controleur) #}
+    {% if app.session.hasFlash('notification') %}
+        <div class="notification">
+            {{ app.session.flash('notification') }}
+        </div>
+    {% endif %}
+    {# Fin de définition de l'information de réussite d'envoi du formulaire #}
         <h1>Ajout d'un article</h1>
 
         <form action="{{ url('articles_ajout') }}" method="post" {{ form_enctype(form) }}>
