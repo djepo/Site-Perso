@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;    //pour les exceptions d'utilisateurs non connectés
 use co\mainBundle\Entity\article;
+use co\UserBundle;
 
     class ArticlesController extends Controller {
 
@@ -19,6 +20,7 @@ use co\mainBundle\Entity\article;
         public function articlesAction($id = 0) {
             if ($id > 0) {
                 $em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+                
                 $article = $em->getRepository('comainBundle:article')->find($id);   //on mémorise l'article en l'appelant par son id'
 
                 if (!$article) {    //si on n'a rien trouvé
@@ -40,7 +42,7 @@ use co\mainBundle\Entity\article;
          * @Template()
          */
         public function editAction($id) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getEntityManager();            
             $article = $em->getRepository('comainBundle:article')->find($id);
 
             if (!$article) {
@@ -66,12 +68,15 @@ use co\mainBundle\Entity\article;
             if (!$article) {
                 throw $this->createNotFoundException('Impossible de créer un nouvel article.');   //on lance une exception
             } else {
+                $em = $this->getDoctrine()->getEntityManager();                
+                
                 // On crée le FormBuilder grâce à la méthode du contrôleur.
                 $formBuilder = $this->createFormBuilder($article);
 
                 $formBuilder->add('title', 'text');
                 $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
-
+                
+                //$article->setTitle($user_id); //Pour le débugage
                 $article->setAuthor($username);    //Insertion automatique du username (variable initialisée au début de la fonction)
                 
                 // À partir du formBuilder, on génère le formulaire.
@@ -84,7 +89,7 @@ use co\mainBundle\Entity\article;
                     $form->bindRequest($request);
 
                     //if ($form->isValid()) {
-                    $em = $this->getDoctrine()->getEntityManager();
+                    
 
                     $em->persist($article);
                     //$id=$article->getId();
