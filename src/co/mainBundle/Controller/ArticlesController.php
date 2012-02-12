@@ -1,6 +1,6 @@
-    <?php
+<?php
 
-    namespace co\mainBundle\Controller;
+namespace co\mainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,7 +12,7 @@ use co\mainBundle\Entity\article;
 
         /**
          * @Route("/articles")
-         * @Route("/articles/{id}", defaults={"id" = 1}, requirements={"id" = "\d+"}, name="articles")     
+         * @Route("/articles/{id}", defaults={"id" = 1}, requirements={"id" = "\d+"}, name="articles")
          * @Template()
          * @method({"GET"|"POST"})
          */
@@ -73,7 +73,7 @@ use co\mainBundle\Entity\article;
                 $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
 
                 $article->setAuthor($username);    //Insertion automatique du username (variable initialisée au début de la fonction)
-            
+                
                 // À partir du formBuilder, on génère le formulaire.
                 $form = $formBuilder->getForm();
 
@@ -90,7 +90,7 @@ use co\mainBundle\Entity\article;
                     //$id=$article->getId();
                     $em->flush();
 
-                    return $this->redirect($this->generateUrl('articles',array('id'=>$article->getId())));
+                    return $this->redirect($this->generateUrl('articles', array('id' => $article->getId())));
 
 
                     //}
@@ -101,4 +101,4 @@ use co\mainBundle\Entity\article;
             }
         }
 
-    }
+    }   
