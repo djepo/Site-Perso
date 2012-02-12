@@ -20,43 +20,32 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
 </script>
 #}
 
-<div class="blog">
     <header>
-            {# Définition de l'information de réussite d'envoi du formulaire (Envoyé par le controleur) #}
+        <h1>Ajout d'un article</h1>
+    </header>
+        
+    {# Définition de l'information de réussite d'envoi du formulaire (Envoyé par le controleur) #}
     {% if app.session.hasFlash('notification') %}
         <div class="notification">
             {{ app.session.flash('notification') }}
         </div>
     {% endif %}
     {# Fin de définition de l'information de réussite d'envoi du formulaire #}
-        <h1>Ajout d'un article</h1>
-
+        
         <form action="{{ url('articles_ajout') }}" method="post" {{ form_enctype(form) }}>
-            <div>
-                <!-- Génération du label. -->
-                    {{ form_label(form.title, "Titre de l'article") }}
-                <!-- Affichage des erreurs pour ce champ précis. -->
-                    {{ form_errors(form.title) }}
-                <!-- Génération de l'input. -->
-                    {{ form_widget(form.title) }}
+            <div>                
+                {{ form_label(form.title, "Titre de l'article") }}
+                {{ form_errors(form.title) }}
+                {{ form_widget(form.title) }}
             </div>
             <div>
                 {{ form_label(form.article, "Contenu de l'article") }}
                 {{ form_errors(form.article) }}
                 {{ form_widget(form.article) }}
             </div>
-
-
-                {#
-                    {{ form_widget(form) }}
-                #}
-
             <br>
             <input type="submit" />
-        </form>
-    </header>  <!-- Fin balise header -->
-</div>  <!-- Fin balise blog -->
-               
+        </form>               
 {% endblock %}
 
 {% block commentaires %}{%endblock%}
