@@ -8,7 +8,9 @@
 
 {%block arbre %}
 <a href="{{path('homepage')}}">Accueil</a>
- > <a href="{{path('article',{'id': article.id})}}">Articles</a>
+ {#> <a href="{{path('article',{'id': article.id})}}">Articles</a>#}
+ > <a href="{{path('articles')}}">Articles</a>
+ > <a href="{{path('article',{'id': article.id})}}">{{article.title}}</a>
 {%endblock%}
  
 {% block title %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
