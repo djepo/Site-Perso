@@ -6,6 +6,13 @@
 <link href="{{ asset('bundles/comain/css/articles.css') }}" type="text/css" rel="stylesheet" /> {# Ajout de la nouvelle feuille de style pour les formulaires #}
 {% endblock %}
 
+{%block arbre %}
+<a href="{{path('homepage')}}">Accueil</a>
+ {#> <a href="{{path('article',{'id': article.id})}}">Articles</a>#}
+ > <a href="{{path('articles')}}">Articles</a>
+ > <a href="{{path('article_ajout')}}">Ajout d'un Article</a>
+{%endblock%}
+
 {% block body %}
 
 {#
