@@ -32,7 +32,7 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
     {% endif %}
     {# Fin de définition de l'information de réussite d'envoi du formulaire #}
         
-        <form action="{{ url('articles_ajout') }}" method="post" {{ form_enctype(form) }}>
+        <form action="{{ url('article_ajout') }}" method="post" {{ form_enctype(form) }}>
             <div>                
                 {{ form_label(form.title, "Titre de l'article") }}
                 {{ form_errors(form.title) }}
