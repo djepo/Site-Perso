@@ -44,7 +44,7 @@ class __TwigTemplate_6b624012a97a561ff4b40a85d7d0c8df extends Twig_Template
             <div class=\"options\">
                 <a href=\"";
             // line 32
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("articles_ajout"), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("article_ajout"), "html", null, true);
             echo "\">Nouvel Article</a>
             </div>
             

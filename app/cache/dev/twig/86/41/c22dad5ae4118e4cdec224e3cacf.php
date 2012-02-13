@@ -42,15 +42,35 @@ class __TwigTemplate_8641c22dad5ae4118e4cdec224e3cacf extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         echo "    ";
-        echo " 
-<h1>Articles</h1>
+        // line 8
+        echo "<h1>Articles</h1>
 <h2>
     Liste des articles disponibles
 </h2>
 ";
+        // line 12
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getContext($context, "articles"));
+        foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
+            // line 13
+            echo "    <a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("article", array("id" => $this->getAttribute($this->getContext($context, "article"), "id"))), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "article"), "id"), "html", null, true);
+            echo " - ";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "article"), "title"), "html", null, true);
+            echo "</a><br>
+";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
+        $context = array_merge($_parent, array_intersect_key($context, $_parent));
+        // line 15
+        echo "
+";
     }
 
-    // line 14
+    // line 18
     public function block_commentaires($context, array $blocks = array())
     {
     }

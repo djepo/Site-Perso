@@ -47,7 +47,7 @@ class __TwigTemplate_5da0541b16f241ef1c9dac2c29198943 extends Twig_Template
         echo "\">Accueil</a>
  > <a href=\"";
         // line 11
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("articles", array("id" => $this->getAttribute($this->getContext($context, "article"), "id"))), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("article", array("id" => $this->getAttribute($this->getContext($context, "article"), "id"))), "html", null, true);
         echo "\">Articles</a>
 ";
     }
@@ -110,14 +110,6 @@ class __TwigTemplate_5da0541b16f241ef1c9dac2c29198943 extends Twig_Template
         </div>  <!-- Fin balise footer -->
         
     </div>  <!-- Fin balise blog -->
-
-
-    
-
-<!--    
-";
-        // line 55
-        echo "-->
 ";
     }
 

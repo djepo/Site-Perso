@@ -84,27 +84,27 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // co_blog_articles_articles
-        if ($pathinfo === '/articles') {
-            return array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::articlesAction',  '_route' => 'co_blog_articles_articles',);
-        }
-
         // articles
-        if (0 === strpos($pathinfo, '/articles') && preg_match('#^/articles(?:/(?P<id>\\d+))?$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  'id' => 1,  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::articlesAction',)), array('_route' => 'articles'));
+        if ($pathinfo === '/articles') {
+            return array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::articlesAction',  '_route' => 'articles',);
         }
 
-        // articles_edition
-        if (0 === strpos($pathinfo, '/articles/edit') && preg_match('#^/articles/edit/(?P<id>\\d+)$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::editAction',)), array('_route' => 'articles_edition'));
+        // article
+        if (0 === strpos($pathinfo, '/article') && preg_match('#^/article(?:/(?P<id>\\d+))?$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  'id' => 0,  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::articleAction',)), array('_route' => 'article'));
         }
 
-        // articles_ajout
-        if (rtrim($pathinfo, '/') === '/articles/add') {
+        // article_edition
+        if (0 === strpos($pathinfo, '/article/edit') && preg_match('#^/article/edit/(?P<id>\\d+)$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::editAction',)), array('_route' => 'article_edition'));
+        }
+
+        // article_ajout
+        if (rtrim($pathinfo, '/') === '/article/add') {
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'articles_ajout');
+                return $this->redirect($pathinfo.'/', 'article_ajout');
             }
-            return array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::addAction',  '_route' => 'articles_ajout',);
+            return array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::addAction',  '_route' => 'article_ajout',);
         }
 
         // homepage

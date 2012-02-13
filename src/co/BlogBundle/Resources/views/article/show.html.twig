@@ -8,7 +8,7 @@
 
 {%block arbre %}
 <a href="{{path('homepage')}}">Accueil</a>
- > <a href="{{path('articles',{'id': article.id})}}">Articles</a>
+ > <a href="{{path('article',{'id': article.id})}}">Articles</a>
 {%endblock%}
  
 {% block title %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
@@ -44,13 +44,4 @@
         </div>  <!-- Fin balise footer -->
         
     </div>  <!-- Fin balise blog -->
-
-
-    
-
-<!--    
-{#
-<div class="fb-comments" data-href="{{ app.request.uri }}" data-num-posts="10" data-width="550px"></div>
-#}
--->
 {% endblock %}
