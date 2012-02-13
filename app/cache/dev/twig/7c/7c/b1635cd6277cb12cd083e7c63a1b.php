@@ -1,6 +1,6 @@
 <?php
 
-/* FOSUserBundle:Profile:edit_content.html.twig */
+/* coUserBundle:Profile:edit_content.html.twig */
 class __TwigTemplate_7c7cb1635cd6277cb12cd083e7c63a1b extends Twig_Template
 {
     protected function doDisplay(array $context, array $blocks = array())
@@ -28,7 +28,7 @@ class __TwigTemplate_7c7cb1635cd6277cb12cd083e7c63a1b extends Twig_Template
 
     public function getTemplateName()
     {
-        return "FOSUserBundle:Profile:edit_content.html.twig";
+        return "coUserBundle:Profile:edit_content.html.twig";
     }
 
     public function isTraitable()

@@ -23,7 +23,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_home' => true,
        '_configurator_step' => true,
        '_configurator_final' => true,
-       'co_main_articles_articles' => true,
+       'co_blog_articles_articles' => true,
        'articles' => true,
        'articles_edition' => true,
        'articles_ajout' => true,
@@ -117,24 +117,24 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (), array (  '_controller' => 'Sensio\\Bundle\\DistributionBundle\\Controller\\ConfiguratorController::finalAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/_configurator/final',  ),));
     }
 
-    private function getco_main_articles_articlesRouteInfo()
+    private function getco_blog_articles_articlesRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::articlesAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/articles',  ),));
+        return array(array (), array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::articlesAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/articles',  ),));
     }
 
     private function getarticlesRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  'id' => 1,  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::articlesAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/articles',  ),));
+        return array(array (  0 => 'id',), array (  'id' => 1,  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::articlesAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/articles',  ),));
     }
 
     private function getarticles_editionRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::editAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/articles/edit',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::editAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/articles/edit',  ),));
     }
 
     private function getarticles_ajoutRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::addAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/articles/add/',  ),));
+        return array(array (), array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::addAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/articles/add/',  ),));
     }
 
     private function gethomepageRouteInfo()

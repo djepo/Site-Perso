@@ -45,7 +45,7 @@ class __TwigTemplate_b67ce28707bf3733382368669f5bc93b extends Twig_Template
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
         echo "\" />
 
-
+        
         <meta property=\"og:url\" content=\"http://djepo.craym.eu/\">
         <meta property=\"og:title\" content=\"CAILBAUT Olivier - Créateur de Solutions\">
         <meta property=\"og:description\" content=\"Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.\">

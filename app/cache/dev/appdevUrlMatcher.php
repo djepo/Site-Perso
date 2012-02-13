@@ -84,19 +84,19 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // co_main_articles_articles
+        // co_blog_articles_articles
         if ($pathinfo === '/articles') {
-            return array (  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::articlesAction',  '_route' => 'co_main_articles_articles',);
+            return array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::articlesAction',  '_route' => 'co_blog_articles_articles',);
         }
 
         // articles
         if (0 === strpos($pathinfo, '/articles') && preg_match('#^/articles(?:/(?P<id>\\d+))?$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  'id' => 1,  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::articlesAction',)), array('_route' => 'articles'));
+            return array_merge($this->mergeDefaults($matches, array (  'id' => 1,  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::articlesAction',)), array('_route' => 'articles'));
         }
 
         // articles_edition
         if (0 === strpos($pathinfo, '/articles/edit') && preg_match('#^/articles/edit/(?P<id>\\d+)$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::editAction',)), array('_route' => 'articles_edition'));
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::editAction',)), array('_route' => 'articles_edition'));
         }
 
         // articles_ajout
@@ -104,7 +104,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'articles_ajout');
             }
-            return array (  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::addAction',  '_route' => 'articles_ajout',);
+            return array (  '_controller' => 'co\\BlogBundle\\Controller\\ArticlesController::addAction',  '_route' => 'articles_ajout',);
         }
 
         // homepage

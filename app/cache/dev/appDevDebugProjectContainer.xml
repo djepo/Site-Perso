@@ -19,7 +19,9 @@
       <parameter key="JMSSecurityExtraBundle">JMS\SecurityExtraBundle\JMSSecurityExtraBundle</parameter>
       <parameter key="comainBundle">co\mainBundle\comainBundle</parameter>
       <parameter key="coUserBundle">co\UserBundle\coUserBundle</parameter>
+      <parameter key="coBlogBundle">co\BlogBundle\coBlogBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
+      <parameter key="StfalconTinymceBundle">Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -33,12 +35,12 @@
     <parameter key="database_user">root</parameter>
     <parameter key="database_password"></parameter>
     <parameter key="mailer_transport">smtp</parameter>
-    <parameter key="mailer_encryption">tls</parameter>
+    <parameter key="mailer_encryption">ssl</parameter>
     <parameter key="mailer_auth_mode">login</parameter>
-    <parameter key="mailer_port">587</parameter>
-    <parameter key="mailer_host">auth.smtp.1and1.fr</parameter>
-    <parameter key="mailer_user">lionel.demangeon@meteodyn.com</parameter>
-    <parameter key="mailer_password">user1414</parameter>
+    <parameter key="mailer_port">465</parameter>
+    <parameter key="mailer_host">server.craym.net</parameter>
+    <parameter key="mailer_user">djepocra</parameter>
+    <parameter key="mailer_password">6{wnNiAGCf</parameter>
     <parameter key="locale">fr</parameter>
     <parameter key="secret">17ba2710385728b7331fc254ec6302fd8a593d27</parameter>
     <parameter key="blogger_blog.emails.contact_email">contact@djepo.craym.eu</parameter>
@@ -270,11 +272,11 @@
     <parameter key="swiftmailer.plugin.antiflood.sleep">0</parameter>
     <parameter key="swiftmailer.data_collector.class">Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector</parameter>
     <parameter key="swiftmailer.transport.smtp.class">Swift_Transport_EsmtpTransport</parameter>
-    <parameter key="swiftmailer.transport.smtp.encryption">tls</parameter>
-    <parameter key="swiftmailer.transport.smtp.port">587</parameter>
-    <parameter key="swiftmailer.transport.smtp.host">auth.smtp.1and1.fr</parameter>
-    <parameter key="swiftmailer.transport.smtp.username">lionel.demangeon@meteodyn.com</parameter>
-    <parameter key="swiftmailer.transport.smtp.password">user1414</parameter>
+    <parameter key="swiftmailer.transport.smtp.encryption">ssl</parameter>
+    <parameter key="swiftmailer.transport.smtp.port">465</parameter>
+    <parameter key="swiftmailer.transport.smtp.host">server.craym.net</parameter>
+    <parameter key="swiftmailer.transport.smtp.username">djepocra</parameter>
+    <parameter key="swiftmailer.transport.smtp.password">6{wnNiAGCf</parameter>
     <parameter key="swiftmailer.transport.smtp.auth_mode">login</parameter>
     <parameter key="swiftmailer.spool.enabled">false</parameter>
     <parameter key="swiftmailer.sender_address">null</parameter>
@@ -414,6 +416,43 @@
       <parameter>ResetPassword</parameter>
       <parameter>Default</parameter>
     </parameter>
+    <parameter key="stfalcon_tinymce.config" type="collection">
+      <parameter key="include_jquery">true</parameter>
+      <parameter key="textarea_class">tinymce</parameter>
+      <parameter key="theme" type="collection">
+        <parameter key="simple" type="collection">
+          <parameter key="mode">textareas</parameter>
+          <parameter key="theme">advanced</parameter>
+          <parameter key="theme_advanced_buttons1">mylistbox,mysplitbutton,bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,undo,redo,link,unlink</parameter>
+          <parameter key="theme_advanced_buttons2"></parameter>
+          <parameter key="theme_advanced_buttons3"></parameter>
+          <parameter key="theme_advanced_toolbar_location">top</parameter>
+          <parameter key="theme_advanced_toolbar_align">left</parameter>
+          <parameter key="theme_advanced_statusbar_location">bottom</parameter>
+          <parameter key="plugins">fullscreen</parameter>
+          <parameter key="theme_advanced_buttons1_add">fullscreen</parameter>
+        </parameter>
+        <parameter key="advanced" type="collection">
+          <parameter key="theme">advanced</parameter>
+          <parameter key="plugins">pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template</parameter>
+          <parameter key="theme_advanced_buttons1">save,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect</parameter>
+          <parameter key="theme_advanced_buttons2">cut,copy,paste,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,code,|,preview,|,forecolor,backcolor</parameter>
+          <parameter key="theme_advanced_buttons3">tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,fullscreen</parameter>
+          <parameter key="theme_advanced_buttons4">insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak</parameter>
+          <parameter key="theme_advanced_toolbar_location">top</parameter>
+          <parameter key="theme_advanced_toolbar_align">left</parameter>
+          <parameter key="theme_advanced_statusbar_location">bottom</parameter>
+          <parameter key="theme_advanced_resizing">true</parameter>
+          <parameter key="width">100%</parameter>
+          <parameter key="height">600</parameter>
+          <parameter key="theme_advanced_resizing_min_width">100%</parameter>
+          <parameter key="theme_advanced_resizing_max_width">100%</parameter>
+          <parameter key="content_css">../../../bundles/comain/css/stylesheet.css</parameter>
+        </parameter>
+      </parameter>
+    </parameter>
+    <parameter key="stfalcon_tinymce.include_jquery">true</parameter>
+    <parameter key="stfalcon_tinymce.textarea_class">.tinymce</parameter>
     <parameter key="web_profiler.debug_toolbar.class">Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -1236,7 +1275,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>4f2eb9ffd3499</argument>
+            <argument>4f3920357fb32</argument>
           </service>
         </argument>
         <argument type="service">
@@ -1257,7 +1296,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>4f2eb9ffd3499</argument>
+            <argument>4f3920357fb32</argument>
           </service>
         </argument>
       </argument>
@@ -1406,7 +1445,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>4f2eb9ffd3499</argument>
+            <argument>4f3920357fb32</argument>
             <argument type="service" id="monolog.logger.security"/>
           </service>
         </argument>
@@ -1561,7 +1600,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>4f2eb9ffd3499</argument>
+            <argument>4f3920357fb32</argument>
             <argument type="service" id="monolog.logger.security"/>
           </service>
         </argument>
@@ -1671,6 +1710,9 @@
           </service>
         </argument>
       </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.stfalcon_tinymce"/>
+      </call>
     </service>
     <service id="twig.loader" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader">
       <argument type="service" id="templating.locator"/>
@@ -1779,6 +1821,7 @@
             <argument type="collection">
               <argument key="comainBundle">co\mainBundle\Entity</argument>
               <argument key="coUserBundle">co\UserBundle\Entity</argument>
+              <argument key="coBlogBundle">co\BlogBundle\Entity</argument>
               <argument key="FOSUserBundle">FOS\UserBundle\Entity</argument>
             </argument>
           </call>
@@ -1823,6 +1866,7 @@
                       <argument type="collection">
                         <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\src\co\mainBundle\Entity</argument>
                         <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\src\co\UserBundle\Entity</argument>
+                        <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\src\co\BlogBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -1839,10 +1883,28 @@
                       <argument type="collection">
                         <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\src\co\mainBundle\Entity</argument>
                         <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\src\co\UserBundle\Entity</argument>
+                        <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\src\co\BlogBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
                   <argument>co\UserBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service">
+                        <service class="Symfony\Bridge\Doctrine\Annotations\IndexedReader" public="false">
+                          <argument type="service" id="annotation_reader"/>
+                        </service>
+                      </argument>
+                      <argument type="collection">
+                        <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\src\co\mainBundle\Entity</argument>
+                        <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\src\co\UserBundle\Entity</argument>
+                        <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\src\co\BlogBundle\Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>co\BlogBundle\Entity</argument>
                 </call>
                 <call method="addDriver">
                   <argument type="service">
@@ -2214,6 +2276,33 @@
               <argument type="service">
                 <service class="%assetic.directory_resource.class%" public="false">
                   <argument type="service" id="templating.loader"/>
+                  <argument>coBlogBundle</argument>
+                  <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\app/Resources/coBlogBundle/views</argument>
+                  <argument>/^[^.]+\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>coBlogBundle</argument>
+                  <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\src\co\BlogBundle/Resources/views</argument>
+                  <argument>/^[^.]+\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
                   <argument>FOSUserBundle</argument>
                   <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\app/Resources/FOSUserBundle/views</argument>
                   <argument>/^[^.]+\.[^.]+\.twig$/</argument>
@@ -2224,6 +2313,33 @@
                   <argument type="service" id="templating.loader"/>
                   <argument>FOSUserBundle</argument>
                   <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\vendor\bundles\FOS\UserBundle/Resources/views</argument>
+                  <argument>/^[^.]+\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>StfalconTinymceBundle</argument>
+                  <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\app/Resources/StfalconTinymceBundle/views</argument>
+                  <argument>/^[^.]+\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>StfalconTinymceBundle</argument>
+                  <argument>C:\Program Files (x86)\EasyPHP-5.3.8.1\www\PhpProject2\vendor\bundles\Stfalcon\Bundle\TinymceBundle/Resources/views</argument>
                   <argument>/^[^.]+\.[^.]+\.twig$/</argument>
                 </service>
               </argument>
@@ -2499,6 +2615,10 @@
     <service id="fos_user.resetting.form.type" class="FOS\UserBundle\Form\Type\ResettingFormType">
       <tag name="form.type" alias="fos_user_resetting"/>
     </service>
+    <service id="twig.extension.stfalcon_tinymce" class="Stfalcon\Bundle\TinymceBundle\Twig\Extension\StfalconTinymceExtension">
+      <tag name="twig.extension" alias="stfalcon_tinymce"/>
+      <argument type="service" id="service_container"/>
+    </service>
     <service id="web_profiler.debug_toolbar" class="Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener">
       <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" priority="-128"/>
       <argument type="service" id="templating"/>
@@ -2683,19 +2803,19 @@
         <service class="Swift_Events_SimpleEventDispatcher" public="false"/>
       </argument>
       <call method="setHost">
-        <argument>auth.smtp.1and1.fr</argument>
+        <argument>server.craym.net</argument>
       </call>
       <call method="setPort">
-        <argument>587</argument>
+        <argument>465</argument>
       </call>
       <call method="setEncryption">
-        <argument>tls</argument>
+        <argument>ssl</argument>
       </call>
       <call method="setUsername">
-        <argument>lionel.demangeon@meteodyn.com</argument>
+        <argument>djepocra</argument>
       </call>
       <call method="setPassword">
-        <argument>user1414</argument>
+        <argument>6{wnNiAGCf</argument>
       </call>
       <call method="setAuthMode">
         <argument>login</argument>

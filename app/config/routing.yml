@@ -1,3 +1,8 @@
+coBlogBundle:
+    resource: "@coBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 comainBundle:
     resource: "@comainBundle/Controller/"
     type:     annotation

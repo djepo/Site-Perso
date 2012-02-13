@@ -37,6 +37,7 @@ class appProdProjectContainer extends Container
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'comainBundle', 'C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\www\\PhpProject2\\app/Resources/comainBundle/views', '/^[^.]+\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'comainBundle', 'C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\www\\PhpProject2\\src\\co\\mainBundle/Resources/views', '/^[^.]+\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'coUserBundle', 'C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\www\\PhpProject2\\app/Resources/coUserBundle/views', '/^[^.]+\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'coUserBundle', 'C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\www\\PhpProject2\\src\\co\\UserBundle/Resources/views', '/^[^.]+\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'FOSUserBundle', 'C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\www\\PhpProject2\\app/Resources/FOSUserBundle/views', '/^[^.]+\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'FOSUserBundle', 'C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\www\\PhpProject2\\vendor\\bundles\\FOS\\UserBundle/Resources/views', '/^[^.]+\\.[^.]+\\.twig$/'))), 'twig');
+        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'StfalconTinymceBundle', 'C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\www\\PhpProject2\\app/Resources/StfalconTinymceBundle/views', '/^[^.]+\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'StfalconTinymceBundle', 'C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\www\\PhpProject2\\vendor\\bundles\\Stfalcon\\Bundle\\TinymceBundle/Resources/views', '/^[^.]+\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, '', 'C:\\Program Files (x86)\\EasyPHP-5.3.8.1\\www\\PhpProject2\\app/Resources/views', '/^[^.]+\\.[^.]+\\.twig$/'), 'twig');
         return $instance;
     }
@@ -485,7 +486,7 @@ class appProdProjectContainer extends Container
     {
         $a = $this->get('security.context');
         $b = $this->get('monolog.logger.security');
-        return $this->services['security.firewall.map.context.login'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_manager')), 'login', $b, $this->get('event_dispatcher')), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '4f2d4116b3c6b', $b), 3 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $this->get('security.http_utils'), NULL, NULL, NULL, $b));
+        return $this->services['security.firewall.map.context.login'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_manager')), 'login', $b, $this->get('event_dispatcher')), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '4f34dd9f722b9', $b), 3 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $this->get('security.http_utils'), NULL, NULL, NULL, $b));
     }
     protected function getSecurity_Firewall_Map_Context_MainService()
     {
@@ -499,9 +500,9 @@ class appProdProjectContainer extends Container
         $h = new \Symfony\Component\Security\Http\Firewall\LogoutListener($a, $e, '/logout', '/', NULL);
         $h->addHandler(new \Symfony\Component\Security\Http\Logout\SessionLogoutHandler());
         $h->addHandler($g);
-        $i = new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $f, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $e, 'main', array('check_path' => '/login_check', 'login_path' => '/login', 'use_forward' => false, 'always_use_default_target_path' => false, 'default_target_path' => '/', 'target_path_parameter' => '_target_path', 'use_referer' => false, 'failure_path' => NULL, 'failure_forward' => false, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), NULL, NULL, $c, $d, $this->get('form.csrf_provider'));
+        $i = new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $f, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $e, 'main', array('check_path' => '/login_check', 'login_path' => '/login', 'use_forward' => false, 'always_use_default_target_path' => false, 'default_target_path' => '/', 'target_path_parameter' => '_target_path', 'use_referer' => false, 'failure_path' => NULL, 'failure_forward' => false, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), NULL, NULL, $c, $d);
         $i->setRememberMeServices($g);
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $b), 'main', $c, $d), 2 => $h, 3 => $i, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($a, $g, $f, $c, $d), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '4f2d4116b3c6b', $c), 6 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $e, new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($this->get('http_kernel'), $e, '/login', false), NULL, NULL, $c));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $b), 'main', $c, $d), 2 => $h, 3 => $i, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($a, $g, $f, $c, $d), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '4f34dd9f722b9', $c), 6 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $e, new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($this->get('http_kernel'), $e, '/login', false), NULL, NULL, $c));
     }
     protected function getSecurity_Rememberme_ResponseListenerService()
     {
@@ -539,7 +540,7 @@ class appProdProjectContainer extends Container
     }
     protected function getSessionService()
     {
-        return $this->services['session'] = new \Symfony\Component\HttpFoundation\Session($this->get('session.storage'), 'en');
+        return $this->services['session'] = new \Symfony\Component\HttpFoundation\Session($this->get('session.storage'), 'fr');
     }
     protected function getSession_StorageService()
     {
@@ -556,11 +557,11 @@ class appProdProjectContainer extends Container
     protected function getSwiftmailer_TransportService()
     {
         $this->services['swiftmailer.transport'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()))), new \Swift_Events_SimpleEventDispatcher());
-        $instance->setHost('smtp.gmail.com');
-        $instance->setPort('465');
-        $instance->setEncryption('ssl');
-        $instance->setUsername('cailbaut.olivier@gmail.com');
-        $instance->setPassword('41434143');
+        $instance->setHost('auth.smtp.1and1.fr');
+        $instance->setPort('587');
+        $instance->setEncryption('tls');
+        $instance->setUsername('lionel.demangeon@meteodyn.com');
+        $instance->setPassword('user1414');
         $instance->setAuthMode('login');
         return $instance;
     }
@@ -662,11 +663,16 @@ class appProdProjectContainer extends Container
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(array(0 => 'form_div_layout.html.twig')));
         $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), false, array()));
+        $instance->addExtension($this->get('twig.extension.stfalcon_tinymce'));
         return $instance;
     }
     protected function getTwig_ExceptionListenerService()
     {
         return $this->services['twig.exception_listener'] = new \Symfony\Component\HttpKernel\EventListener\ExceptionListener('Symfony\\Bundle\\TwigBundle\\Controller\\ExceptionController::showAction', $this->get('monolog.logger.request'));
+    }
+    protected function getTwig_Extension_StfalconTinymceService()
+    {
+        return $this->services['twig.extension.stfalcon_tinymce'] = new \Stfalcon\Bundle\TinymceBundle\Twig\Extension\StfalconTinymceExtension($this);
     }
     protected function getTwig_LoaderService()
     {
@@ -721,7 +727,7 @@ class appProdProjectContainer extends Container
     protected function getSecurity_Authentication_ManagerService()
     {
         $a = $this->get('fos_user.user_checker');
-        return $this->services['security.authentication.manager'] = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('4f2d4116b3c6b'), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_manager'), $a, 'main', $this->get('security.encoder_factory'), true), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, '17ba2710385728b7331fc254ec6302fd8a593d27', 'main'), 3 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('4f2d4116b3c6b')));
+        return $this->services['security.authentication.manager'] = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('4f34dd9f722b9'), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_manager'), $a, 'main', $this->get('security.encoder_factory'), true), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, '17ba2710385728b7331fc254ec6302fd8a593d27', 'main'), 3 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('4f34dd9f722b9')));
     }
     protected function getSecurity_Authentication_TrustResolverService()
     {
@@ -792,6 +798,7 @@ class appProdProjectContainer extends Container
                 'comainBundle' => 'co\\mainBundle\\comainBundle',
                 'coUserBundle' => 'co\\UserBundle\\coUserBundle',
                 'FOSUserBundle' => 'FOS\\UserBundle\\FOSUserBundle',
+                'StfalconTinymceBundle' => 'Stfalcon\\Bundle\\TinymceBundle\\StfalconTinymceBundle',
             ),
             'kernel.charset' => 'UTF-8',
             'kernel.container_class' => 'appProdProjectContainer',
@@ -801,14 +808,14 @@ class appProdProjectContainer extends Container
             'database_name' => 'siteperso',
             'database_user' => 'root',
             'database_password' => '',
-            'mailer_transport' => 'gmail',
-            'mailer_encryption' => 'ssl',
+            'mailer_transport' => 'smtp',
+            'mailer_encryption' => 'tls',
             'mailer_auth_mode' => 'login',
-            'mailer_port' => '465',
-            'mailer_host' => 'smtp.gmail.com',
-            'mailer_user' => 'cailbaut.olivier@gmail.com',
-            'mailer_password' => '41434143',
-            'locale' => 'en',
+            'mailer_port' => '587',
+            'mailer_host' => 'auth.smtp.1and1.fr',
+            'mailer_user' => 'lionel.demangeon@meteodyn.com',
+            'mailer_password' => 'user1414',
+            'locale' => 'fr',
             'secret' => '17ba2710385728b7331fc254ec6302fd8a593d27',
             'blogger_blog.emails.contact_email' => 'contact@djepo.craym.eu',
             'router_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\RouterListener',
@@ -832,7 +839,7 @@ class appProdProjectContainer extends Container
             'session.storage.native.class' => 'Symfony\\Component\\HttpFoundation\\SessionStorage\\NativeSessionStorage',
             'session.storage.filesystem.class' => 'Symfony\\Component\\HttpFoundation\\SessionStorage\\FilesystemSessionStorage',
             'session_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\SessionListener',
-            'session.default_locale' => 'en',
+            'session.default_locale' => 'fr',
             'session.storage.options' => array(
             ),
             'form.extension.class' => 'Symfony\\Component\\Form\\Extension\\DependencyInjection\\DependencyInjectionExtension',
@@ -1023,11 +1030,11 @@ class appProdProjectContainer extends Container
             'swiftmailer.plugin.antiflood.sleep' => 0,
             'swiftmailer.data_collector.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\DataCollector\\MessageDataCollector',
             'swiftmailer.transport.smtp.class' => 'Swift_Transport_EsmtpTransport',
-            'swiftmailer.transport.smtp.encryption' => 'ssl',
-            'swiftmailer.transport.smtp.port' => '465',
-            'swiftmailer.transport.smtp.host' => 'smtp.gmail.com',
-            'swiftmailer.transport.smtp.username' => 'cailbaut.olivier@gmail.com',
-            'swiftmailer.transport.smtp.password' => '41434143',
+            'swiftmailer.transport.smtp.encryption' => 'tls',
+            'swiftmailer.transport.smtp.port' => '587',
+            'swiftmailer.transport.smtp.host' => 'auth.smtp.1and1.fr',
+            'swiftmailer.transport.smtp.username' => 'lionel.demangeon@meteodyn.com',
+            'swiftmailer.transport.smtp.password' => 'user1414',
             'swiftmailer.transport.smtp.auth_mode' => 'login',
             'swiftmailer.spool.enabled' => false,
             'swiftmailer.sender_address' => NULL,
@@ -1168,6 +1175,38 @@ class appProdProjectContainer extends Container
                 0 => 'ResetPassword',
                 1 => 'Default',
             ),
+            'stfalcon_tinymce.config' => array(
+                'include_jquery' => true,
+                'textarea_class' => 'tinymce',
+                'theme' => array(
+                    'simple' => array(
+                        'mode' => 'textareas',
+                        'theme' => 'advanced',
+                        'theme_advanced_buttons1' => 'mylistbox,mysplitbutton,bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,undo,redo,link,unlink',
+                        'theme_advanced_buttons2' => '',
+                        'theme_advanced_buttons3' => '',
+                        'theme_advanced_toolbar_location' => 'top',
+                        'theme_advanced_toolbar_align' => 'left',
+                        'theme_advanced_statusbar_location' => 'bottom',
+                        'plugins' => 'fullscreen',
+                        'theme_advanced_buttons1_add' => 'fullscreen',
+                    ),
+                    'advanced' => array(
+                        'theme' => 'advanced',
+                        'plugins' => 'pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template',
+                        'theme_advanced_buttons1' => 'save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect',
+                        'theme_advanced_buttons2' => 'cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor',
+                        'theme_advanced_buttons3' => 'tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen',
+                        'theme_advanced_buttons4' => 'insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak',
+                        'theme_advanced_toolbar_location' => 'top',
+                        'theme_advanced_toolbar_align' => 'left',
+                        'theme_advanced_statusbar_location' => 'bottom',
+                        'theme_advanced_resizing' => true,
+                    ),
+                ),
+            ),
+            'stfalcon_tinymce.include_jquery' => true,
+            'stfalcon_tinymce.textarea_class' => '.tinymce',
         );
     }
 }
