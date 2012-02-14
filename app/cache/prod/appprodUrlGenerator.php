@@ -15,6 +15,8 @@ class appprodUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerat
     static private $declaredRouteNames = array(
        'co_main_articles_articles' => true,
        'articles' => true,
+       'articles_edition' => true,
+       'articles_ajout' => true,
        'homepage' => true,
        'cv' => true,
        'contact' => true,
@@ -63,6 +65,16 @@ class appprodUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerat
     private function getarticlesRouteInfo()
     {
         return array(array (  0 => 'id',), array (  'id' => 1,  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::articlesAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/articles',  ),));
+    }
+
+    private function getarticles_editionRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::editAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/articles/edit',  ),));
+    }
+
+    private function getarticles_ajoutRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'co\\mainBundle\\Controller\\ArticlesController::addAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/articles/add/',  ),));
     }
 
     private function gethomepageRouteInfo()

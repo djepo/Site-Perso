@@ -49,12 +49,12 @@ class __TwigTemplate_a57ccc1308694602cbb25ad74190c2e1 extends Twig_Template
     ";
         // line 14
         echo "    ";
-        if ($this->getAttribute($this->getAttribute($this->getContext($context, "app"), "session"), "hasFlash", array("blogger-notice", ), "method")) {
+        if ($this->getAttribute($this->getAttribute($this->getContext($context, "app"), "session"), "hasFlash", array("notification", ), "method")) {
             // line 15
             echo "        <div class=\"blogger-notice\">
             ";
             // line 16
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "session"), "flash", array("blogger-notice", ), "method"), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "session"), "flash", array("notification", ), "method"), "html", null, true);
             echo "
         </div>
     ";
@@ -76,37 +76,51 @@ class __TwigTemplate_a57ccc1308694602cbb25ad74190c2e1 extends Twig_Template
         echo $this->env->getExtension('form')->renderErrors($this->getContext($context, "form"));
         echo " ";
         // line 25
+        echo "        ";
+        echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, "form"), "name"), "Nom, prénom");
         echo "
         ";
         // line 26
-        echo $this->env->getExtension('form')->renderRow($this->getAttribute($this->getContext($context, "form"), "name"));
+        echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, "form"), "name"));
         echo "
         ";
         // line 27
-        echo $this->env->getExtension('form')->renderRow($this->getAttribute($this->getContext($context, "form"), "email"));
+        echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, "form"), "email"), "Adresse Mail");
         echo "
         ";
         // line 28
-        echo $this->env->getExtension('form')->renderRow($this->getAttribute($this->getContext($context, "form"), "subject"));
+        echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, "form"), "email"));
         echo "
         ";
         // line 29
-        echo $this->env->getExtension('form')->renderRow($this->getAttribute($this->getContext($context, "form"), "body"));
+        echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, "form"), "subject"), "Sujet de votre message");
+        echo "
+        ";
+        // line 30
+        echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, "form"), "subject"));
+        echo "
+        ";
+        // line 31
+        echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, "form"), "body"), "Votre message");
+        echo "
+        ";
+        // line 32
+        echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, "form"), "body"));
         echo "
 
         ";
-        // line 31
+        // line 34
         echo $this->env->getExtension('form')->renderRest($this->getContext($context, "form"));
         echo "   ";
-        // line 32
-        echo "
-        <input type=\"submit\" value=\"Submit\" />
+        // line 35
+        echo "        <p align=\"center\">
+        <input type=\"submit\" value=\"Envoyer\" />
     </form>
     
 ";
     }
 
-    // line 38
+    // line 41
     public function block_commentaires($context, array $blocks = array())
     {
     }

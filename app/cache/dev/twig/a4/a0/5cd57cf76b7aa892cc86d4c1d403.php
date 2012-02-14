@@ -1,6 +1,6 @@
 <?php
 
-/* FOSUserBundle::layout.html.twig */
+/* coUserBundle::layout.html.twig */
 class __TwigTemplate_a4a05cd57cf76b7aa892cc86d4c1d403 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
@@ -77,7 +77,7 @@ class __TwigTemplate_a4a05cd57cf76b7aa892cc86d4c1d403 extends Twig_Template
 
     public function getTemplateName()
     {
-        return "FOSUserBundle::layout.html.twig";
+        return "coUserBundle::layout.html.twig";
     }
 
     public function isTraitable()

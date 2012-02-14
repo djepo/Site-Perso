@@ -40,40 +40,48 @@ class __TwigTemplate_6b624012a97a561ff4b40a85d7d0c8df extends Twig_Template
             echo " </a>
 
         <ul class=\"dropdown\">
+            <h3 class=\"title\">Articles</h3>
+            <div class=\"options\">
+                <a href=\"";
+            // line 32
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("article_ajout"), "html", null, true);
+            echo "\">Nouvel Article</a>
+            </div>
+            
             <h3 class=\"title\">Mon Compte</h3>
 
             <div class=\"options\">
                 <a href=\"";
-            // line 33
+            // line 38
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_profile_show"), "html", null, true);
             echo "\">Voir Profil</a>
             </div>
             <div class=\"options\">
                 <a href=\"";
-            // line 36
+            // line 41
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_profile_edit"), "html", null, true);
             echo "\">Editer Profil</a>
             </div>
             <div class=\"options\">
                 <a href=\"";
-            // line 39
+            // line 44
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_security_logout"), "html", null, true);
             echo "\">Deconnexion</a>
             </div>
         </ul>
 
         <!-- ";
-            // line 45
+            // line 50
             echo " -->
     ";
         } else {
-            // line 47
+            // line 52
             echo "        <a class=\"signin\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_security_login"), "html", null, true);
             echo "\">Connexion</a>
     ";
         }
-        // line 49
+        // line 54
         echo "
 </div>";
     }

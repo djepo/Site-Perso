@@ -72,10 +72,18 @@ class __TwigTemplate_0cf67786854eb0795ba0eba0847118af extends Twig_Template
                                             </li>
                                             </ul>
                                             -->
+                                            <ul class=\"niveau2\">
+                                                <li>
+                                                    <a href=\"";
+        // line 65
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("articles"), "html", null, true);
+        echo "\">Articles</a>
+                                                </li>
+                                            </ul>
                                             <ul class=\"niveau1\">
                                                 <li style=\"background-color: transparent;\">
                                                     <a href=\"";
-        // line 65
+        // line 70
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("cv"), "html", null, true);
         echo "\">CV</a>
                                                 </li>

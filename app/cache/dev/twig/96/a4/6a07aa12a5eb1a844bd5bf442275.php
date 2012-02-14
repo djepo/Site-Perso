@@ -104,7 +104,6 @@ class __TwigTemplate_96a46a07aa12a5eb1a844bd5bf442275 extends Twig_Template
         echo "\">Posté le: ";
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($this->getContext($context, "article"), "created"), "d/m/Y", "Europe/Paris"), "html", null, true);
         echo "</time></div>
-
         </div>  <!-- Fin balise footer -->
 
     </div>  <!-- Fin balise blog -->
@@ -114,12 +113,12 @@ class __TwigTemplate_96a46a07aa12a5eb1a844bd5bf442275 extends Twig_Template
 
 <!--
 ";
-        // line 49
+        // line 48
         echo "-->
 ";
     }
 
-    // line 52
+    // line 51
     public function block_commentaires($context, array $blocks = array())
     {
     }
