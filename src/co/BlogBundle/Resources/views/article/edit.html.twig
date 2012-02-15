@@ -5,47 +5,45 @@
     {{ parent() }}  {# Héritage des feuilles de styles parentes #}
     <link href="{{ asset('bundles/comain/css/articles.css') }}" type="text/css" rel="stylesheet" /> {# Ajout de la nouvelle feuille de style pour les formulaires #}
 {% endblock %}
-
+    
 {%block arbre %}
-<a href="{{path('homepage')}}">Accueil</a>
- > <a href="{{path('articles',{'id': article.id})}}">Articles</a>
- > <a href="{{path('article_edition',{'id': article.id}) }}">Edition</a>
+<a href="{{path('homepage')}}">Accueil</a> 
+ > <a href="{{path('articles')}}">Articles</a>
+ > <a href="{{ app.request.uri}}">Edition d'un Article</a>
 {%endblock%}
 
-{% block title %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
-
 {% block body %}
-
-    <div class="blog">
-        <header>
-            <h1>Edition de l'article</h1>
-            <h1>{{ article.title }}</h1>
-            
-            <p>Par {{article.author}}</p>            
-            
-            <img src="{{ asset(['images/', article.image]|join) }}" alt="" class="large" />
-        </header>  <!-- Fin balise header -->
-
-        <div>
-            <textarea>
-                <p>{{ article.article|raw }}</p>
-            </textarea>
+    <header>
+        <h1>Edition d'un article</h1>
+    </header>
+    
+    {# Définition de l'information de réussite d'envoi du formulaire (Envoyé par le controleur) #}
+    {% if app.session.hasFlash('notification') %}
+        <div class="notification">
+            {{ app.session.flash('notification') }}
         </div>
-
-        <div class="footer">
-            <div class="date"><time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time></div>
-        </div>  <!-- Fin balise footer -->
-
-    </div>  <!-- Fin balise blog -->
-
-
-
-
-<!--
-{#
-<div class="fb-comments" data-href="{{ app.request.uri }}" data-num-posts="10" data-width="550px"></div>
-#}
--->
+    {% endif %}
+    {# Fin de définition de l'information de réussite d'envoi du formulaire #}
+    
+        <form action="{{ app.request.uri }}" method="post" {{ form_enctype(form) }}>
+            <div>                
+                {{ form_label(form.title, "Titre de l'article") }}
+                {{ form_errors(form.title) }}
+                {{ form_widget(form.title) }}
+            </div>
+            <div>
+                {{ form_label(form.article, "Contenu de l'article") }}
+                {{ form_errors(form.article) }}
+                {{ form_widget(form.article) }}
+            </div>
+            <br>
+            <input type="submit" value="Modifier"/>
+        </form> 
 {% endblock %}
 
 {% block commentaires %}{%endblock%}
+    
+    {% block javascripts %}
+    {{ parent() }}
+    {{ tinymce_init() }}
+{% endblock %}

@@ -14,9 +14,9 @@ class ArticlesController extends Controller {
     /**
      * @Route("/articles", name="articles")
      * @Template()
-     * 
+     *
      * Affiche la liste de tous les articles
-     * 
+     *
      */
     public function articlesAction() {
         $em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
@@ -24,7 +24,7 @@ class ArticlesController extends Controller {
         return $this->render('coBlogBundle:article:indexarticles.html.twig', array('articles' => $articles,));
     }
 
-    /**     
+    /**
      * @Route("/article/{id}", defaults={"id" = 0}, requirements={"id" = "\d+"}, name="article")
      * @Template()
      * @method({"GET"|"POST"})
@@ -51,13 +51,33 @@ class ArticlesController extends Controller {
      * @Template()
      */
     public function editAction($id) {
-        $em = $this->getDoctrine()->getEntityManager();
-        $article = $em->getRepository('coBlogBundle:article')->find($id);
-
-        if (!$article) {
-            throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
+        $username = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($username)) {
+            throw new AccessDeniedException('Vous n\'êtes pas authentifié.');
         } else {
-            return $this->render('coBlogBundle:article:edit.html.twig', array('article' => $article,));
+
+            $em = $this->getDoctrine()->getEntityManager();
+            $article = $em->getRepository('coBlogBundle:article')->find($id);
+
+            if (!$article) {
+                throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
+            } else {
+                $formBuilder=$this->createFormBuilder($article);                
+                $formBuilder->add('title', 'text');
+                $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));                
+                $form=$formBuilder->getForm();
+                
+                $request = $this->get('request');
+                if ($request->getMethod() == 'POST') {
+                $form->bindRequest($request);
+                $em->persist($article);                
+                $em->flush();
+
+                $this->get('session')->setFlash('notification', 'L\'article à bien été modifié.');
+                //Pas de redirection, on met le flash sur la page courante, ce qui va la recharger directement.                
+            }                
+                return $this->render('coBlogBundle:article:edit.html.twig', array('form' => $form->createView(),));
+            }
         }
     }
 
@@ -70,7 +90,6 @@ class ArticlesController extends Controller {
         if (!is_object($username)) {
             throw new AccessDeniedException('Vous n\'êtes pas authentifié.');
         }
-        //$userid=$this->container->get('fos_user.user_manager');
 
         $article = new article();
 
