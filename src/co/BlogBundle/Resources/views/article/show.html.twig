@@ -12,37 +12,43 @@
  > <a href="{{path('articles')}}">Articles</a>
  > <a href="{{path('article',{'id': article.id})}}">{{article.title}}</a>
 {%endblock%}
- 
+
 {% block title %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
 
 {% block body %}
 
     <div class="blog">
         <header>
-            <h1>{{ article.title }}</h1>            
+            <h1>{{ article.title }}</h1>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {# {% if is_granted('ROLE_ADMIN') %} #}
+                    <a href="{{path('article_edition',{'id':article.id})}}">éditer</a>
+                {# {%endif%} #}
+            {%endif%}
+                    
             <p>Par {{article.author}}</p>
+            
             <img src="{{ asset(['images/', article.image]|join) }}" alt="" class="large" />
+            
         </header>  <!-- Fin balise header -->
-        
-        <div>            
-            <p>{{ article.article|raw }}</p>            
+
+        <div>
+            <p>{{ article.article|raw }}</p>
         </div>
-        
+
         <div class="footer">
             <div class="date"><time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time></div>
-            
-            <!-- Lockerz Share BEGIN -->
-            <!--
+
+            <!-- Lockerz Share BEGIN -->            
                 <a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_120_16.gif" width="120" height="16" border="0" alt="Share"/></a>
                 <script type="text/javascript">
                     var a2a_config = a2a_config || {};
                     a2a_config.locale = "fr";
                 </script>
-                <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
-            -->
-            <!-- Lockerz Share END -->          
-            
+                <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>            
+            <!-- Lockerz Share END -->
+
         </div>  <!-- Fin balise footer -->
-        
+
     </div>  <!-- Fin balise blog -->
 {% endblock %}
