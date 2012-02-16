@@ -59,6 +59,8 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
 
 {% block javascripts %}
     {{ parent() }}
-    {{ tinymce_init() }}
+    {{ tinymce_init() }}   
+    {# Intégration de TinyBrowser, afin d'uploader directement les fichiers dans tinymce #}
+    <script type="text/javascript" src="{{asset('bundles/stfalcontinymce/vendor/tiny_mce/plugins/tinybrowser/tb_tinymce.js.php')}}"></script>
 {% endblock %}
 

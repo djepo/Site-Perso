@@ -100,3 +100,4 @@ stfalcon_tinymce:
             theme_advanced_resizing_min_width : 100%
             theme_advanced_resizing_max_width : 100%
             content_css : "../../../bundles/comain/css/stylesheet.css"
+            file_browser_callback : "tinyBrowser" #Affiche le browser TinyBrower, qui permet d'uploader des fichiers dans les plugins images, medias et files
