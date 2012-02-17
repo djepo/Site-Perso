@@ -1,6 +1,6 @@
 /app/logs/
-/app/cache/
 /nbproject/
-/app/config/parameters.ini
+app/config/parameters.ini
 /vendor/bundles/Stfalcon/
 /web/bundles/stfalcontinymce/
+/app/cache/
