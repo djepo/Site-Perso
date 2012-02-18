@@ -1,112 +1,115 @@
                         {# Menu du site #}
 
-                            <div id="menu">
-                                <div class="box_menu">
-                                    <h5>Menu</h5>
-                                    <div class="corpsmenu corpsmenuprin" style="padding-bottom:0;">
-                                        <div class="liste_cours_menu" style="margin-left: 43px; _padding:20px 0 0 0;">
-                                            <ul class="niveau1">
-                                                <li style="background-color: transparent;">
-                                                    <a href="{{ path('homepage') }}">Accueil</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="niveau1">
-                                                <li class="plus" style="background-color: transparent;">
-                                                    <strong>Développement</strong>
-                                                    <ul class="niveau2">
-                                                        <li class="plus">
-                                                            <strong>VB .Net</strong>
-                                                            <ul class="niveau3">
-                                                                <li class="plus">
-                                                                    <strong>Digger Helper</strong>
-                                                                    <ul class="niveau4">
-                                                                        <li>
-                                                                            <a href="http://djepo.craym.eu/index.php?page=Développement/VB .Net/Digger Helper/2-Fonctionnement.php">2-Fonctionnement</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="http://djepo.craym.eu/index.php?page=Développement/VB .Net/Digger Helper/1-Descriptif.html">1-Descriptif</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                        <li class="plus">
-                                                            <strong>Php</strong>
-                                                            <ul class="niveau3">
-                                                                <li>
-                                                                    <a href="http://djepo.craym.eu/index.php?page=Développement/Php/Mes débuts en PHP.html">Mes débuts en PHP</a>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                        <li class="plus">
-                                                            <strong>Javascript</strong>
-                                                            <ul class="niveau3">
-                                                                <li>
-                                                                    <a href="http://djepo.craym.eu/index.php?page=Développement/Javascript/Calculer son âge.php">Calculer son âge</a>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <strong>Microsoft Office - VBA</strong>
-                                                            <ul class="niveau3"></ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                            <!--
-                                            <ul class="niveau1">
-                                            <li style="background-color: transparent;">
-                                                <a href="http://djepo.craym.eu/index.php?page=solver.php">solver</a>
+<div id="menu">
+    <div class="box_menu">
+        <h5>Menu</h5>
+        <div class="corpsmenu corpsmenuprin" style="padding-bottom:0;">
+            <div class="liste_cours_menu" style="margin-left: 43px; _padding:20px 0 0 0;">
+                <ul class="niveau1">
+                    <li style="background-color: transparent;">
+                        <a href="{{ path('homepage') }}">Accueil</a>
+                    </li>
+                </ul>
+                <ul class="niveau1">
+                    <li class="plus" style="background-color: transparent;">
+                        <strong>Développement</strong>
+                        <ul class="niveau2">
+                            <li class="plus">
+                                <strong>VB .Net</strong>
+                                <ul class="niveau3">
+                                    <li class="plus">
+                                        <strong>Digger Helper</strong>
+                                        <ul class="niveau4">
+                                            <li>
+                                                <a href="http://djepo.craym.eu/index.php?page=Développement/VB .Net/Digger Helper/2-Fonctionnement.php">2-Fonctionnement</a>
                                             </li>
-                                            </ul>
-                                            -->
-                                            <ul class="niveau1">
-                                                <li class="plus" style="background-color: transparent;">
-                                                    <strong>Book</strong>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':9})}}">Mata Hari</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':10})}}">Calcul d'avance-retard de production</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':11})}}">Nescom</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':12})}}">Comparaison de base NSkep - Ordonnancement Excel</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':13})}}">Ordonnancement Visuel</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':14})}}">Calcul de Taux de Rebuts</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':15})}}">Calcul de sous-dosage et de sur-dosage</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':16})}}">Application de Traçabilité de production</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':17})}}">SIAD Process</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':18})}}">Digger Helper</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':19})}}">Gestion des récupérations</a>
-                                                    </ul>
-                                                    <ul class="niveau2">
-                                                        <a href="{{path('article',{'id':20})}}">Adaptation fichier Ordonnancement suite à changement de logiciel de Scan Palettes</a>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                            <ul class="niveau1">
-                                                <li style="background-color: transparent;">
-                                                    <a href="{{path('cv')}}">CV</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                            <li>
+                                                <a href="http://djepo.craym.eu/index.php?page=Développement/VB .Net/Digger Helper/1-Descriptif.html">1-Descriptif</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="plus">
+                                <strong>Php</strong>
+                                <ul class="niveau3">
+                                    <li>
+                                        <a href="http://djepo.craym.eu/index.php?page=Développement/Php/Mes débuts en PHP.html">Mes débuts en PHP</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="plus">
+                                <strong>Javascript</strong>
+                                <ul class="niveau3">
+                                    <li>
+                                        <a href="http://djepo.craym.eu/index.php?page=Développement/Javascript/Calculer son âge.php">Calculer son âge</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Microsoft Office - VBA</strong>
+                                <ul class="niveau3"></ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--
+                <ul class="niveau1">
+                <li style="background-color: transparent;">
+                    <a href="http://djepo.craym.eu/index.php?page=solver.php">solver</a>
+                </li>
+                </ul>
+                -->
+                <ul class="niveau1">
+                    <li class="plus" style="background-color: transparent;">
+                        <strong>Book</strong>
+                        <ul class="niveau2">
+                            <li>
+                                <a href="{{path('article',{'id':9})}}">Mata Hari</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':10})}}">Calcul d'avance-retard de production</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':11})}}">Nescom</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':12})}}">Comparaison de base NSkep - Ordonnancement Excel</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':13})}}">Ordonnancement Visuel</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':14})}}">Calcul de Taux de Rebuts</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':15})}}">Calcul de sous-dosage et de sur-dosage</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':16})}}">Application de Traçabilité de production</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':17})}}">SIAD Process</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':18})}}">Digger Helper</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':19})}}">Gestion des récupérations</a>
+                            </li>
+                            <li>
+                                <a href="{{path('article',{'id':20})}}">Adaptation fichier Ordonnancement suite à changement de logiciel de Scan Palettes</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+                <ul class="niveau1">
+                    <li style="background-color: transparent;">
+                        <a href="{{path('cv')}}">CV</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
