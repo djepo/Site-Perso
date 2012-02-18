@@ -62,20 +62,20 @@ class ArticlesController extends Controller {
             if (!$article) {
                 throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
             } else {
-                $formBuilder=$this->createFormBuilder($article);                
+                $formBuilder = $this->createFormBuilder($article);
                 $formBuilder->add('title', 'text');
-                $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));                
-                $form=$formBuilder->getForm();
-                
+                $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
+                $form = $formBuilder->getForm();
+
                 $request = $this->get('request');
                 if ($request->getMethod() == 'POST') {
-                $form->bindRequest($request);
-                $em->persist($article);                
-                $em->flush();
+                    $form->bindRequest($request);
+                    $em->persist($article);
+                    $em->flush();
 
-                $this->get('session')->setFlash('notification', 'L\'article à bien été modifié.');
-                //Pas de redirection, on met le flash sur la page courante, ce qui va la recharger directement.                
-            }                
+                    $this->get('session')->setFlash('notification', 'L\'article à bien été modifié.');
+                    //Pas de redirection, on met le flash sur la page courante, ce qui va la recharger directement.
+                }
                 return $this->render('coBlogBundle:article:edit.html.twig', array('form' => $form->createView(),));
             }
         }
@@ -104,7 +104,6 @@ class ArticlesController extends Controller {
             $formBuilder->add('title', 'text');
             $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
 
-            //$article->setTitle($user_id); //Pour le débugage
             $article->setAuthor($username);    //Insertion automatique du username (variable initialisée au début de la fonction)
             // À partir du formBuilder, on génère le formulaire.
             $form = $formBuilder->getForm();
@@ -115,23 +114,41 @@ class ArticlesController extends Controller {
 
                 $form->bindRequest($request);
 
-                //if ($form->isValid()) {
-
-
                 $em->persist($article);
-                //$id=$article->getId();
                 $em->flush();
 
                 $this->get('session')->setFlash('notification', 'L\'article à bien été ajouté.');
                 return $this->redirect($this->generateUrl('article_ajout'));
-
-                //return $this->redirect($this->generateUrl('articles', array('id' => $article->getId())));
-                //}
             }
 
 
             return $this->render('coBlogBundle:article:add.html.twig', array('form' => $form->createView(),));
         }
+    }
+
+    /**
+     * @Route("/article/delete/{id}", requirements={"id" = "\d+"}, name="article_supression")
+     * @Template()
+     */
+    public function deleteAction($id=0) {
+        $username = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($username)) {
+            throw new AccessDeniedException('Vous n\'êtes pas authentifié.');
+        } else {
+
+            $em = $this->getDoctrine()->getEntityManager();
+            $article = $em->getRepository('coBlogBundle:article')->find($id);
+
+            if (!$article) {
+                throw $this->createNotFoundException('Article Introuvable.');
+            } else {
+                //Ajouter une confirmation ici
+                $em->remove($article);
+                $em->flush();
+                $this->get('session')->setFlash('notification', 'L\'article à bien été supprimé.');
+            }
+        }
+        return $this->redirect($this->generateUrl('articles'));
     }
 
 }

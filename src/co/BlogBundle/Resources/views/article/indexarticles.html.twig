@@ -9,8 +9,21 @@
 <h2>
     Liste des articles disponibles
 </h2>
+{# Définition de l'information de réussite d'envoi du formulaire (Envoyé par le controleur) #}
+{% if app.session.hasFlash('notification') %}
+    <div class="notification">
+        {{ app.session.flash('notification') }}
+    </div>
+{% endif %}
+{# Fin de définition de l'information de réussite d'envoi du formulaire #}
+
 {%for article in articles %}
-    <a href="{{path('article',{'id': article.id})}}">{{article.id}} - {{ article.title}}</a><br>
+    <a href="{{path('article',{'id': article.id})}}">{{ article.title}}</a>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <a href="{{path('article_edition',{'id': article.id})}}"> - Editer</a>
+        <a href="{{path('article_supression',{'id': article.id})}}"> - Supprimer</a>
+    {%endif%}
+    <br>
 {%endfor %}
 
 {% endblock %}

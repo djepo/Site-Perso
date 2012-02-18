@@ -23,6 +23,7 @@
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {# {% if is_granted('ROLE_ADMIN') %} #}
                     <a href="{{path('article_edition',{'id':article.id})}}">éditer</a>
+                    <a href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>
                 {# {%endif%} #}
             {%endif%}
                     
