@@ -8,13 +8,5 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     * @Template()
-     */
-    public function indexAction()
-    {
-        //return array();
-        return $this->render('comainBundle:Default:index.html.twig');
-    }
+    
 }
