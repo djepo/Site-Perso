@@ -5,6 +5,14 @@
     {{ parent() }}  {# Héritage des feuilles de styles parentes #}
     <link href="{{ asset('bundles/comain/css/articles.css') }}" type="text/css" rel="stylesheet" /> {# Ajout de la nouvelle feuille de style pour les formulaires #}
 {% endblock %}
+    
+{# Balises de description #}
+{% block header_description %}
+    <meta name="description" content="{{ article.article(151)|escape }}" />
+    <meta property="og:description" content="{{ article.article(151)|escape }}">
+    <meta itemprop="description" content="{{ article.article(151)|escape}}">
+{% endblock %}
+            
 
 {%block arbre %}
 <a href="{{path('homepage')}}">Accueil</a>
@@ -14,6 +22,8 @@
 {%endblock%}
 
 {% block title %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
+{% block title2 %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
+{% block title3 %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
 
 {% block body %}
 

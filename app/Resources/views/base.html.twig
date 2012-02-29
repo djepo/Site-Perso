@@ -2,31 +2,35 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta description="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
+        
 
         <title>{% block title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}</title>
-
+        <meta property="og:title" content="{% block title2 %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">        
+        <meta itemprop="name" content="{% block title3 %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">        
+        
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('bundles/comain/css/stylesheet.css') }}" type="text/css" media="all" />
             <link rel="stylesheet" href="{{ asset('bundles/comain/css/usermenu.css') }}" type="text/css" media="all" />
         {% endblock %}
 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-
         
-        <meta property="og:url" content="http://djepo.craym.eu/">
-        <meta property="og:title" content="CAILBAUT Olivier - Créateur de Solutions">
-        <meta property="og:description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
+        <meta property="og:url" content="{{app.request.uri}}">        
         <meta property="og:image" content="http://djepo.craym.eu/images/VignetteSite.jpg">
         <meta property="og:type" content="website">
         <meta property="fb:admins" content="100002583175945">
         <meta property="fb:app_id" content="232953266786752"/>
 
-
-        <meta itemprop="name" content="CAILBAUT Olivier - Créateur de Solutions">
-        <meta itemprop="description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
-        <meta itemprop="image" content="http://djepo.craym.eu/images/VignetteSite.jpg" >
-
+        
+        <meta itemprop="image" content="http://djepo.craym.eu/images/VignetteSite.jpg" >        
+        
+        {# Balises de description #}
+        {% block header_description %}
+            <meta name="description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA." />
+            <meta property="og:description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
+            <meta itemprop="description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
+        {% endblock %}
+        
         <!-- JQuery -->
         <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/development-bundle/jquery-1.7.1.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/development-bundle/ui/jquery-ui-1.8.17.custom.js') }}"></script>
