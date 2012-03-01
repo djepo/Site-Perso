@@ -8,9 +8,9 @@
     
 {# Balises de description #}
 {% block header_description %}
-    <meta name="description" content="{{ article.article(151)|escape }}" />
-    <meta property="og:description" content="{{ article.article(151)|escape }}">
-    <meta itemprop="description" content="{{ article.article(151)|escape}}">
+    <meta name="description" content="{{ article.article(151)|striptags }}" />
+    <meta property="og:description" content="{{ article.article(151)|striptags }}">
+    <meta itemprop="description" content="{{ article.article(151)|striptags}}">
 {% endblock %}
             
 
