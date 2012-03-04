@@ -37,7 +37,7 @@ class article
     protected $article;
 
     /**
-     * @ORM\Column(type="string", length="20", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank()
      */
     protected $image;

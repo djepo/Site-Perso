@@ -6,4 +6,6 @@
 */
 
 
-.blog .footer {background: url("../images/themes/base/content-sep.png") no-repeat scroll 0 30px transparent;padding-bottom: 20px;}
+.blog .footer {}
+.blog .boite_image_header {overflow:hidden;border: 5px solid #FFFFFF;border-radius: 4px 4px 4px 4px;box-shadow: 0 1px 4px #979797;width:550px;height:150px;text-align: center;vertical-align: middle;margin-left: 5px}
+.blog .header_image {height: 100%}

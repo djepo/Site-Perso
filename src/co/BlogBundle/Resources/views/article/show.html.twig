@@ -5,6 +5,13 @@
     {{ parent() }}  {# Héritage des feuilles de styles parentes #}
     <link href="{{ asset('bundles/comain/css/articles.css') }}" type="text/css" rel="stylesheet" /> {# Ajout de la nouvelle feuille de style pour les formulaires #}
 {% endblock %}
+
+{% if article.image %}
+    {% block header_image %}
+        <meta property="og:image" content="{{url('homepage')}}{{ article.image|raw }}">
+        <meta itemprop="image" content="{{url('homepage')}}{{ article.image|raw }}" >        
+    {% endblock %}    
+{% endif %}
     
 {# Balises de description #}
 {% block header_description %}
@@ -35,21 +42,27 @@
                     <a href="{{path('article_edition',{'id':article.id})}}">éditer</a>
                     <a href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>
                 {# {%endif%} #}
-            {%endif%}
-                    
-            <p>Par {{article.author}}</p>
+            {%endif%}                                
             
-            <img src="{{ asset(['images/', article.image]|join) }}" alt="" class="large" />
+            {% if article.image %}
+                <div class="boite_image_header">
+                    <img src="{{ article.image|raw }}" alt="{{article.title}}" title="{{article.title}}" class="header_image"/>
+                </div>
+            {% endif %}
+            
             
         </header>  <!-- Fin balise header -->
 
-        <div>
+        <article>
             <p>{{ article.article|raw }}</p>
-        </div>
+        </article>
 
-        <div class="footer">
-            <div class="date"><time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time></div>
-
+        <footer>
+            <hr>
+            <div class="date">
+                <time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time> <author> Par {{article.author}}</author>
+            </div>            
+            
             <!-- Lockerz Share BEGIN -->            
                 <a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_120_16.gif" width="120" height="16" border="0" alt="Share"/></a>
                 <script type="text/javascript">
@@ -58,8 +71,8 @@
                 </script>
                 <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>            
             <!-- Lockerz Share END -->
-
-        </div>  <!-- Fin balise footer -->
+            <hr>
+        </footer>  <!-- Fin balise footer -->
 
     </div>  <!-- Fin balise blog -->
 {% endblock %}
