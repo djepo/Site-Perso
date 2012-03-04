@@ -15,14 +15,15 @@
 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         
-        <meta property="og:url" content="{{app.request.uri}}">        
-        <meta property="og:image" content="http://djepo.craym.eu/images/VignetteSite.jpg">
+        <meta property="og:url" content="{{app.request.uri}}">                
         <meta property="og:type" content="website">
         <meta property="fb:admins" content="100002583175945">
         <meta property="fb:app_id" content="232953266786752"/>
-
         
-        <meta itemprop="image" content="http://djepo.craym.eu/images/VignetteSite.jpg" >        
+        {% block header_description %}
+            <meta property="og:image" content="http://djepo.craym.eu/images/VignetteSite.jpg">
+            <meta itemprop="image" content="http://djepo.craym.eu/images/VignetteSite.jpg" >        
+        {% endblock %}
         
         {# Balises de description #}
         {% block header_description %}
