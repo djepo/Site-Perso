@@ -5,8 +5,8 @@
         
 
         <title>{% block title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}</title>
-        <meta property="og:title" content="{% block title2 %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">        
-        <meta itemprop="name" content="{% block title3 %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">        
+        <meta property="og:title" content="{% block opengraph_title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">        
+        <meta itemprop="name" content="{% block microdata_title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">        
         
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('bundles/comain/css/stylesheet.css') }}" type="text/css" media="all" />
@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         
         <meta property="og:url" content="{{app.request.uri}}">                
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="{% block opengraph_type %}website{% endblock %}">
         <meta property="fb:admins" content="100002583175945">
         <meta property="fb:app_id" content="232953266786752"/>
         
