@@ -62,18 +62,21 @@
 
         <footer>
             <hr>
-            <div class="date">
+            <div class="date" style="float: right">
                 <time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time> <author> Par {{article.author}}</author>
             </div>            
             
-            <!-- Lockerz Share BEGIN -->            
+            <!-- Lockerz Share BEGIN -->
+            <div style="float:left">
                 <a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_120_16.gif" width="120" height="16" border="0" alt="Share"/></a>
                 <script type="text/javascript">
                     var a2a_config = a2a_config || {};
                     a2a_config.locale = "fr";
                 </script>
                 <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>            
+            </div>
             <!-- Lockerz Share END -->
+            <br/>
             <hr>
         </footer>  <!-- Fin balise footer -->
 

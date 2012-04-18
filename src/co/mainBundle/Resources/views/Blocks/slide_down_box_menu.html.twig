@@ -1,0 +1,48 @@
+<ul id="sdt_menu" class="sdt_menu">
+    <li>
+        <a href="{{ path('homepage') }}">
+            <img src="{{ asset('bundles/comain/images/themes/base/menu/accueil.jpg')}}" alt=""/>
+            
+            {#<img src="../images/themes/base/menu/2.jpg" alt=""/>#}
+            <span class="sdt_active"></span>
+            <span class="sdt_wrap">
+                <span class="sdt_link">Accueil</span>
+                <span class="sdt_descr">Retour à la case départ !</span>
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <img src="{{ asset('bundles/comain/images/themes/base/menu/logiciels.jpg')}}" alt=""/>
+            <span class="sdt_active"></span>
+            <span class="sdt_wrap">
+                <span class="sdt_link">Logiciels</span>
+                <span class="sdt_descr">Projets personnels</span>
+            </span>
+        </a>        
+        <div class="sdt_box">
+            <a href="{{path('article',{'id':23})}}">Digger Helper</a>
+            <a href="{{path('article',{'id':22})}}">Le bon coin coin</a>            
+        </div>        
+    </li>
+    <li>
+        <a href="{{path('article',{'id':25})}}">
+            <img src="{{ asset('bundles/comain/images/themes/base/menu/book.jpg')}}" alt=""/>
+            <span class="sdt_active"></span>
+            <span class="sdt_wrap">
+                <span class="sdt_link">Book</span>
+                <span class="sdt_descr">Mes autres réalisations informatiques</span>
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="{{path('cv')}}">
+            <img src="{{ asset('bundles/comain/images/themes/base/menu/cv.jpg')}}" alt=""/>
+            <span class="sdt_active"></span>
+            <span class="sdt_wrap">
+                <span class="sdt_link">CV</span>
+                <span class="sdt_descr">Curriculum Vitae</span>
+            </span>
+        </a>
+    </li>    
+</ul>

@@ -30,8 +30,8 @@ class PageController extends Controller
         //return array();
         return $this->render('comainBundle:Page:cv.html.twig');
     }
-
-     /**
+    
+         /**
      * @Route("/contact", name="contact")
      * @Template()
      * @method({"GET", "POST"})      
