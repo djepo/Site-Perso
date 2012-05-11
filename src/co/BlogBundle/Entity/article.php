@@ -18,48 +18,53 @@ class article
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")
      */
-    protected $title;
+    private $title;
 
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
      */
-    protected $author;
+    private $author;
+    
+    /**     
+     * @ORM\ManyToOne(targetEntity="co\UserBundle\Entity\User", inversedBy="articles", cascade={"persist"})
+     */
+    private $auteur;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
-    protected $article;
+    private $article;
 
     /**
      * @ORM\Column(type="string", nullable=true)     
      */
-    protected $image;
+    private $image;
 
     /**
      * @ORM\Column(type="text", nullable=true)     
      */
-    protected $tags;
+    private $tags;
 
-    protected $comments;
+    private $comments;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\DateTime()
      */
-    protected $created;
+    private $created;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      * @Assert\DateTime()
      */
-    protected $updated;
+    private $updated;
 
     /**
      * Get id
@@ -212,9 +217,9 @@ class article
     }
     
     
-        public function __construct()
+    public function __construct()
     {
-        $this->setCreated(new \DateTime()); //lors de la création, on met la date par défaut à celle du jour
+        $this->setCreated(new \DateTime()); //lors de la création, on met la date par défaut à celle du jour        
         //$this->setUpdated(new \DateTime());
     }
     
@@ -225,5 +230,24 @@ class article
     {
        $this->setUpdated(new \DateTime());
     }
-    
+
+    /**
+     * Set auteur
+     *
+     * @param co\UserBundle\Entity\User $auteur
+     */
+    public function setAuteur(\co\UserBundle\Entity\User $auteur)
+    {
+        $this->auteur = $auteur;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return co\UserBundle\Entity\User 
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
 }

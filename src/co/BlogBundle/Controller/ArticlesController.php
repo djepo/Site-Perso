@@ -98,6 +98,7 @@ class ArticlesController extends Controller {
             throw $this->createNotFoundException('Impossible de créer un nouvel article.');   //on lance une exception
         } else {
             $em = $this->getDoctrine()->getEntityManager();
+            
 
             // On crée le FormBuilder grâce à la méthode du contrôleur.
             $formBuilder = $this->createFormBuilder($article);
@@ -106,6 +107,7 @@ class ArticlesController extends Controller {
             $formBuilder->add('image', 'text');
             $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
 
+            $article->setAuteur($username);
             $article->setAuthor($username);    //Insertion automatique du username (variable initialisée au début de la fonction)
             // À partir du formBuilder, on génère le formulaire.
             $form = $formBuilder->getForm();

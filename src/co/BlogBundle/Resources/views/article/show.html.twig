@@ -63,7 +63,7 @@
         <footer>
             <hr>
             <div class="date" style="float: right">
-                <time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time> <author> Par {{article.author}}</author>
+                <time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time> {%if article.auteur|length>0 %}<author> Par {{article.auteur.nom}} {{article.auteur.prenom}}</author>{%endif%}
             </div>            
             
             <!-- Lockerz Share BEGIN -->
