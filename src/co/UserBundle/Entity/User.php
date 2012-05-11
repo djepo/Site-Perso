@@ -1,5 +1,4 @@
 <?php
-// src/Sdz/UserBundle/Entity/User.php
 
 namespace co\UserBundle\Entity;
 

@@ -98,7 +98,7 @@
                     {% block commentaires%}
                         {% include 'comainBundle:Blocks:Commentaires.html.twig' %}
                     {%endblock%}
-                </div>
+                </div>                
             </div>                
             <div class="col2">
                 {# Publicité Google #}
@@ -106,6 +106,7 @@
                 <!-- Column 3 end -->
             </div>
         </div>
+        <div style="clear: both; height: 50px;"></div>
  {#      
         <div class="colmask threecol">
             <div class="colmid">
@@ -218,12 +219,13 @@
     <div id="footer" style="z-index:1000">
         {%block footer%}
             <p>
-            &copy; 2012 - CAILBAUT Olivier - Téléphone: 06.19.84.05.02. - SIRET:532 356 805 000 12
+                <a href="{{ path('fos_user_security_login') }}"><img width="16" height="16" src="{{ asset('bundles/comain/images/themes/base/cadenas-32.png') }}"></img></a>
+                &copy; 2012 - CAILBAUT Olivier - Téléphone: 06.19.84.05.02. - SIRET:532 356 805 000 12
 
-            <span style="float:right">
-            <a href="{{ path('contact') }}">Formulaire de contact</a> - 
-            <a href="{{path('articles')}}">Liste des articles</a></li>
-            </span>
+                <span style="float:right">
+                    <a href="{{ path('contact') }}">Formulaire de contact</a> - 
+                    <a href="{{path('articles')}}">Liste des articles</a></li>
+                </span>
             </p>
             {#
             <ul>

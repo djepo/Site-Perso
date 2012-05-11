@@ -33,12 +33,12 @@ class article
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     protected $article;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", nullable=true)     
      */
     protected $image;
 
