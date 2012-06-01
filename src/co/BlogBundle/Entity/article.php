@@ -22,16 +22,11 @@ class article
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
-     */
-    private $author;
-    
-    /**     
      * @ORM\ManyToOne(targetEntity="co\UserBundle\Entity\User", inversedBy="articles", cascade={"persist"})
      */
     private $auteur;
@@ -43,12 +38,12 @@ class article
     private $article;
 
     /**
-     * @ORM\Column(type="string", nullable=true)     
+     * @ORM\Column(type="string", nullable=true)
      */
     private $image;
 
     /**
-     * @ORM\Column(type="text", nullable=true)     
+     * @ORM\Column(type="text", nullable=true)
      */
     private $tags;
 
@@ -69,7 +64,7 @@ class article
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -89,31 +84,11 @@ class article
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set author
-     *
-     * @param string $author
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-    }
-
-    /**
-     * Get author
-     *
-     * @return string 
-     */
-    public function getAuthor()
-    {
-        return $this->author;
     }
 
     /**
@@ -129,7 +104,7 @@ class article
     /**
      * Get article
      *
-     * @return text 
+     * @return text
      */
     public function getArticle()
     {
@@ -149,7 +124,7 @@ class article
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -169,7 +144,7 @@ class article
     /**
      * Get tags
      *
-     * @return text 
+     * @return text
      */
     public function getTags()
     {
@@ -189,7 +164,7 @@ class article
     /**
      * Get created
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreated()
     {
@@ -209,20 +184,20 @@ class article
     /**
      * Get updated
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdated()
     {
         return $this->updated;
     }
-    
-    
+
+
     public function __construct()
     {
-        $this->setCreated(new \DateTime()); //lors de la création, on met la date par défaut à celle du jour        
+        $this->setCreated(new \DateTime()); //lors de la création, on met la date par défaut à celle du jour
         //$this->setUpdated(new \DateTime());
     }
-    
+
      /**
      * @ORM\preUpdate
      */
@@ -244,7 +219,7 @@ class article
     /**
      * Get auteur
      *
-     * @return co\UserBundle\Entity\User 
+     * @return co\UserBundle\Entity\User
      */
     public function getAuteur()
     {

@@ -25,7 +25,7 @@
     {% endif %}
     {# Fin de définition de l'information de réussite d'envoi du formulaire #}
     
-        <form action="{{ app.request.uri }}" method="post" {{ form_enctype(form) }}>
+        <form action="{{ app.request.uri }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
             <div>                
                 {{ form_label(form.title, "Titre de l'article") }}
                 {{ form_errors(form.title) }}

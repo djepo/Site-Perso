@@ -107,8 +107,7 @@ class ArticlesController extends Controller {
             $formBuilder->add('image', 'text');
             $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
 
-            $article->setAuteur($username);
-            $article->setAuthor($username);    //Insertion automatique du username (variable initialisée au début de la fonction)
+            $article->setAuteur($username);            
             // À partir du formBuilder, on génère le formulaire.
             $form = $formBuilder->getForm();
 

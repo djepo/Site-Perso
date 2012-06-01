@@ -17,26 +17,26 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
     private $nom;
-    
+
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
     private $prenom;
-    
+
     /**
-     * @ORM\OneToMany(targetEntity="co\BlogBundle\Entity\article", mappedBy="auteur", cascade={"persist"})     
+     * @ORM\OneToMany(targetEntity="co\BlogBundle\Entity\article", mappedBy="auteur", cascade={"persist"})
      */
     private $articles;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -56,7 +56,7 @@ class User extends BaseUser
     /**
      * Get nom
      *
-     * @return text 
+     * @return text
      */
     public function getNom()
     {
@@ -76,7 +76,7 @@ class User extends BaseUser
     /**
      * Get prenom
      *
-     * @return text 
+     * @return text
      */
     public function getPrenom()
     {
@@ -86,7 +86,7 @@ class User extends BaseUser
     {
         $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add articles
      *
@@ -100,7 +100,7 @@ class User extends BaseUser
     /**
      * Get articles
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {
