@@ -1,5 +1,6 @@
-<h2>Derniers articles publiés</h2>
-<hr>
+<h2 style="color: #FFFFFF;font-size: 24px;text-shadow: 1px 1px 1px #555555;float: left;margin-left: 15px;clear: both;">Derniers articles publiés</h2>
+
+<hr style="clear:both;margin-top: 15px;margin-bottom: 15px">
 {%if articles is defined%}
     {%for article in articles %}
         <h3>{{article.title}}</h3>        
@@ -7,7 +8,7 @@
         <p>{{ article.article|slice(0,500)|striptags|raw}}(...)</p>
         <a href="{{path('article',{'id': article.id})}}">Lire la suite...</a>
         
-        <hr>
+        <hr style="margin-top: 20px;margin-bottom: 10px">
     {%endfor%}
         
     <div id="blog_nav">
