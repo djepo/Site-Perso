@@ -19,8 +19,7 @@
 {% block header_description %}
     <meta name="description" content="{{ article.article|slice(0,150)|striptags|raw}}" />
     <meta property="og:description" content="{{ article.article|slice(0,150)|striptags|raw}}">
-    <meta itemprop="description" content="{{ article.article|slice(0,150)|striptags|raw}}">
-    {{ article.article|slice(0,150)|striptags|raw}}
+    <meta itemprop="description" content="{{ article.article|slice(0,150)|striptags|raw}}">    
 {% endblock %}
             
 
