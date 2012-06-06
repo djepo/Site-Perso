@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;    //création d'un alias nous permettant d'uti
 use Symfony\Component\Validator\Constraints as Assert;  //Pour pouvoir utiliser les anotations sevant à la validatio ndes formulaires
 
 /**
- * @ORM\Entity(repositoryClass="co\blogBundle\Repository\articleRepository")
+ * @ORM\Entity(repositoryClass="co\BlogBundle\Repository\articleRepository")
  * @ORM\Table(name="article")
  * @ORM\HasLifecycleCallbacks()
  */
