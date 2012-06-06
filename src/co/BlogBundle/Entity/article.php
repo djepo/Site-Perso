@@ -60,6 +60,11 @@ class article
      * @Assert\DateTime()
      */
     private $updated;
+    
+    /**
+     * @ORM\Column(name="viewsCount",nullable=true, type="bigint")     
+     */
+    private $viewsCount;
 
     /**
      * Get id
@@ -195,6 +200,7 @@ class article
     public function __construct()
     {
         $this->setCreated(new \DateTime()); //lors de la création, on met la date par défaut à celle du jour
+        $this->setViewsCount(0);
         //$this->setUpdated(new \DateTime());
     }
 
@@ -204,6 +210,9 @@ class article
     public function setUpdatedValue()
     {
        $this->setUpdated(new \DateTime());
+       if ($this->getViewsCount()==0) {
+           $this->setViewsCount(0);
+       }
     }
 
     /**
@@ -224,5 +233,25 @@ class article
     public function getAuteur()
     {
         return $this->auteur;
+    }
+
+    /**
+     * Set viewsCount
+     *
+     * @param bigint $viewsCount
+     */
+    public function setViewsCount($viewsCount=null)
+    {
+        $this->viewsCount = $viewsCount;
+    }
+
+    /**
+     * Get viewsCount
+     *
+     * @return bigint 
+     */
+    public function getViewsCount()
+    {
+        return $this->viewsCount;
     }
 }

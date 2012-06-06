@@ -39,7 +39,15 @@ class ArticlesController extends Controller {
                 throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
             }
 
-            //sinon on lance un rendu de la page article avec en paramètre, l'array représentant l'article
+            //Mise à jour du nombre de vues sur l'article
+            if ($article->getviewsCount()==null) {
+                $article->setviewsCount(0);
+            }
+            $article->setviewsCount($article->getviewsCount()+1);
+            $em->persist($article);
+            $em->flush();
+            
+            //on lance un rendu de la page article avec en paramètre, l'array représentant l'article
             return $this->render('coBlogBundle:article:show.html.twig', array('article' => $article,));
         } else {
             throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
