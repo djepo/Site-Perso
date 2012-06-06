@@ -1,32 +1,13 @@
 {% extends 'comainBundle::layout.html.twig' %}   {# Héritage du layout principal (app/ressources/views/base.html.twig) #}
 
 {% block body %}    {# Surcharge du bloc body de notre layout principal #}
- 
-<h1>Bienvenue !</h1>
-<h2>
-    Ce site est actuellement en construction, et me sers principalement de test pour mes scripts php.<br><br>
 
-    Veuillez noter, que tout ce site à été codé à la main, et ne fait appel à aucun CMS.<br><br>
+    {%block BlogSnippets %}
+        {%include ('comainBundle:Blocks:Blog_Snippets.html.twig')%}
+    {%endblock%}
 
-    Vous pourrez y trouver mon CV et diverses de mes réalisations.
-    
-    <h3>Vie du site:</h3>
-    <ul>
-        <li>
-            13/02/2012: Le module de blog est à peu prêt en place !<br>
-            Il manque encore pas mal de fonctionnalités, mais ca avance.<br>
-            J'ai par ailleurs été obligé d'implémenter une gestion des utilisateurs afin que n'importe qui ne poste pas à mon insu sur le site :)
-        </li>
-        <li>
-            28/01/2012: Ajout des commentaires sur toutes les pages via le module Facebook Comments (histoire d'avoir quelques backlinks au passage).
-        </li>
-        <li>
-            26/01/2012 - 28/01/2012: On casse tout et on recommence !<br>
-            Le site passe sous symfony 2 (j'essaie d'y comprendre quelque chose pour le moment, ca n'avance pas bien vite. <br>
-            Je me suis rendu compte que mon système d'intégration automatique des pages était un peu bancale. J'ai donc regardé ce qui se faisait du côté des frameworks,
-            et j'ai entendu dire beaucoup de bien de symfony.<br>
-            De plus apprendre un framework étant toujours une expérience intéressante (bien que pas forcément très simple), j'ai donc décidé de m'y mettre.<br>
-        </li>
-    </ul>
-</h2>
 {% endblock %}
+
+{% block commentaires%}
+    {#Pas de commentaires sur la page principale#}
+{%endblock%}

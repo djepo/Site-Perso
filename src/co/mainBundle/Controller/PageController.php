@@ -17,8 +17,16 @@ class PageController extends Controller
      */
     public function indexAction()
     {
-        //return array();
-        return $this->render('comainBundle:Page:index.html.twig');
+        $request=$this->getRequest();
+        $page=$request->get('page');
+        if(!$page){$page=0;}   //offset=-1: tous les articles, sinon comptage à partir de offset=0
+        
+        $em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+        $articles = $em->getRepository('coBlogBundle:article')->getLatestArticles($page);
+        $NombrePages=$em->getRepository('coBlogBundle:article')->getNombrePages();
+        
+        return $this->render('comainBundle:Page:index.html.twig', array('articles'=>$articles,
+                                                                        'nombrePages'=>$NombrePages,));
     }
 
      /**

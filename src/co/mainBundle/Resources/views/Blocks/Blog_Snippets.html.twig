@@ -1,0 +1,27 @@
+<h2>Derniers articles publiés</h2>
+<hr>
+{%if articles is defined%}
+    {%for article in articles %}
+        <h3>{{article.title}}</h3>        
+        
+        <p>{{ article.article|slice(0,500)|striptags|raw}}(...)</p>
+        <a href="{{path('article',{'id': article.id})}}">Lire la suite...</a>
+        
+        <hr>
+    {%endfor%}
+        
+    <div id="blog_nav">
+        {%set page=app.request.get('page') %}                   {# Récupération du paramètre "page" passé en paramètre de l'url#}
+        {%if page|length==0 %}{%set page=0%}{%endif%}           {# Si on a rien, on estime que page est égal à 0#}
+        
+        {%if page<nombrePages-1 %}
+        <a href="{{path('homepage',{'page':page+1})}}" style="float:left;">Billets précédents</a>
+        {%endif%}
+        
+        {%if page>0 %}
+            <a href="{{path('homepage',{'page':page-1})}}" style="float:right;">Billets suivants</a>
+        {%endif%}
+        
+    </div>
+{%endif%}
+        
