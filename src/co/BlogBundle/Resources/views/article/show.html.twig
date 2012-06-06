@@ -44,8 +44,8 @@
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}                
                     <a href="{{path('article_edition',{'id':article.id})}}">éditer</a>
                     <a id="lien_supression_article" href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>                    
-            {%endif%}                                
-            
+            {%endif%}
+                                    
             
             {% if article.image %}            
                 <div class="boite_image_header">
@@ -75,8 +75,9 @@
                 </script>
                 <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>            
             </div>
+            <div id="viewsCount" style="width: 200px;margin:auto;text-align: center;">Article vu {{article.viewsCount}} fois.</div>
             <!-- Lockerz Share END -->
-            <br/>
+            
             <hr>
         </footer>  <!-- Fin balise footer -->
 
