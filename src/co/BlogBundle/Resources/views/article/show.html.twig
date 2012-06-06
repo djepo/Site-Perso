@@ -4,6 +4,7 @@
 {% block stylesheets %}
     {{ parent() }}  {# Héritage des feuilles de styles parentes #}
     <link href="{{ asset('bundles/comain/css/articles.css') }}" type="text/css" rel="stylesheet" /> {# Ajout de la nouvelle feuille de style pour les formulaires #}
+    <link href="{{ asset('bundles/comain/js/jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css') }}" type="text/css" rel="stylesheet" />
 {% endblock %}
 
 {% block opengraph_type %}article{% endblock %}
@@ -35,15 +36,14 @@
 {% block microdata_title %}{{ article.title }}{% endblock %}
 
 {% block body %}
+    <div id="dialog"></div>
 
     <div class="blog">
         <header>
             <h1>{{ article.title }}</h1>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {# {% if is_granted('ROLE_ADMIN') %} #}
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}                
                     <a href="{{path('article_edition',{'id':article.id})}}">éditer</a>
-                    <a href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>
-                {# {%endif%} #}
+                    <a id="lien_supression_article" href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>                    
             {%endif%}                                
             
             
@@ -81,4 +81,25 @@
         </footer>  <!-- Fin balise footer -->
 
     </div>  <!-- Fin balise blog -->
+        
+    {# Gestion de la confirmation de la supression d'un article #}
+    <script>
+        $(document).ready(function(){
+            var $dialog= $('<div></div>')
+                            .html('Voulez-vous vraiment supprimer cet article ?')
+                            .dialog({   'autoOpen': false,
+                                        'title':    'Attention requise',                                        
+                                        'modal':    true,                                        
+                                        'buttons':  {   'Non': function () {$dialog.dialog("close"); },
+                                                        'Oui': function () { $(location).attr('href','{{url('article_supression',{'id':article.id})}}');},                                                        
+                                                    },
+                            });
+            
+            $('#lien_supression_article').click(function(){
+                $dialog.dialog('open');
+                return false;
+            });
+        });
+    </script>
+    
 {% endblock %}
