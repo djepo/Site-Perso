@@ -1,4 +1,5 @@
 <?php
+
 // src/co/mainBundle/Entity/Enquiry.php
 
 namespace co\mainBundle\Entity;
@@ -9,55 +10,46 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\MinLength;
 use Symfony\Component\Validator\Constraints\MaxLength;
 
-class Enquiry
-{
+class Enquiry {
+
     protected $name;
     protected $email;
     protected $subject;
     protected $body;
 
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
     }
 
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
     }
 
-    public function getSubject()
-    {
+    public function getSubject() {
         return $this->subject;
     }
 
-    public function setSubject($subject)
-    {
+    public function setSubject($subject) {
         $this->subject = $subject;
     }
 
-    public function getBody()
-    {
+    public function getBody() {
         return $this->body;
     }
 
-    public function setBody($body)
-    {
+    public function setBody($body) {
         $this->body = $body;
     }
-    
-        public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata) {
         $metadata->addPropertyConstraint('name', new NotBlank(array('message' => 'Vous devez saisir un nom.')));
 
         $metadata->addPropertyConstraint('email', new Email(array('message' => 'Veuillez saisir une adresse Email valide.')));
@@ -67,4 +59,5 @@ class Enquiry
 
         $metadata->addPropertyConstraint('body', new MinLength(50));
     }
+
 }
