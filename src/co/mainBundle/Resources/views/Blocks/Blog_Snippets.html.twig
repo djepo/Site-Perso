@@ -9,6 +9,7 @@
     {%for article in articles %}
         <div class="article_snippet">
             <a href="{{path('article',{'id': article.id})}}"><h2 class="article_title">{{article.title}}</h2></a>
+            {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
         
             {{ article.article|striptags('<h1><h2><h3><h4><h5><h6><img><p><li><ul><ol>')|slice(0,500)|raw}}(...)
             
@@ -17,7 +18,7 @@
         </div>
     {%endfor%}
         
-    <div id="blog_nav">
+    <div id="blog_nav" style="padding-top: 10px;">
         {%set page=app.request.get('page') %}                   {# Récupération du paramètre "page" passé en paramètre de l'url#}
         {%if page|length==0 %}{%set page=0%}{%endif%}           {# Si on a rien, on estime que page est égal à 0#}
         
@@ -27,8 +28,7 @@
         
         {%if page>0 %}
             <a href="{{path('homepage',{'page':page-1})}}" style="float:right;">Billets suivants</a>
-        {%endif%}
-        
+        {%endif%}        
     </div>
 {%endif%}
 </div>

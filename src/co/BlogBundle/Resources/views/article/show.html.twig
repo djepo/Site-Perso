@@ -12,17 +12,17 @@
 {% if article.image %}
     {% block header_image %}
         <meta property="og:image" content="{{url('homepage')}}{{ article.image|raw }}">
-        <meta itemprop="image" content="{{url('homepage')}}{{ article.image|raw }}" >        
-    {% endblock %}    
+        <meta itemprop="image" content="{{url('homepage')}}{{ article.image|raw }}" >
+    {% endblock %}
 {% endif %}
-    
+
 {# Balises de description #}
 {% block header_description %}
     <meta name="description" content="{{ article.article|slice(0,150)|striptags|raw}}" />
     <meta property="og:description" content="{{ article.article|slice(0,150)|striptags|raw}}">
-    <meta itemprop="description" content="{{ article.article|slice(0,150)|striptags|raw}}">    
+    <meta itemprop="description" content="{{ article.article|slice(0,150)|striptags|raw}}">
 {% endblock %}
-            
+
 
 {%block arbre %}
 <a href="{{path('homepage')}}">Accueil</a>
@@ -36,71 +36,68 @@
 {% block microdata_title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-    <div id="dialog"></div>
-
-    <div class="blog">
+<div class="blog" itemscope itemtype="http://schema.org/Article">
         <header>
-            <h1>{{ article.title }}</h1>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}                
+            <h1 class="article_title" itemprop="name">{{ article.title }}</h1>
+            
+            {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
+
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <div class="article_actions">
                     <a href="{{path('article_edition',{'id':article.id})}}">éditer</a>
-                    <a id="lien_supression_article" href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>                    
+                    <a id="lien_supression_article" href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>
+                </div>
             {%endif%}
-                                    
-            
-            {% if article.image %}            
+
+
+            {% if article.image %}
                 <div class="boite_image_header">
-                    <img src="{{ article.image|raw }}" alt="{{article.title}}" title="{{article.title}}" class="header_image"/>
-                </div>                    
+                    <img itemprop="image" src="{{ article.image|raw }}" alt="{{article.title}}" title="{{article.title}}" class="header_image"/>
+                </div>
             {% endif %}
-            
-            
+
+
         </header>  <!-- Fin balise header -->
 
         <article>
-            <p>{{ article.article|raw }}</p>
+            <p  itemprop="articleBody">{{ article.article|raw }}</p>
         </article>
 
-        <footer>
-            <hr>
-            <div class="date" style="float: right">
-                <time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time> {%if article.auteur|length>0 %}<author> Par {{article.auteur.nom}} {{article.auteur.prenom}}</author>{%endif%}
-            </div>            
-            
+        <footer>            
             <!-- Lockerz Share BEGIN -->
-            <div style="float:left">
+            <div style="height: 25px;">
                 <a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_120_16.gif" width="120" height="16" border="0" alt="Share"/></a>
                 <script type="text/javascript">
                     var a2a_config = a2a_config || {};
                     a2a_config.locale = "fr";
                 </script>
-                <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>            
-            </div>
-            <div id="viewsCount" style="width: 200px;margin:auto;text-align: center;">Article vu {{article.viewsCount}} fois.</div>
+                <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
+            </div>            
             <!-- Lockerz Share END -->
-            
+
             <hr>
         </footer>  <!-- Fin balise footer -->
 
     </div>  <!-- Fin balise blog -->
-        
+
     {# Gestion de la confirmation de la supression d'un article #}
     <script>
         $(document).ready(function(){
             var $dialog= $('<div></div>')
                             .html('Voulez-vous vraiment supprimer cet article ?')
                             .dialog({   'autoOpen': false,
-                                        'title':    'Attention requise',                                        
-                                        'modal':    true,                                        
+                                        'title':    'Attention requise',
+                                        'modal':    true,
                                         'buttons':  {   'Non': function () {$dialog.dialog("close"); },
-                                                        'Oui': function () { $(location).attr('href','{{url('article_supression',{'id':article.id})}}');},                                                        
+                                                        'Oui': function () { $(location).attr('href','{{url('article_supression',{'id':article.id})}}');},
                                                     },
                             });
-            
+
             $('#lien_supression_article').click(function(){
                 $dialog.dialog('open');
                 return false;
             });
         });
     </script>
-    
+
 {% endblock %}
