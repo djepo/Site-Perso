@@ -9,7 +9,7 @@
         <meta itemprop="name" content="{% block microdata_title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">
 
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('bundles/comain/css/stylesheet.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/comain/themes/black/habillage.css') }}" type="text/css" media="all" />
             <link rel="stylesheet" href="{{ asset('bundles/comain/css/usermenu.css') }}" type="text/css" media="all" />
             <link rel="stylesheet" href="{{ asset('bundles/comain/css/slide_down_box_menu.css') }}" type="text/css" media="all" />
         {% endblock %}
@@ -55,24 +55,25 @@
     </head>
 
     <body>
-
-        <div class="header">
+        <div id="wrapper">
+        <div id="header">
             {% block header %}
 
-                <div id="header_gauche">
-                    <a href="{{ path('homepage') }}" style="color: white;">CAILBAUT Olivier</a>
-                </div>
-
-                <div id="header_droit" style="text-align: center">
-                    <h2>Créateur de Solutions</h2>
-                </div>
-
+                <div class="accueil">
+                    <strong id="nom_site">
+                        <a href="{{ path('homepage') }}" style="color: white;">CAILBAUT Olivier</a>
+                    </strong>                    
+                    <div id="slogan_site">Créateur de Solutions</div>
+                </div>                
+                
                 <!-- Inclusion du bloc permettant la gestion utilisateurs (connexions, déconnexions, gestion ... -->
                 {% include 'comainBundle:Blocks:GestionUser.html.twig' %}
 
             {% endblock %}                
         </div>
-
+        
+        <div style="clear: both"></div>
+        
         <div id="container_menu" style="z-index: 1000; height:85px">
             {% include 'comainBundle:Blocks:slide_down_box_menu.html.twig' %}
         </div>
@@ -85,26 +86,25 @@
                     {%endblock%}
                 </div>
             <div class="col1">
+                <div id="contentwrapper">
+                    {% block body %}
+                    {% endblock %}
+                </div>
                 
-                {% block body %}
-                {% endblock %}
-
-                <div>
-                    <!--
-                        {% block fbshare%}
-                            {# <div class="fb-like" data-href="{{ url(app.request.attributes.get('_route')) }}" data-send="true" data-width="450" data-show-faces="true" data-font="arial"></div> #}
-                        {%endblock%}
-                    -->
-                    {% block commentaires%}
-                        {% include 'comainBundle:Blocks:Commentaires.html.twig' %}
-                    {%endblock%}
-                </div>                
-            </div>                
+                <div>{% block commentaires%}
+                    {% include 'comainBundle:Blocks:Commentaires.html.twig' %}
+                {%endblock%}</div>
+                    
+                    
+            </div> 
+                
             <div class="col2">
                 {# Publicités Google #}
                 {% include 'comainBundle:Blocks:PubliciteGoogle.html.twig' %}
             </div>
+                
         </div>
+        
         <div style="clear: both; height: 50px;"></div>
  
         {% block javascripts %}
@@ -182,13 +182,13 @@
             
             
         {% endblock %}
-
+</div>
     </body>
 
     <div id="footer" style="z-index:1000">
         {%block footer%}
             <p>
-                <a href="{{ path('fos_user_security_login') }}"><img width="16" height="16" src="{{ asset('bundles/comain/images/themes/base/cadenas-32.png') }}"></img></a>
+                <a href="{{ path('fos_user_security_login') }}"><img width="16" height="16" src="{{ asset('bundles/comain/themes/black/img/cadenas-32.png') }}"></img></a>
                 &copy; 2012 - CAILBAUT Olivier - Téléphone: 06.19.84.05.02. - SIRET:532 356 805 000 12
 
                 <span style="float:right">

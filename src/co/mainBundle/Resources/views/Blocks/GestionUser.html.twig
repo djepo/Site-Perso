@@ -21,7 +21,7 @@
 {# IS_AUTHENTICATED_REMEMBERED correspond à un utilisateur qui s'est identifié en rentrant son mot de passe, ou à un utilisateur qui s'est identifié automatiquement grâce à son cookie remember_me #}
 {# On pourrait utiliser IS_AUTHENTICATED_FULLY qui correspond à un utilisateur qui s'est forcément identifié en rentrant son mot de passe (utile pour les opérations sensibles comme changer d'email #}
 
-<div class="user">
+<div class="user_menu">
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <a class="myaccount" > {{app.user.email}} </a>

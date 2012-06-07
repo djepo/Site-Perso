@@ -99,5 +99,5 @@ stfalcon_tinymce:
             height: 600
             theme_advanced_resizing_min_width : 100%
             theme_advanced_resizing_max_width : 100%
-            content_css : "../../../bundles/comain/css/stylesheet.css"
+            content_css : "../../../bundles/comain/themes/black/habillage.css"
             file_browser_callback : "tinyBrowser" #Affiche le browser TinyBrower, qui permet d'uploader des fichiers dans les plugins images, medias et files
