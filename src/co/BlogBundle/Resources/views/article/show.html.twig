@@ -5,7 +5,17 @@
     {{ parent() }}  {# Héritage des feuilles de styles parentes #}
     <link href="{{ asset('bundles/comain/css/articles.css') }}" type="text/css" rel="stylesheet" /> {# Ajout de la nouvelle feuille de style pour les formulaires #}
     <link href="{{ asset('bundles/comain/js/jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css') }}" type="text/css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{ asset('bundles/comain/js/aloha/css/aloha.css') }}" type="text/css">
 {% endblock %}
+{%block included_javascripts %}
+    {{parent()}}
+    {%if article.auteur.username is defined %}
+        {%if app.user==article.auteur.username%}          
+            <script src="{{ asset('bundles/comain/js/aloha/lib/aloha.js') }}" data-aloha-plugins="common/format">
+        {%endif%}
+    {%endif%}
+{%endblock%}
 
 {% block opengraph_type %}article{% endblock %}
 
@@ -25,10 +35,9 @@
 
 
 {%block arbre %}
-<a href="{{path('homepage')}}">Accueil</a>
- {#> <a href="{{path('article',{'id': article.id})}}">Articles</a>#}
- > <a href="{{path('articles')}}">Articles</a>
- > <a href="{{path('article',{'id': article.id})}}">{{article.title}}</a>
+    <a href="{{path('homepage')}}">Accueil</a>
+    > <a href="{{path('articles')}}">Articles</a>
+    > <a href="{{path('article',{'id': article.id})}}">{{article.title}}</a>
 {%endblock%}
 
 {% block title %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
@@ -36,10 +45,10 @@
 {% block microdata_title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-<div class="blog" itemscope itemtype="http://schema.org/Article">
+    <div class="blog" itemscope itemtype="http://schema.org/Article">
         <header>
-            <h1 class="article_title" itemprop="name">{{ article.title }}</h1>
-            
+            <h1 id="articleTitle" class="article_title editable" itemprop="name">{{ article.title }}</h1>
+
             {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
 
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -48,22 +57,20 @@
                     <a id="lien_supression_article" href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>
                 </div>
             {%endif%}
-
-
+            
             {% if article.image %}
                 <div class="boite_image_header">
                     <img itemprop="image" src="{{ article.image|raw }}" alt="{{article.title}}" title="{{article.title}}" class="header_image"/>
                 </div>
             {% endif %}
-
-
+            
         </header>  <!-- Fin balise header -->
 
-        <article>
-            <p  itemprop="articleBody">{{ article.article|raw }}</p>
+        <article id="articleBody" itemprop="articleBody" class="editable">
+            {{ article.article|raw }}
         </article>
 
-        <footer>            
+        <footer>
             <!-- Lockerz Share BEGIN -->
             <div style="height: 25px;">
                 <a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_120_16.gif" width="120" height="16" border="0" alt="Share"/></a>
@@ -72,9 +79,8 @@
                     a2a_config.locale = "fr";
                 </script>
                 <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
-            </div>            
+            </div>
             <!-- Lockerz Share END -->
-
             <hr>
         </footer>  <!-- Fin balise footer -->
 
@@ -83,21 +89,70 @@
     {# Gestion de la confirmation de la supression d'un article #}
     <script>
         $(document).ready(function(){
-            var $dialog= $('<div></div>')
-                            .html('Voulez-vous vraiment supprimer cet article ?')
-                            .dialog({   'autoOpen': false,
-                                        'title':    'Attention requise',
-                                        'modal':    true,
-                                        'buttons':  {   'Non': function () {$dialog.dialog("close"); },
-                                                        'Oui': function () { $(location).attr('href','{{url('article_supression',{'id':article.id})}}');},
-                                                    },
-                            });
+
+            var content;        //contenu mémorisé à chaque sortié d'une zone éditable
+            var contentId;
+            var pageId;
+            var $memContent;    //contenu mémorisé à chaque entrée dans une zone éditable
+
+
+            var $dialogSuppr= $('<div></div>').html('Voulez-vous vraiment supprimer cet article ?')
+                                            .dialog({   'autoOpen': false,
+                                                        'title':    'Attention requise',
+                                                        'modal':    true,
+                                                        'buttons':  {   'Non': function () {$dialogSuppr.dialog("close"); },
+                                                                        'Oui': function () { $(location).attr('href','{{url('article_supression',{'id':article.id})}}');},
+                                                        },
+                                                    });
 
             $('#lien_supression_article').click(function(){
-                $dialog.dialog('open');
+                $dialogSuppr.dialog('open');
                 return false;
             });
-        });
-    </script>
+
+            var $dialogModif= $('<div></div>').html('Voulez-vous vraiment modifier cet article ?')
+                                                  .dialog({ 'autoOpen': false,
+                                                            'title':    'Attention requise',
+                                                            'modal':    true,
+                                                            'buttons':  {   'Non': function () {                                                                    
+                                                                                                $dialogModif.dialog("close");
+                                                                                               },
+                                                                            'Oui': function () {
+                                                                                        $dialogModif.dialog("close");
+                                                                                        $.ajax({    type: "POST",
+                                                                                                    url:  "{{url('article_ajax_update')}}",
+                                                                                                    data: {content: content, contentId: contentId, articleId: {{article.id}}}
+                                                                                            
+                                                                                                });
+
+                                                                                    },
+                                                            },
+                                                    });
+
+
+
+    {# Gestion de l'édition en place #}
+
+            Aloha.ready( function() {
+                var $ = Aloha.jQuery;
+                $('.editable').aloha();
+
+                Aloha.bind('aloha-editable-activated', function() {
+                    $memContent=Aloha.activeEditable.getContents();
+                });
+
+                Aloha.bind('aloha-editable-deactivated', function() {
+                    content = Aloha.activeEditable.getContents();
+                    contentId = Aloha.activeEditable.obj[0].id;
+                    pageId = window.location.pathname;
+
+                    if($memContent!=content){
+                        $dialogModif.dialog('open');
+                    }
+                });
+            });
+
+    });
+</script>
 
 {% endblock %}

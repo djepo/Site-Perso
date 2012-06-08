@@ -5,6 +5,7 @@ namespace co\BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;    //pour les exceptions d'utilisateurs non connectés
 use co\BlogBundle\Entity\article;
 use co\UserBundle;
@@ -162,5 +163,54 @@ class ArticlesController extends Controller {
         return $this->redirect($this->generateUrl('articles'));
     }
 
+    /**
+     * @Route("/article/Ajax/Update", name="article_ajax_update") 
+     */
+    public function articleAjaxUpdateAction()
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($user)) {
+            throw new AccessDeniedException('Vous n\'êtes pas authentifié.');
+        } else {
+            //utilisateur authentifié
+            $request=$this->getRequest();
+            $content=$request->get('content');
+            $contentId=$request->get('contentId');
+            $articleId=$request->get('articleId');
+            if (!$content ||!$contentId ||!$articleId)
+            {
+                throw new AccessDeniedException('Au moins un des paramètre attendu est manquant');
+            }
+            
+            $em=$this->getDoctrine()->getEntityManager();
+            $article = $em->getRepository('coBlogBundle:article')->find($articleId);
+            
+            if ($article->getAuteur()->getId()!=$user->getId())
+            {
+                throw new AccessDeniedException('Vous n\'êtes pas l\'auteur de cet article');
+            }
+            
+            switch ($contentId)
+            {
+                case "articleTitle":
+                    $article->setTitle(strip_tags($content));
+                    $em->persist($article);
+                    $em->flush();
+                    break;
+                case "articleBody":
+                    $article->setArticle($content);
+                    $em->persist($article);
+                    $em->flush();
+                    break;
+                default:
+                    throw new AccessDeniedException('Identifiant de contenu inconnu (attendu: articleTitle ou articleBody).');
+            }
+            
+            return new Response ('success');            
+            
+        }
+        
+    }
+    
 }
 
