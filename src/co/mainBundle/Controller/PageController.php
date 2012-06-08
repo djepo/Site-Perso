@@ -72,4 +72,4 @@ class PageController extends Controller
 
         return $this->render('comainBundle:Page:contact.html.twig', array('form' => $form->createView()));
 }
-}
+    }
