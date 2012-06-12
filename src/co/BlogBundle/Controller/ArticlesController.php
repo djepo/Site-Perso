@@ -43,8 +43,17 @@ class ArticlesController extends Controller {
             //Mise à jour du nombre de vues sur l'article
             if ($article->getviewsCount()==null) {
                 $article->setviewsCount(0);
+            } 
+            
+            $username = $this->container->get('security.context')->getToken()->getUser();
+            if (is_object($username)) {
+                if ($article->getAuteur()!=$username){
+                    $article->setviewsCount($article->getviewsCount()+1);
+                }
+            } else {
+                $article->setviewsCount($article->getviewsCount()+1);
             }
-            $article->setviewsCount($article->getviewsCount()+1);
+            
             $em->persist($article);
             $em->flush();
             
