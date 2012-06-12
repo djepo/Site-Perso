@@ -11,7 +11,7 @@
             <a href="{{path('article',{'id': article.id})}}"><h2 class="article_title">{{article.title}}</h2></a>
             {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
         
-            {{ article.article|striptags('<h1><h2><h3><h4><h5><h6><img><p><li><ul><ol>')|slice(0,500)|raw}}(...)
+            {{ article.article|striptags('<h1><h2><h3><h4><h5><h6><p><li><ul><ol>')|slice(0,500)|raw}}(...)
             
             <br style="clear:both"></br>
             <a href="{{path('article',{'id': article.id})}}">Lire la suite...</a>
