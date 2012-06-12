@@ -6,7 +6,7 @@
 
         <title>{% block title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}</title>
         <meta property="og:title" content="{% block opengraph_title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">
-        <meta itemprop="name" content="{% block microdata_title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">
+        {#<meta itemprop="name" content="{% block microdata_title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">#}
 
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('bundles/comain/themes/black/habillage.css') }}" type="text/css" media="all" />
@@ -31,6 +31,10 @@
             <meta name="description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA." />
             <meta property="og:description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
             <meta itemprop="description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
+        {% endblock %}
+            
+        {# Balises auteur#}
+        {% block header_author %}           
         {% endblock %}
 
         <!-- JQuery -->
@@ -187,20 +191,20 @@
             
         {% endblock %}
 </div>
-    </body>
+    
 
     <div id="footer" style="z-index:1000">
         {%block footer%}
             <p>
-                <a href="{{ path('fos_user_security_login') }}"><img width="16" height="16" src="{{ asset('bundles/comain/themes/black/img/cadenas-32.png') }}"></img></a>
+                <a href="{{ path('fos_user_security_login') }}"><img width="16" height="16" src="{{ asset('bundles/comain/themes/black/img/cadenas-32.png') }}" alt="connexion"></a>
                 &copy; 2012 - CAILBAUT Olivier - Téléphone: 06.19.84.05.02. - SIRET:532 356 805 000 12
 
                 <span style="float:right">
                     <a href="{{ path('contact') }}">Formulaire de contact</a> - 
-                    <a href="{{path('articles')}}">Liste des articles</a></li>
+                    <a href="{{path('articles')}}">Liste des articles</a>
                 </span>
             </p>
         {%endblock%}
     </div>
-
+</body>
 </html>

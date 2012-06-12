@@ -19,22 +19,26 @@
 
 {% block opengraph_type %}article{% endblock %}
 
-{% if article.image %}
-    {% block header_image %}
+{% block header_image %}
+    {% if not article.image is null %}
         <meta property="og:image" content="{{url('homepage')}}{{ article.image|raw }}">
         <meta itemprop="image" content="{{url('homepage')}}{{ article.image|raw }}" >
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
+
 
 {# Balises de description #}
 {% block header_description %}
     <meta name="description" content="{{ article.article|slice(0,150)|striptags|raw}}" />
-    <meta property="og:description" content="{{ article.article|slice(0,150)|striptags|raw}}">
-    <meta itemprop="description" content="{{ article.article|slice(0,150)|striptags|raw}}">
+    <meta property="og:description" content="{{ article.article|slice(0,150)|striptags|raw}}">    
+{% endblock %}
+    
+{# Balises auteur#}
+{% block header_author %}    
 {% endblock %}
 
 
-{%block arbre %}
+{%block arbre %}    
     <a href="{{path('homepage')}}">Accueil</a>
     > <a href="{{path('articles')}}">Articles</a>
     > <a href="{{path('article',{'id': article.id})}}">{{article.title}}</a>
@@ -42,7 +46,7 @@
 
 {% block title %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
 {% block opengraph_title %}{{ article.title }}{% endblock %}
-{% block microdata_title %}{{ article.title }}{% endblock %}
+{#{% block microdata_title %}{{ article.title }}{% endblock %}#}
 
 {% block body %}
     <div class="blog" itemscope itemtype="http://schema.org/Article">
@@ -73,7 +77,7 @@
         <footer>
             <!-- Lockerz Share BEGIN -->
             <div style="height: 25px;">
-                <a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_120_16.gif" width="120" height="16" border="0" alt="Share"/></a>
+                <a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_120_16.gif" width="120" height="16" alt="Share"/></a>
                 <script type="text/javascript">
                     var a2a_config = a2a_config || {};
                     a2a_config.locale = "fr";

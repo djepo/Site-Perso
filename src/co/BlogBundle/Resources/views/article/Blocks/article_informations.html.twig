@@ -1,8 +1,8 @@
 <div class="article_informations">
     {%if article.auteur|length>0 %}
         <div class="article_auteur" style="display: inline">
-            <author itemprop="author">{{article.auteur.nom}} {{article.auteur.prenom}}</author>
-    </div>
+            <span itemprop="author">{{article.auteur.nom}} {{article.auteur.prenom}}</span>
+        </div>
     {%endif%}
     <div class="article_date" title="{{article.created|date('c')}}">
         <time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time> 
