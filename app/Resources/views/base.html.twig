@@ -32,14 +32,11 @@
             <meta property="og:description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
             <meta itemprop="description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
         {% endblock %}
-            
-        {# Balises auteur#}
-        {% block header_author %}           
-        {% endblock %}
 
         <!-- JQuery -->
         <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery-1.7.2.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery-ui-1.8.21.custom.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery.easing.1.3.js')}}"></script>
         <!-- JQuery -->
         {%block included_javascripts %}        
         {%endblock%}
@@ -62,77 +59,87 @@
 
     </head>
 
-    <body>
+    <body itemscope itemtype="http://schema.org/WebPage">
         <div id="wrapper">
-        <div id="header">
-            {% block header %}
-
-                <div class="accueil">
-                    <strong id="nom_site">
-                        <a href="{{ path('homepage') }}" style="color: white;">CAILBAUT Olivier</a>
-                    </strong>                    
-                    <div id="slogan_site">Créateur de Solutions</div>
-                </div>                
+            <div id="header">
+                {% block header %}
+                    <div class="accueil">
+                        <strong id="nom_site">
+                            <a href="{{ path('homepage') }}" style="color: white;">CAILBAUT Olivier</a>
+                        </strong>                    
+                        <div id="slogan_site">Créateur de Solutions</div>
+                    </div>                
                 
-                <!-- Inclusion du bloc permettant la gestion utilisateurs (connexions, déconnexions, gestion ... -->
-                {% include 'comainBundle:Blocks:GestionUser.html.twig' %}
+                    <!-- Inclusion du bloc permettant la gestion utilisateurs (connexions, déconnexions, gestion ... -->
+                    {% include 'comainBundle:Blocks:GestionUser.html.twig' %}
 
-            {% endblock %}                
-        </div>
+                {% endblock %}                
+            </div>
+                
+            <div style="clear: both"></div>
         
-        <div style="clear: both"></div>
+            <div id="container_menu" style="z-index: 1000; height:85px">
+                {% include 'comainBundle:Blocks:slide_down_box_menu.html.twig' %}
+            </div>        
         
-        <div id="container_menu" style="z-index: 1000; height:85px">
-            {% include 'comainBundle:Blocks:slide_down_box_menu.html.twig' %}
-        </div>
-        
-        
-        <div class="wrap">
-            <div id="arbre">
+            <div class="wrap">
+                <div id="arbre" itemprop="breadcrumb">
                     {% block arbre %}
                         <a href="{{path('homepage')}}">Accueil</a>
                     {%endblock%}
                 </div>
-            <div class="col1">
-                <div id="contentwrapper">
-                    {% block body %}
-                    {% endblock %}
-                </div>
                 
-                <div>{% block commentaires%}
-                    {% include 'comainBundle:Blocks:Commentaires.html.twig' %}
-                {%endblock%}</div>
-                    
-                    
-            </div> 
+                <div class="col1">
+                    <div id="contentwrapper">
+                        {% block body %}
+                        {% endblock %}
+                    </div>
                 
-            <div class="col2">
-                {# Publicités Google #}
-                {% include 'comainBundle:Blocks:PubliciteGoogle.html.twig' %}
+                    <div>
+                        {% block commentaires%}
+                            {% include 'comainBundle:Blocks:Commentaires.html.twig' %}
+                        {%endblock%}
+                    </div>                    
+                </div> 
+                
+                <div class="col2">
+                    {# Publicités Google #}
+                    {% include 'comainBundle:Blocks:PubliciteGoogle.html.twig' %}
+                </div>                
             </div>
-                
-        </div>
         
-        <div style="clear: both; height: 50px;"></div>
+            <div style="clear: both; height: 50px;"></div>
+            
+            <div id="footer" style="z-index:1000">
+                {%block footer%}
+                    <p>
+                        <a href="{{ path('fos_user_security_login') }}"><img width="16" height="16" src="{{ asset('bundles/comain/themes/black/img/cadenas-32.png') }}" alt="connexion"></a>
+                        &copy; <span itemprop="copyrightYear">2012</span> - <span itemprop="author">CAILBAUT Olivier</span> - Téléphone: 06.19.84.05.02. - SIRET:532 356 805 000 12 - <a href="https://plus.google.com/111109823858731272872?rel=author">Google+</a>
+
+                        <span style="float:right">
+                            <a href="{{ path('contact') }}">Formulaire de contact</a> - 
+                            <a href="{{path('articles')}}">Liste des articles</a>
+                        </span>
+                    </p>
+                {%endblock%}
+            </div>
  
-        {% block javascripts %}
-            <!-- Bouton Google -->
-            <script type="text/javascript">
-                window.___gcfg = {lang: 'fr'};
-                (function() {
-                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                    po.src = 'https://apis.google.com/js/plusone.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                })();
-            </script>
-            <!-- Bouton Google -->
+            {% block javascripts %}
+                <!-- Bouton Google -->
+                <script type="text/javascript">
+                    window.___gcfg = {lang: 'fr'};
+                    (function() {
+                        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                        po.src = 'https://apis.google.com/js/plusone.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                    })();
+                </script>
+                <!-- Bouton Google -->
 
 
-             <!-- Script pour le menu slide_down_box_menu -->
-        
-	<script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery.easing.1.3.js')}}"></script>
-        <script type="text/javascript">
-            $(function() {
+                <!-- Script pour le menu slide_down_box_menu -->	
+                <script type="text/javascript">
+                    $(function() {
 				/**
 				* for each menu element, on mouseenter, 
 				* we enlarge the image, and show both sdt_active span and 
@@ -140,7 +147,7 @@
 				* then we slide it - if the element is the last one in the menu
 				* we slide it to the left, otherwise to the right
 				*/
-                $('#sdt_menu > li').bind('mouseenter',function(){
+                        $('#sdt_menu > li').bind('mouseenter',function(){
 					var $elem = $(this);
 					$elem.find('img')
 						 .stop(true)
@@ -184,27 +191,10 @@
 						 .find('.sdt_wrap')
 						 .stop(true)
 						 .animate({'top':'25px'},500);
-				});
-            });
-        </script>
-            
-            
-        {% endblock %}
-</div>
-    
-
-    <div id="footer" style="z-index:1000">
-        {%block footer%}
-            <p>
-                <a href="{{ path('fos_user_security_login') }}"><img width="16" height="16" src="{{ asset('bundles/comain/themes/black/img/cadenas-32.png') }}" alt="connexion"></a>
-                &copy; 2012 - CAILBAUT Olivier - Téléphone: 06.19.84.05.02. - SIRET:532 356 805 000 12
-
-                <span style="float:right">
-                    <a href="{{ path('contact') }}">Formulaire de contact</a> - 
-                    <a href="{{path('articles')}}">Liste des articles</a>
-                </span>
-            </p>
-        {%endblock%}
-    </div>
-</body>
+                            });
+                        });
+                </script>
+            {% endblock %}
+        </div>
+    </body>
 </html>

@@ -5,10 +5,11 @@
         </div>
     {%endif%}
     <div class="article_date" title="{{article.created|date('c')}}">
-        <time datetime="{{ article.created|date('c') }}">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time> 
+        <time datetime="{{ article.created|date('c') }}"  itemprop="dateCreated">Posté le: {{ article.created|date('d/m/Y', "Europe/Paris") }}</time> 
     </div>
     {% if article.viewscount>0 %}
     <div class="article_viewscount">
+        <span itemprop="InteractionCount" Content="UserInteraction:{{article.viewscount}}"/>
         Article vu {{article.viewscount}} fois
     </div>
     {%endif%}

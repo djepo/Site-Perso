@@ -4,20 +4,24 @@
 
 <hr style="clear:both;margin-top: 15px">
 
-<div class="liste_articles">
+<div class="liste_articles" itemscope itemtype="http://schema.org/Blog">
 {%if articles is defined%}
-    {%for article in articles %}
-        <div class="article_snippet">
-            <a href="{{path('article',{'id': article.id})}}"><h2 class="article_title">{{article.title}}</h2></a>
+    
+    {%for article in articles %}    
+        <div class="article_snippet" itemscope itemtype="http://schema.org/Article">
+            <a href="{{path('article',{'id': article.id})}}" itemtype="url"><h2 class="article_title" itemtype="name">{{article.title}}</h2></a>
             {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
         
-            {{ article.article|striptags('<h1><h2><h3><h4><h5><h6><p><li><ul><ol>')|slice(0,500)|raw}}(...)
+            <span itemtype="description">
+                {{ article.article|striptags('<h1><h2><h3><h4><h5><h6><p><li><ul><ol>')|slice(0,500)|raw}}(...)
+            </span>
             
             <br style="clear:both"></br>
             <a href="{{path('article',{'id': article.id})}}">Lire la suite...</a>
-        </div>
+        </div>    
     {%endfor%}
-        
+     
+                
     <div id="blog_nav" style="padding-top: 10px;">
         {%set page=app.request.get('page') %}                   {# Récupération du paramètre "page" passé en paramètre de l'url#}
         {%if page|length==0 %}{%set page=0%}{%endif%}           {# Si on a rien, on estime que page est égal à 0#}
