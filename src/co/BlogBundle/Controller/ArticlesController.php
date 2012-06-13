@@ -82,7 +82,8 @@ class ArticlesController extends Controller {
             } else {
                 $formBuilder = $this->createFormBuilder($article);
                 $formBuilder->add('title', 'text');
-                $formBuilder->add('image', 'text');
+                $formBuilder->add('image', 'text', array('required'=>false,));
+                $formBuilder->add('introduction','textarea', array('required'=>false,));
                 $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
                 $form = $formBuilder->getForm();
 
@@ -123,6 +124,7 @@ class ArticlesController extends Controller {
 
             $formBuilder->add('title', 'text');
             $formBuilder->add('image', 'text', array('required'=>false,));
+            $formBuilder->add('introduction','textarea', array('required'=>false,));
             $formBuilder->add('article', 'textarea', array('required'=>false, 'attr' => array('class' => 'tinymce')));
 
             $article->setAuteur($username);            

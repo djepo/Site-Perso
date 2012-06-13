@@ -9,14 +9,20 @@
     
     {%for article in articles %}    
         <div class="article_snippet" itemscope itemtype="http://schema.org/Article">
-            <a href="{{path('article',{'id': article.id})}}" itemtype="url"><h2 class="article_title" itemtype="name">{{article.title}}</h2></a>
+            <a href="{{url('article',{'id': article.id})}}" itemprop="url"><h2 class="article_title" itemprop="name">{{article.title}}</h2></a>
             {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
         
-            <span itemtype="description">
-                {{ article.article|striptags('<h1><h2><h3><h4><h5><h6><p><li><ul><ol>')|slice(0,500)|raw}}(...)
-            </span>
-            
-            <br style="clear:both"></br>
+            <span itemprop="description">
+                <p>
+                {#{{ article.article|striptags('<h1><h2><h3><h4><h5><h6><p><li><ul><ol>')|slice(0,500)|raw}}(...)#}
+                {% if article.introduction %}
+                    {{article.introduction}}
+                {% else %}
+                    Pas de résumé disponible...
+                {%endif%}
+                </p>
+            </span>            
+            <br style="clear:both">
             <a href="{{path('article',{'id': article.id})}}">Lire la suite...</a>
         </div>    
     {%endfor%}

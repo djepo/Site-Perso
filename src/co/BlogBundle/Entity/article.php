@@ -30,6 +30,11 @@ class article
      * @ORM\ManyToOne(targetEntity="co\UserBundle\Entity\User", inversedBy="articles", cascade={"persist"})
      */
     private $auteur;
+    
+    /**
+     * @ORM\Column(type="text", nullable=true)     
+     */
+    private $introduction;
 
     /**
      * @ORM\Column(type="text")
@@ -253,5 +258,21 @@ class article
     public function getViewsCount()
     {
         return $this->viewsCount;
+    }
+    
+    /**
+     * Set introduction     
+     */
+    public function setIntroduction($introduction=null)
+    {
+       $this->introduction=$introduction; 
+    }
+    
+    /**
+     * Get Introduction     
+     */
+    public function getIntroduction()
+    {
+        return $this->introduction;
     }
 }

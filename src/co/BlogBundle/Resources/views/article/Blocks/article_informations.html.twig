@@ -9,7 +9,7 @@
     </div>
     {% if article.viewscount>0 %}
     <div class="article_viewscount">
-        <span itemprop="InteractionCount" Content="UserInteraction:{{article.viewscount}}"/>
+        <meta itemprop="InteractionCount" Content="UserInteraction:{{article.viewscount}}"/>
         Article vu {{article.viewscount}} fois
     </div>
     {%endif%}

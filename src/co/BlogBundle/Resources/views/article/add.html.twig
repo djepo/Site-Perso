@@ -51,6 +51,11 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
                 {{ form_widget(form.image) }}
             </div>
             <div>
+                {{ form_label(form.introduction, "Introduction de l'article (affiché en page d'accueil)") }}
+                {{ form_errors(form.introduction) }}
+                {{ form_widget(form.introduction) }}
+            </div>
+            <div>
                 {{ form_label(form.article, "Contenu de l'article") }}
                 {{ form_errors(form.article) }}
                 {{ form_widget(form.article) }}

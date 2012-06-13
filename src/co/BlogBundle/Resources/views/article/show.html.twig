@@ -29,14 +29,9 @@
 
 {# Balises de description #}
 {% block header_description %}
-    <meta name="description" content="{{ article.article|slice(0,150)|striptags|raw}}" />
-    <meta property="og:description" content="{{ article.article|slice(0,150)|striptags|raw}}">    
+    <meta name="description" content="{{article.introduction}}" />
+    <meta property="og:description" content="{{article.introduction}}">    
 {% endblock %}
-    
-{# Balises auteur#}
-{% block header_author %}    
-{% endblock %}
-
 
 {%block arbre %}    
     <a href="{{path('homepage')}}">Accueil</a>
