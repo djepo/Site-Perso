@@ -36,7 +36,7 @@
         <!-- JQuery -->
         <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery-1.7.2.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery-ui-1.8.21.custom.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery.easing.1.3.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery.easing.1.3.js')}}"></script>        
         <!-- JQuery -->
         {%block included_javascripts %}        
         {%endblock%}
@@ -113,9 +113,15 @@
             <div id="footer" style="z-index:1000">
                 {%block footer%}
                     <p>
+                        <span style="float: left">
                         <a href="{{ path('fos_user_security_login') }}"><img width="16" height="16" src="{{ asset('bundles/comain/themes/black/img/cadenas-32.png') }}" alt="connexion"></a>
                         &copy; <span itemprop="copyrightYear">2012</span> - <span itemprop="author">CAILBAUT Olivier</span> - Téléphone: 06.19.84.05.02. - SIRET:532 356 805 000 12 - <a href="https://plus.google.com/111109823858731272872?rel=author">Google+</a>
-
+                        </span>
+                            
+                        <a href="{{path('cv')}}" style="color: #ffffff; font-size: 1.8em;">
+                            <marquee behavior="scroll" direction="down" scrollamount="2" height="35" width="420" style="text-align: center; margin-top: -10px;">A la recherche d'un nouvel emploi</br></br></br>Now looking for a new job</marquee> 
+                        </a>                        
+                        
                         <span style="float:right">
                             <a href="{{ path('contact') }}">Formulaire de contact</a> - 
                             <a href="{{path('articles')}}">Liste des articles</a>
@@ -124,7 +130,7 @@
                 {%endblock%}
             </div>
  
-            {% block javascripts %}
+            {% block javascripts %}            
                 <!-- Bouton Google -->                
                 <script type="text/javascript">
                     window.___gcfg = {lang: 'fr'};
