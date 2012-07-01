@@ -4,3 +4,7 @@
     {{ parent() }}  {# Héritage des feuilles de styles parentes #}
     <link href="{{ asset('bundles/comain/css/forms.css') }}" type="text/css" rel="stylesheet" /> {# Ajout de la nouvelle feuille de style pour les formulaires #}
 {% endblock %}
+    
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

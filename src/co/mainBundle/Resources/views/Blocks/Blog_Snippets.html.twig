@@ -29,17 +29,55 @@
      
                 
     <div id="blog_nav" style="padding-top: 10px;">
-        {%set page=app.request.get('page') %}                   {# Récupération du paramètre "page" passé en paramètre de l'url#}
+        {# {%set page=app.request.get('page') %} #}                 {# Récupération du paramètre "page" passé en paramètre de l'url#}
         {%if page|length==0 %}{%set page=0%}{%endif%}           {# Si on a rien, on estime que page est égal à 0#}
         
         {%if page<nombrePages-1 %}
-        <a href="{{path('homepage',{'page':page+1})}}" style="float:left;">Billets précédents</a>
+            <a href="{{url('homepage',{'page':page+1})}}" style="float:left;" class="link_blog_nav">Billets précédents</a>
         {%endif%}
         
         {%if page>0 %}
-            <a href="{{path('homepage',{'page':page-1})}}" style="float:right;">Billets suivants</a>
+            <a href="{{url('homepage',{'page':page-1})}}" style="float:right;" class="link_blog_nav">Billets suivants</a>
         {%endif%}        
     </div>
 {%endif%}
 </div>
+
+<script>
+    
+    var popEventListenerAdded=false;
+    
+    $(".link_blog_nav").click(function(e){
+        var pageUrl=$(this).attr("href");
+        var pageTitle=document.title;
         
+        window.history.pushState(null,pageTitle,pageUrl);
+        
+        updateBlogPrevis(pageUrl);
+        
+        e.preventDefault();        
+    });
+    
+    $(window).bind("popstate", function(e){
+        if(!popEventListenerAdded) {
+            updateBlogPrevis(location.href);
+            popEventListenerAdded=true;
+        }
+    });
+    
+    function updateBlogPrevis(pageUrl)
+    {
+        $.ajax({
+            url: "{{path("indexBlogSnippets_AjaxAction")}}",
+            data: {url: location.href},
+            cache: false,
+            success: function (data) {
+                        $("#contentwrapper").fadeOut(200,function(){
+                                                                $(this).html(data).fadeIn(200);
+                                                               });
+                        
+                },
+        });
+    };
+    
+</script>
