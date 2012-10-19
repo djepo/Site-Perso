@@ -31,38 +31,60 @@ class PageController extends Controller
     }
     
     /**
-     * @Route("/ajax/indexBlogSnippets", name="indexBlogSnippets_AjaxAction")
+     * @Route("/ajax/updateContent", name="updateContentAction")
      */
-    public function indexBlogSnippets_AjaxAction()
+    public function updateContentAction()
     {
         $request=$this->getRequest();
         $page=0;    //init
         $url=$request->get('url');
+        $type=$request->get('type');
         
-        $tableauUrl=explode("page=",$url);
-        if ($tableauUrl){
-            //var_dump($tableauUrl);
-            if (sizeof($tableauUrl)>1){
-                $page=$tableauUrl[1];
-            } else {
-               $page=0; 
-            }
-        } else {
-            $page=0;
+        if (!$url | !$type){
+            return new \Symfony\Component\HttpFoundation\Response('Au moins un paramètre est manquant',400);
         }
         
-        //var_dump($page);
-        
-        if(!$page){$page=0;}   //offset=-1: tous les articles, sinon comptage à partir de offset=0
-        
         $em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
-        $articles = $em->getRepository('coBlogBundle:article')->getLatestArticles($page);
-        $NombrePages=$em->getRepository('coBlogBundle:article')->getNombrePages();
         
-        return $this->render('comainBundle:Blocks:Blog_Snippets.html.twig', array(  'articles'=>$articles,
+        switch($type){
+            case 'home':
+                $page=0;
+                $articles = $em->getRepository('coBlogBundle:article')->getLatestArticles($page);
+                $NombrePages=$em->getRepository('coBlogBundle:article')->getNombrePages();        
+                return $this->render('comainBundle:Blocks:Blog_Snippets.html.twig', array(  'articles'=>$articles,
                                                                                     'nombrePages'=>$NombrePages,
                                                                                     'page'=>$page,
                                                                                  ));
+                break;
+            case 'article':
+                $tableauUrl=explode("/",$url);
+                $article_id=$tableauUrl[sizeof($tableauUrl)-1];                                
+                
+                return $this->forward('coBlogBundle:Articles:ajaxArticle', array('id'=>$article_id));                
+                break;
+            case 'articles_list':
+                $tableauUrl=explode("page=",$url);
+                if ($tableauUrl){       
+                    if (sizeof($tableauUrl)>1){
+                        $page=$tableauUrl[1];
+                    } else {
+                        $page=0; 
+                    }
+                } else {
+                    $page=0;
+                }               
+                if(!$page){$page=0;}   //offset=-1: tous les articles, sinon comptage à partir de offset=0        
+                $articles = $em->getRepository('coBlogBundle:article')->getLatestArticles($page);
+                $NombrePages=$em->getRepository('coBlogBundle:article')->getNombrePages();        
+                return $this->render('comainBundle:Blocks:Blog_Snippets.html.twig', array(  'articles'=>$articles,
+                                                                                    'nombrePages'=>$NombrePages,
+                                                                                    'page'=>$page,
+                                                                                 ));
+                break;            
+            default:
+                return new \Symfony\Component\HttpFoundation\Response('type inconnu',400);
+                break;
+        }
     }
     
     

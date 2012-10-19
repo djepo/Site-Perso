@@ -9,21 +9,20 @@
     
     {%for article in articles %}    
         <div class="article_snippet" itemscope itemtype="http://schema.org/Article">
-            <a href="{{url('article',{'id': article.id})}}" itemprop="url"><h2 class="article_title" itemprop="name">{{article.title}}</h2></a>
+            <a href="{{url('article',{'id': article.id})}}" itemprop="url" class="article_link"><h2 class="article_title" itemprop="name">{{article.title}}</h2></a>
             {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
         
             <span itemprop="description">
-                <p>
-                {#{{ article.article|striptags('<h1><h2><h3><h4><h5><h6><p><li><ul><ol>')|slice(0,500)|raw}}(...)#}
-                {% if article.introduction %}
-                    {{article.introduction}}
-                {% else %}
-                    Pas de résumé disponible...
-                {%endif%}
+                <p>                
+                    {% if article.introduction %}
+                        {{article.introduction}}
+                    {% else %}
+                        Pas de résumé disponible...
+                    {%endif%}
                 </p>
             </span>            
             <br style="clear:both">
-            <a href="{{path('article',{'id': article.id})}}">Lire la suite...</a>
+            <a href="{{path('article',{'id': article.id})}}" class="article_link">Lire la suite...</a>
         </div>    
     {%endfor%}
      
@@ -43,40 +42,62 @@
 {%endif%}
 </div>
 
-<script>
-    
+{# Script de navigation entre les pages de résumés de blogs en ajax#}
+<script>    
     var popEventListenerAdded=false;
     
     $(".link_blog_nav").click(function(e){
+        var type="articles_list";
+        var pageUrl=$(this).attr("href");
+        var pageTitle=document.title; 
+        var stateObj={type: type};
+        window.history.pushState(stateObj,pageTitle,pageUrl);        
+        updateContent(pageUrl, type);        
+        e.preventDefault();        
+    });
+    
+    $(".article_link").click(function(e){
+        var type="article";
         var pageUrl=$(this).attr("href");
         var pageTitle=document.title;
+        var stateObj={type: type};
         
-        window.history.pushState(null,pageTitle,pageUrl);
+        window.history.pushState(stateObj,pageTitle,pageUrl);
         
-        updateBlogPrevis(pageUrl);
+        updateContent(pageUrl, type);
         
         e.preventDefault();        
     });
     
+    {# Evenement déclanché lors de la navigation dans l'historique du navigateur #}
     $(window).bind("popstate", function(e){
         if(!popEventListenerAdded) {
-            updateBlogPrevis(location.href);
-            popEventListenerAdded=true;
+            if (e.originalEvent.state) {
+                updateContent(location.href, e.originalEvent.state.type);
+            } else {
+                updateContent(location.href, 'home');
+            }
+            popEventListenerAdded=true; //flag indiquant que l'on a traité l'évènement popstate. (évite l'enchainement de tous l'historique)
         }
     });
     
-    function updateBlogPrevis(pageUrl)
+    function updateContent(pageUrl, type)
     {
         $.ajax({
-            url: "{{path("indexBlogSnippets_AjaxAction")}}",
-            data: {url: location.href},
+            url: "{{path("updateContentAction")}}",
+            data:   {   url:    location.href,
+                        type:   type,
+                    },
             cache: false,
             success: function (data) {
                         $("#contentwrapper").fadeOut(200,function(){
                                                                 $(this).html(data).fadeIn(200);
                                                                });
                         
-                },
+                    },
+            error: function(data) {
+                    alert ('Erreur');
+                }
         });
     };
     

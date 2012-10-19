@@ -1,0 +1,85 @@
+    <div class="blog" itemscope itemtype="http://schema.org/Article">
+        <header>
+            <h1 id="articleTitle" class="article_title editable" itemprop="name">{{ article.title }}</h1>
+
+            {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
+
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <div class="article_actions">
+                    <a href="{{path('article_edition',{'id':article.id})}}">éditer</a>
+                    <a id="lien_supression_article" href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>
+                </div>
+            {%endif%}
+            
+            {% if article.image %}
+                <div class="boite_image_header">
+                    <img itemprop="image" src="{{ article.image|raw }}" alt="{{article.title}}" title="{{article.title}}" class="header_image"/>
+                </div>
+            {% endif %}
+            
+        </header>  <!-- Fin balise header -->
+
+        <article id="articleBody" itemprop="articleBody" class="editable">
+            {{ article.article|raw }}
+        </article>
+
+        <footer>
+            <!-- Lockerz Share BEGIN -->
+            <div style="height: 25px;">
+                <a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_120_16.gif" width="120" height="16" alt="Share"/></a>
+                <script type="text/javascript">
+                    var a2a_config = a2a_config || {};
+                    a2a_config.locale = "fr";
+                </script>
+                <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
+            </div>
+            <!-- Lockerz Share END -->
+            <hr>
+        </footer>  <!-- Fin balise footer -->
+
+    </div>  <!-- Fin balise blog -->
+
+    {# Gestion de la confirmation de la supression d'un article #}
+    <script>
+        $(document).ready(function(){
+
+            var content;        //contenu mémorisé à chaque sortié d'une zone éditable
+            var contentId;
+            var pageId;
+            var $memContent;    //contenu mémorisé à chaque entrée dans une zone éditable
+
+
+            var $dialogSuppr= $('<div></div>').html('Voulez-vous vraiment supprimer cet article ?')
+                                            .dialog({   'autoOpen': false,
+                                                        'title':    'Attention requise',
+                                                        'modal':    true,
+                                                        'buttons':  {   'Non': function () {$dialogSuppr.dialog("close"); },
+                                                                        'Oui': function () { $(location).attr('href','{{url('article_supression',{'id':article.id})}}');},
+                                                        },
+                                                    });
+
+            $('#lien_supression_article').click(function(){
+                $dialogSuppr.dialog('open');
+                return false;
+            });
+
+            var $dialogModif= $('<div></div>').html('Voulez-vous vraiment modifier cet article ?')
+                                                  .dialog({ 'autoOpen': false,
+                                                            'title':    'Attention requise',
+                                                            'modal':    true,
+                                                            'buttons':  {   'Non': function () {                                                                    
+                                                                                                $dialogModif.dialog("close");
+                                                                                               },
+                                                                            'Oui': function () {
+                                                                                        $dialogModif.dialog("close");
+                                                                                        $.ajax({    type: "POST",
+                                                                                                    url:  "{{url('article_ajax_update')}}",
+                                                                                                    data: {content: content, contentId: contentId, articleId: {{article.id}}}
+                                                                                            
+                                                                                                });
+
+                                                                                    },
+                                                            },
+                                                    });
+    });
+</script>

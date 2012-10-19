@@ -32,7 +32,7 @@ class ArticlesController extends Controller {
      */
     public function articleAction($id = 0) {
         $em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
-
+        
         if ($id > 0) {
             $article = $em->getRepository('coBlogBundle:article')->find($id);   //on mémorise l'article en l'appelant par son id'
 
@@ -59,6 +59,45 @@ class ArticlesController extends Controller {
             
             //on lance un rendu de la page article avec en paramètre, l'array représentant l'article
             return $this->render('coBlogBundle:article:show.html.twig', array('article' => $article,));
+        } else {
+            throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
+        }
+    }
+    
+    /**
+     * @Route("/ajax/article/{id}", defaults={"id" = 0}, requirements={"id" = "\d+"}, name="articleAjax")
+     * @Template()
+     * @method({"GET"|"POST"})
+     */
+    public function ajaxArticleAction($id = 0) {
+        $em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+        
+        if ($id > 0) {
+            $article = $em->getRepository('coBlogBundle:article')->find($id);   //on mémorise l'article en l'appelant par son id'
+
+            if (!$article) {    //si on n'a rien trouvé
+                throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
+            }
+
+            //Mise à jour du nombre de vues sur l'article
+            if ($article->getviewsCount()==null) {
+                $article->setviewsCount(0);
+            } 
+            
+            $username = $this->container->get('security.context')->getToken()->getUser();
+            if (is_object($username)) {
+                if ($article->getAuteur()!=$username){
+                    $article->setviewsCount($article->getviewsCount()+1);
+                }
+            } else {
+                $article->setviewsCount($article->getviewsCount()+1);
+            }
+            
+            $em->persist($article);
+            $em->flush();
+            
+            //on lance un rendu de la page article avec en paramètre, l'array représentant l'article
+            return $this->render('coBlogBundle:article/ajax:show.html.twig', array('article' => $article,));
         } else {
             throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
         }
