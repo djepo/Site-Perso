@@ -12,6 +12,16 @@
             <a href="{{url('article',{'id': article.id})}}" itemprop="url" class="article_link"><h2 class="article_title" itemprop="name">{{article.title}}</h2></a>
             {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
         
+            {% if article.image %}                
+                <div class="blog" style="padding-top:5px">                    
+                    <div class="boite_image_header">
+                        <a href="{{path('article',{'id': article.id})}}" class="article_link">
+                            <img itemprop="image" src="{{ article.image|raw }}" alt="{{article.title}}" title="{{article.title}}" class="header_image"/>
+                        </a>
+                    </div>
+                </div>                
+            {% endif %}
+            
             <span itemprop="description">
                 <p>                
                     {% if article.introduction %}
@@ -43,6 +53,7 @@
 </div>
 
 {# Script de navigation entre les pages de résumés de blogs en ajax#}
+{#
 <script>    
     var popEventListenerAdded=false;
     
@@ -70,6 +81,7 @@
     });
     
     {# Evenement déclanché lors de la navigation dans l'historique du navigateur #}
+{#
     $(window).bind("popstate", function(e){
         if(!popEventListenerAdded) {
             if (e.originalEvent.state) {
@@ -102,3 +114,4 @@
     };
     
 </script>
+#}

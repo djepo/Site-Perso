@@ -64,7 +64,13 @@
             {% endif %}
             
         </header>  <!-- Fin balise header -->
-
+        
+        {% if article.introduction %}
+            <article id="articleBody" itemprop="articleBody" class="editable">
+                {{article.introduction|raw}}
+            </article>
+        {%endif%}
+            
         <article id="articleBody" itemprop="articleBody" class="editable">
             {{ article.article|raw }}
         </article>
