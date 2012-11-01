@@ -1,21 +1,22 @@
 imports:
-    - { resource: parameters.ini }
+    - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: @comainBundle/Resources/config/config.yml }
 
 framework:
     #esi:             ~
     #translator:      { fallback: %locale% }
-    secret:          %secret%
-    charset:         UTF-8
-    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    secret:          %secret%    
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    session:
-        default_locale: %locale%
-        auto_start:     true
+    session:         ~        
+    default_locale:  %locale%
+    trust_proxy_headers: false
 
 # Twig Configuration
 twig:
@@ -24,6 +25,7 @@ twig:
 
 # Assetic Configuration
 assetic:
+    bundles:        []
     debug:          %kernel.debug%
     use_controller: false
     # java: /usr/bin/java
@@ -51,17 +53,14 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
-    port:      %mailer_port%
-    encryption: %mailer_encryption%
-    auth_mode:  %mailer_auth_mode%
-
-jms_security_extra:
-    secure_controllers:  true
-    secure_all_services: false
+    transport:     %mailer_transport%
+    host:          %mailer_host%
+    username:      %mailer_user%
+    password:      %mailer_password%
+    port:          %mailer_port%
+    encryption:    %mailer_encryption%
+    auth_mode:     %mailer_auth_mode%
+    spool:         { type: memory }
 
 fos_user:
     db_driver:     orm                        # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
@@ -69,8 +68,10 @@ fos_user:
     user_class:    co\UserBundle\Entity\User  # La classe de l'entité User que nous venons de définir
 
 stfalcon_tinymce:
-    include_jquery: true
-    textarea_class: "tinymce"
+    include_jquery:  true
+    tinymce_jquery:  true
+    textarea_class:  "tinymce"
+    language:        %locale%
     theme:
         simple:
             mode: "textareas"
@@ -82,8 +83,20 @@ stfalcon_tinymce:
             theme_advanced_toolbar_align: "left"
             theme_advanced_statusbar_location: "bottom"
             plugins: "fullscreen"
-            theme_advanced_buttons1_add: "fullscreen"            
-
+            theme_advanced_buttons1_add: "fullscreen"
+        # Medium number of enabled plugins + spellchecker
+        medium:
+            mode: "textareas"
+            theme: "advanced"
+            plugins: "table,advhr,advlink,paste,xhtmlxtras,spellchecker"
+            theme_advanced_buttons1: "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,forecolor,backcolor,|,hr,removeformat,|,sub,sup,|,spellchecker"
+            theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,bullist,numlist,|,undo,redo,|,link,unlink,anchor,cleanup,code,|,tablecontrols"
+            theme_advanced_buttons3: ""
+            theme_advanced_toolbar_location: "top"
+            theme_advanced_toolbar_align: "left"
+            theme_advanced_statusbar_location: ""
+            paste_auto_cleanup_on_paste: true
+            spellchecker_languages: "+English=en,Dutch=nl"
         advanced:
             theme: "advanced"
             plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template"

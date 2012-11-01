@@ -1,5 +1,9 @@
 ## Security Configuration
-
+jms_security_extra:
+    #secure_controllers:  true
+    secure_all_services: false
+    expressions: true
+    
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
@@ -30,6 +34,7 @@ security:
             logout:          true            # On autorise la déconnexion manuelle (désactivé par défaut)
 
     access_control:
+        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }

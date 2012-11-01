@@ -123,7 +123,7 @@ class ArticlesController extends Controller {
                 $formBuilder->add('title', 'text');
                 $formBuilder->add('image', 'text', array('required'=>false,));
                 $formBuilder->add('introduction','textarea', array('required'=>false,));
-                $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce')));
+                $formBuilder->add('article', 'textarea', array('attr' => array('class' => 'tinymce','data-theme'=>'advanced')));
                 $form = $formBuilder->getForm();
 
                 $request = $this->get('request');
@@ -164,7 +164,7 @@ class ArticlesController extends Controller {
             $formBuilder->add('title', 'text');
             $formBuilder->add('image', 'text', array('required'=>false,));
             $formBuilder->add('introduction','textarea', array('required'=>false,));
-            $formBuilder->add('article', 'textarea', array('required'=>false, 'attr' => array('class' => 'tinymce')));
+            $formBuilder->add('article', 'textarea', array('required'=>false, 'attr' => array('class' => 'tinymce','data-theme'=>'advanced')));
 
             $article->setAuteur($username);            
             // À partir du formBuilder, on génère le formulaire.
