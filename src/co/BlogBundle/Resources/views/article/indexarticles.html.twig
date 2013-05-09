@@ -10,11 +10,13 @@
     Liste des articles disponibles
 </h2>
 {# Définition de l'information de réussite d'envoi du formulaire (Envoyé par le controleur) #}
+{#
 {% if app.session.hasFlash('notification') %}
     <div class="notification">
         {{ app.session.flash('notification') }}
     </div>
 {% endif %}
+#}
 {# Fin de définition de l'information de réussite d'envoi du formulaire #}
 
 {%for article in articles %}

@@ -1,13 +1,13 @@
-#netbeans
-/nbproject/
-
 # Configuration files
 app/config/parameters.ini
 app/config/parameters.yml
 
 # Symfony directories
-#vendor/*
+vendor/*
 */logs/*
 */cache/*
-#web/uploads/*
-#web/bundles/*
+web/uploads/*
+web/bundles/*
+
+#netbeans
+/nbproject/*

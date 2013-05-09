@@ -7,8 +7,7 @@
 {% endblock %}
 
 {%block arbre %}
-<a href="{{path('homepage')}}">Accueil</a>
- {#> <a href="{{path('article',{'id': article.id})}}">Articles</a>#}
+<a href="{{path('homepage')}}">Accueil</a> 
  > <a href="{{path('articles')}}">Articles</a>
  > <a href="{{path('article_ajout')}}">Ajout d'un Article</a>
 {%endblock%}
@@ -30,15 +29,6 @@ valid_elements : "em/i,strike,u,strong/b,div[align],br,#p[align],-ol[type|compac
     <header>
         <h1>Ajout d'un article</h1>
     </header>
-        
-    {# Définition de l'information de réussite d'envoi du formulaire (Envoyé par le controleur) #}
-    {% if app.session.hasFlash('notification') %}
-        <div class="notification">
-            {{ app.session.flash('notification') }}
-        </div>
-    {% endif %}
-    {# Fin de définition de l'information de réussite d'envoi du formulaire #}
-        
         <form action="{{ url('article_ajout') }}" method="post" {{ form_enctype(form) }}>
             <div>                
                 {{ form_label(form.title, "Titre de l'article") }}

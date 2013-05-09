@@ -1,5 +1,11 @@
 {% extends 'comainBundle::layout.html.twig' %}   {# Héritage du layout principal (app/ressources/views/base.html.twig) #}
 
+{% block stylesheets %}
+    {{ parent() }}  {# Héritage des feuilles de styles parentes #}
+    <link rel="stylesheet" href="{{ asset('bundles/comain/css/cv.css') }}" type="text/css" media="all" />
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
+{%endblock%}
+
 {% block title %}CAILBAUT Olivier - Curriculum Vitae{% endblock %}
 {% block opengraph_title %}CAILBAUT Olivier - Curriculum Vitae{% endblock %}      
 {% block microdata_title %}CAILBAUT Olivier - Curriculum Vitae{% endblock %}
@@ -17,144 +23,104 @@
     <meta itemprop="description" content="Curriculum Vitae d'Olivier CAILBAUT.">
 {% endblock %}
 
+{% block header %}
+    {% if printable==false %}    
+        {{parent()}}    
+    {%endif%}
+{% endblock %}
+    
+{% block menu %}
+    {% if printable==false %}    
+        {{parent()}}    
+    {%endif%}
+{% endblock %}
+    
 {%block arbre %}
-<a href="{{path('homepage')}}">Accueil</a>
- > <a href="{{path('cv')}}">CV</a>
+    {% if printable==false %}
+        <div class="arbre col_12" itemprop="breadcrumb">
+            <a href="{{path('homepage')}}">Accueil</a>
+            > <a href="{{path('cv')}}">CV</a>
+        </div>
+    {%endif%}
 {%endblock %}
+ 
+{%block débutContainerBody%}
+    {% if printable==false %}
+         {{parent()}}
+    {%endif%}
+{%endblock%}
 
 {% block body %}    {# Surcharge du bloc body de notre layout principal #}
+
+    {% if printable==false %}
+         <div class="center">
+             <ul class="button-bar">
+                {#<li><a id="btnImprim" class="tooltip" title="Version Imprimable" style="color: #000000" href="{{path('cv',{'printable': 'true'})}}" target="_blank"><i class="icon-print icon-large"></i></a></li>#}
+                     <li><a id="btnImprim" class="tooltip" title="Version Imprimable" style="color: #000000" href="#"><i class="icon-print icon"></i>Imprimer le CV</a></li>
+                {#<li><a class="tooltip" title="Version PDF" style="color: #000000" href="{{path('cv',{'printable': 'true'})}}"><i class="icon-print icon-large"></i></a></li>#}
+             </ul>
+        </div>
+    {%endif%}
  
-<script type="text/javascript" src="{{ asset('bundles/comain/js/CalculAge.js') }}"></script> 
-
-<h3></h3>
-<h3>CAILBAUT Olivier</h3>
-<h3>31 bis, rue Saint Vincent<br>
-    44330 Mouzillon</h3>
-
-
-<h1 style="font-weight: bold;"><u>Etat civil</u>:</h1>
-<ul>
-    <li>Né le 08/08/1978 à Strasbourg</li>
-    <li>Age: <span id="age"></span></li>
-    <li>Situation de famille: Concubinage</li>
-</ul>
-
-<h1 style="font-weight: bold; text-decoration: underline">Diplômes:</h1>
-<ul>
-    <li>2000: BTS Informatique (Informatique de gestion)</li>
-    <li>1998: Bac STT option informatique de gestion (Lycée la Colinière – Nantes)</li>
-    <li>1993: Brevet des collèges (Collège St Laurent - Blain)</li>
-</ul>
-
-<h1 style="font-weight: bold; text-decoration: underline">Stages:</h1>
-<ul>
-    <li>2000: Développement d’un composant Delphi de lecture-écriture pour le système à carte Sésame-vitale (Apolink – Ste Luce/loire)</li>
-    <li>1999: Développement d’un module de comptabilité pour le logiciel <a href="http://www.medialogs.net/" target="_blank">Média Coif</a> (logiciel de gestion pour salons de coiffure) sous <a href="http://www.pcsoft.fr/windev/index.html" target="_blank">Windev</a> (Médialogs – Clisson)</li>
-</ul>
-
-<h1 style="font-weight: bold; text-decoration: underline">Emplois:</h1>
-<ul>
-    <li>Depuis Septembre 2004:
-        <ul>
-            <li>Conducteur de ligne (<a href="http://www.lactalis.fr/" target="_blank">Lactalis</a> - Nestlé Vallet)</li>
-            <li>Détachements
-                ponctuels sur démarrage lignes, mises en place de machines
-                industrielles;</li>
-            <li>Développement
-                informatique  en VBA Access / Excel, intégration
-                matériel,
-                dépannage matériel, configuration réseau, développement d’applications
-                de reporting,
-                automatisation de calculs, statistiques sur les pesées en liaison ODBC
-                avec une
-                base Oracle, Reporting et statistiques d’après une base SQL Server,
-                Liaison
-                d’application vb.net avec un automate industriel à des fins de
-                sauvegardes et
-                statistiques sur la marche des installations industrielles.<br></li>
-        </ul>
-    <li>Mars 2004 - Septembre 2004:
-        Contrat de qualification Conducteur
-        de lignes Manpower Nestlé – AFPI.</li>
-
-    <li>septembre 2001-mars 2004: diverses missions intérimaires dont:
-        <ul>
-            <li>Manutention diverse (Drouet
-                frères, Seritex, Chef Ledoult, Celia, Cubic Santé, Bric
-                Fruits);</li>
-            <li>Cariste (Sautejeau–Beauquin, Vinival, Kappa SCAO, Hay’s
-                Logistique);</li>
-            <li>Préparation de
-                commande, tenue de stocks (Chef Ledoult, menuiseries Jeanneau, Hay’s
-                logistique, Vinival);</li>
-            <li>Opérateur en
-                Ultra-Filtration et pasteurisation chez Celia Monfaucon ;</li>
-        </ul>
-    <li>Décembre 2000 - Août 2001: Moniteur poids
-        lourds des armées (SN);</li>
-    <li>Juillet 2000 -
-        Novembre 2000: Manutentionnaire,
-        cariste réception MS et conducteur machines
-        en mission intérimaire (Vinival – Mouzillon);</li>
-    <li>Août 1998 - Juillet 2000:
-        Cuisinier, Serveur, Vendeur, Employé de commerce (Vidéo@Food - Clisson);</li>
-
-    <li>1998: Assembleur informatique
-        durant 4 mois (BCS – Clisson);</li>
-</ul>
-
-<h1 style="font-weight: bold; text-decoration: underline">Compétences informatiques:</h1>
-<ul>
-    <li>
-        <h3>Langages:</h3>
-        <ul>
-            <li>Php (framework symfony 2), HTML5, CSS 3, C , VB.net, VBA Access et Excel, SQL;</li>
-            <li>Connaissances en WLanguage (Windev), C++, Pascal (sous Delphi);</li>        
-            <li>Notions d’assembleur Intel.</li>
-        </ul>
-    </li>
-    <li>
-        <h3>Méthode d’analyse:</h3>
-        <ul>
-            <li>Merise</li>        
-        </ul>
-    </li>
-    <li>
-        <h3>Systèmes:</h3>
-        <ul>
-        <li>Connaissance approfondie de
-            Windows 3.1, 9x, NT, XP,
-            Vista, Windows 7, et les différentes Versions de Windows Server</li>
-        <li>Bonne connaissance de DOS, UNIX</li>
-        <li>Notions sous Linux (UBUNTU), BeOS</li>
-        </ul>
-    </li>
-    </li>
-        <h3>Logiciels spécifiques:</h3>
-        <ul>
-            <li>Adobe Photoshop (edition graphique)</li>
-            <li>Ableton live, SoundForge (Edition audio)</li>
-            <li>MS Project (Gestion de projets)</li>
-        </ul>
-    </li>
-</ul>
-
-<h1 style="font-weight: bold; text-decoration: underline">Passions:</h1>
-<ul>
-    <li>Sonorisation</li>
-    <li>M.A.O.</li>
-    <li>Mise en place de concerts et festivals en milieu associatif</li>
-</ul>
-
-<h1 style="font-weight: bold; text-decoration: underline">Divers:</h1>
-<ul>
-    <li>Permis B, C</li>
-    <li>Permis Cariste</li>
-    <li>Anglais lu, parlé et écrit</li>
-    <li>Brevet européen de secourisme (AFPS)</li>
-    <li>Dégagé des obligations militaires</li>
-</ul>
-
+    <div id="cv" {% if printable==false %} class="instaFade" {% endif %} {% if printable==true %} style="margin: 0" {%endif%}>
+	<div class="mainDetails">
+		<div id="headshot" {% if printable==false %} class="quickFade" {% endif %}>
+			<img src="{{ asset('bundles/comain/images/headshot.jpg') }}" alt="CAILBAUT Olivier" />
+		</div>
+		
+		<div id="name">
+			<h1 {% if printable==false %} class="quickFade delayTwo" {% endif %}>CAILBAUT Olivier</h1>
+			<h2 {% if printable==false %} class="quickFade delayThree" {% endif %}>{%if type=="INFORMATIQUE"%}Analyste Programmeur{%else%}Conducteur de Lignes Automatisées{%endif%}</h2>
+		</div>
+		
+		<div id="contactDetails" {% if printable==false %} class="quickFade delayFour" {% endif %}>
+			<ul>
+				<li><i class="icon-envelope" style="font-family: FontAwesome"></i> <a href="mailto:cailbaut.olivier@live.fr" target="_blank">cailbaut.olivier@live.fr</a></li>                                
+				<li><i class="icon-globe icon-large" style="font-family: FontAwesome"></i> <a href="http://djepo.craym.eu/">http://djepo.craym.eu/</a></li>                                
+				<li><i class="icon-mobile-phone icon-large" style="font-family: FontAwesome"></i> 06.19.84.05.02.</li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<div id="mainArea" {% if printable==false %} class="quickFade delayFive" {% endif %}>
+            {%if type=="INFORMATIQUE"%}
+                {% include 'comainBundle:Page:cvInformatique.html.twig' %}
+            {%else%}
+                {% include 'comainBundle:Page:cvCDL.html.twig' %}
+            {%endif%}
+	</div>
+    </div>
+    
+    {#Si on a la bouton imprimer, on change le lien cliquable via jquery en demandant d'ouvrir une popp de la version imprimable du cv#}
+    {% if printable==false %}
+        <script>
+         $(document).ready(function(){
+            $(btnImprim).click(function(){
+                window.open('{{path('cv',{'printable': 'true'})}}', 'PRINTABLE_CV', 'scrollbars=yes,status=yes,width=830,height='+screen.height);              
+            });
+         });
+        </script>
+    {%endif%}
+    
+    {# si on a ouvert la version imprimable du cv, on lance la demande d'impression directement #}
+    {% if printable==true %}
+        <script>
+         $(document).ready(function(){
+            window.print();
+         });
+        </script>
+    {%endif%}
 {% endblock %}
-{% block commentaires%}
+
+{%block finContainerBody%}
+    {% if printable==false %}
+         {{parent()}}
+    {%endif%}
 {%endblock%}
+
+{% block footer %}
+    {% if printable==false %}    
+        {{parent()}}    
+    {%endif%}
+{% endblock %}

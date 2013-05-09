@@ -1,15 +1,15 @@
 <div class="header">
-    <h1>Derniers articles publiés</h1>
+    <h3 style="color: #FFB300">Derniers articles publiés</h3>
 </div>
 
-<hr style="clear:both;margin-top: 15px">
+<hr style="clear:both;margin-top: 15px; margin-bottom: 0px">
 
 <div class="liste_articles" itemscope itemtype="http://schema.org/Blog">
 {%if articles is defined%}
     
     {%for article in articles %}    
         <div class="article_snippet" itemscope itemtype="http://schema.org/Article">
-            <a href="{{url('article',{'id': article.id})}}" itemprop="url" class="article_link"><h2 class="article_title" itemprop="name">{{article.title}}</h2></a>
+            <a href="{{url('article',{'id': article.id})}}" itemprop="url" class="article_link"><h4 class="article_title" itemprop="name">{{article.title}}</h4></a>
             {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
         
             {% if article.image %}                

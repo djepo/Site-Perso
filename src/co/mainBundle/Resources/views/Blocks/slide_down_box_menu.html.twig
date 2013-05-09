@@ -1,9 +1,7 @@
 <ul id="sdt_menu" class="sdt_menu">
     <li>
         <a href="{{ path('homepage') }}">
-            <img src="{{ asset('bundles/comain/css/img/menu/accueil.jpg')}}" alt=""/>
-            
-            {#<img src="../images/themes/base/menu/2.jpg" alt=""/>#}
+            <img src="{{ asset('bundles/comain/css/img/menu/accueil.jpg')}}" alt=""/>                        
             <span class="sdt_active"></span>
             <span class="sdt_wrap">
                 <span class="sdt_link">Accueil</span>
@@ -36,13 +34,17 @@
         </a>
     </li>
     <li>
-        <a href="{{path('cv')}}">
+        <a href="#">
             <img src="{{ asset('bundles/comain/css/img/menu/cv.jpg')}}" alt=""/>
             <span class="sdt_active"></span>
             <span class="sdt_wrap">
                 <span class="sdt_link">CV</span>
-                <span class="sdt_descr">Curriculum Vitae</span>
+                <span class="sdt_descr">Curricula Vitae</span>
             </span>
         </a>
+        <div class="sdt_box">
+            <a href="{{path('cv',{'type':'INFORMATIQUE'})}}">CV Informatique</a>
+            <a href="{{path('cv',{'type':'CDL'})}}" style="font-size:80%">CV Conducteur de Ligne</a>            
+        </div>
     </li>    
 </ul>

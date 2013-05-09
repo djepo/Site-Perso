@@ -21,7 +21,8 @@ class PageController extends Controller
         $page=$request->get('page');
         if(!$page){$page=0;}   //offset=-1: tous les articles, sinon comptage à partir de offset=0
         
-        $em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+        //$em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+        $em = $this->getDoctrine()->getManager(); //initialisation de l'entitymanager
         $articles = $em->getRepository('coBlogBundle:article')->getLatestArticles($page);
         $NombrePages=$em->getRepository('coBlogBundle:article')->getNombrePages();
         
@@ -94,11 +95,32 @@ class PageController extends Controller
      */
     public function cvAction()
     {
-        //return array();
-        return $this->render('comainBundle:Page:cv.html.twig');
+        //Initialisation
+        $printable=false;   //On le passera à TRUE si le paramètre est correctement renseigné
+        $type="INFORMATIQUE";
+        
+        $request = $this->getRequest();
+        $printableParameter=$request->query->get('printable'); // get a $_GET parameter
+        if (isset($printableParameter))
+        {
+            if ($printableParameter=='true') {
+                $printable=true;                
+            }
+        }
+        $typeParameter=$request->query->get('type');
+        if (isset($typeParameter))
+        {
+            if($typeParameter=="CDL")
+            {
+                $type="CDL";
+            }
+        }
+        
+        return $this->render('comainBundle:Page:cv.html.twig',array('printable'=>$printable, 'type'=>$type));
+        
     }
     
-         /**
+     /**
      * @Route("/contact", name="contact")
      * @Template()
      * @method({"GET", "POST"})      
@@ -106,7 +128,7 @@ class PageController extends Controller
     public function contactAction()
     {
         $enquiry = new Enquiry();                               //Nouvel objet nous permettant de manipuler nos champs (sujet, mail, objet etc...)
-        $form = $this->createForm(new EnquiryType(), $enquiry); //Créatio nde notre formulaire de contact
+        $form = $this->createForm(new EnquiryType(), $enquiry); //Création de notre formulaire de contact
 
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
@@ -121,7 +143,8 @@ class PageController extends Controller
                     ->setBody($this->renderView('comainBundle:Page:contactEmail.txt.twig', array('enquiry' => $enquiry)));
                 $this->get('mailer')->send($message);
                 
-                $this->get('session')->setFlash('notification', 'Votre message à bien été envoyé. Nous vous répondrons dès que possible.');
+                //$this->get('session')->setFlash('notification', 'Votre message à bien été envoyé. Nous vous répondrons dès que possible.');
+                $this->get('session')->getFlashBag->add('notification', 'Votre message à bien été envoyé. Nous vous répondrons dès que possible.');
                 
                 // Redirect - This is important to prevent users re-posting
                 // the form if they refresh the page

@@ -2,20 +2,9 @@
 {% extends 'comainBundle::layout.html.twig' %}
 
 {% block stylesheets %}
-    {{ parent() }}  {# Héritage des feuilles de styles parentes #}
-    <link href="{{ asset('bundles/comain/css/articles.css') }}" type="text/css" rel="stylesheet" /> {# Ajout de la nouvelle feuille de style pour les formulaires #}
+    {{ parent() }}  {# Héritage des feuilles de styles parentes #}    
     <link href="{{ asset('bundles/comain/js/jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css') }}" type="text/css" rel="stylesheet" />
-
-    <link rel="stylesheet" href="{{ asset('bundles/comain/js/aloha/css/aloha.css') }}" type="text/css">
 {% endblock %}
-{%block included_javascripts %}
-    {{parent()}}
-    {%if article.auteur.username is defined %}
-        {%if app.user==article.auteur.username%}          
-            <script src="{{ asset('bundles/comain/js/aloha/lib/aloha.js') }}" data-aloha-plugins="common/format,common/list,common/table,common/align,common/image,common/link,extra/zemanta">
-        {%endif%}
-    {%endif%}
-{%endblock%}
 
 {% block opengraph_type %}article{% endblock %}
 
@@ -28,7 +17,7 @@
 
 
 {# Balises de description #}
-{% block header_description %}
+{% block header_description %}        
     <meta name="description" content="{{article.introduction}}" />
     <meta property="og:description" content="{{article.introduction}}">    
 {% endblock %}
@@ -39,68 +28,75 @@
     > <a href="{{path('article',{'id': article.id})}}">{{article.title}}</a>
 {%endblock%}
 
-{% block title %}{{ article.title }} | CAILBAUT Olivier{% endblock %}
+{% block title %}{{ article.title }} | Olivier CAILBAUT{% endblock %}
 {% block opengraph_title %}{{ article.title }}{% endblock %}
-{#{% block microdata_title %}{{ article.title }}{% endblock %}#}
 
 {% block body %}
-    <div class="blog" itemscope itemtype="http://schema.org/Article">
-        <header>
-            <h1 id="articleTitle" class="article_title editable" itemprop="name">{{ article.title }}</h1>
+    <div class="col_9">
+        <div class="blog" itemscope itemtype="http://schema.org/Article">
+            <header>
+                <h1 id="articleTitle" class="article_title editable" itemprop="name">{{ article.title }}</h1>
 
-            {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
+                {%include('coBlogBundle:article/Blocks:article_informations.html.twig')%}
 
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <div class="article_actions">
-                    <a href="{{path('article_edition',{'id':article.id})}}">éditer</a>
-                    <a id="lien_supression_article" href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>
-                </div>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div class="article_actions">
+                        <a href="{{path('article_edition',{'id':article.id})}}">éditer</a>
+                        <a id="lien_supression_article" href="{{path('article_supression',{'id':article.id})}}"> - supprimer</a>
+                    </div>
+                {%endif%}
+
+                {% if article.image %}
+                    <div class="boite_image_header">
+                        <img itemprop="image" src="{{ article.image|raw }}" alt="{{article.title}}" title="{{article.title}}" class="header_image"/>
+                    </div>
+                {% endif %}
+
+            </header>  <!-- Fin balise header -->
+
+            {% if article.introduction %}
+                <article id="articleBody" itemprop="articleBody" class="articleIntroduction">
+                    {{article.introduction|raw}}
+                </article>
             {%endif%}
-            
-            {% if article.image %}
-                <div class="boite_image_header">
-                    <img itemprop="image" src="{{ article.image|raw }}" alt="{{article.title}}" title="{{article.title}}" class="header_image"/>
-                </div>
-            {% endif %}
-            
-        </header>  <!-- Fin balise header -->
-        
-        {% if article.introduction %}
-            <article id="articleBody" itemprop="articleBody" class="editable">
-                {{article.introduction|raw}}
+
+            <article id="articleBody" itemprop="articleBody">
+                {{ article.article|raw }}
             </article>
-        {%endif%}
-            
-        <article id="articleBody" itemprop="articleBody" class="editable">
-            {{ article.article|raw }}
-        </article>
 
-        <footer>
-            <!-- Lockerz Share BEGIN -->
-            <div style="height: 25px;">
-                <a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_120_16.gif" width="120" height="16" alt="Share"/></a>
-                <script type="text/javascript">
-                    var a2a_config = a2a_config || {};
-                    a2a_config.locale = "fr";
-                </script>
-                <script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
-            </div>
-            <!-- Lockerz Share END -->
-            <hr>
-        </footer>  <!-- Fin balise footer -->
+            <footer>                
+                <!-- Bouton Facebook -->
+                <div style="height: 25px;">                    
+                    <iframe src="http://www.facebook.com/plugins/like.php?href={{url('article',{'id': article.id})}}&send=false&layout=button_count&width=129&show_faces=false&action=like&colorscheme=light&font&height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:129px; height:21px;" allowTransparency="true"></iframe>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="CAILBAUTOlivier" data-lang="fr">Tweeter</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    <!--<g:plusone size="medium" annotation="inline" width="250px"></g:plusone>-->
+                    <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="129"></div>                    
+                                        
+                    <hr>
+                </div>
+                
+                
+                
+                <div>
+                    {% block commentaires%}
+                        {% include 'comainBundle:Blocks:Commentaires.html.twig' %}
+                    {%endblock%}
+                </div>
+            </footer>  <!-- Fin balise footer -->
 
-    </div>  <!-- Fin balise blog -->
+        </div>  <!-- Fin balise blog -->
+    </div>
+    
+    <div class="col_3">
+        {# Publicités Google #}
+        <iframe src="//www.facebook.com/plugins/likebox.php?href=http://www.facebook.com/pages/CAILBAUT-Olivier-Créateur-de-Solutions/365054276854994&amp;width=220&amp;height=600&amp;colorscheme=dark&amp;show_faces=true&amp;border_color=%23161616&amp;stream=false&amp;header=false&amp;appId=460355224016867" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:220px; height:600px;" allowTransparency="true"></iframe>
+        {% include 'comainBundle:Blocks:PubliciteGoogle.html.twig' %}        
+    </div>
 
     {# Gestion de la confirmation de la supression d'un article #}
     <script>
         $(document).ready(function(){
-
-            var content;        //contenu mémorisé à chaque sortié d'une zone éditable
-            var contentId;
-            var pageId;
-            var $memContent;    //contenu mémorisé à chaque entrée dans une zone éditable
-
-
             var $dialogSuppr= $('<div></div>').html('Voulez-vous vraiment supprimer cet article ?')
                                             .dialog({   'autoOpen': false,
                                                         'title':    'Attention requise',
@@ -114,82 +110,6 @@
                 $dialogSuppr.dialog('open');
                 return false;
             });
-
-            var $dialogModif= $('<div></div>').html('Voulez-vous vraiment modifier cet article ?')
-                                                  .dialog({ 'autoOpen': false,
-                                                            'title':    'Attention requise',
-                                                            'modal':    true,
-                                                            'buttons':  {   'Non': function () {                                                                    
-                                                                                                $dialogModif.dialog("close");
-                                                                                               },
-                                                                            'Oui': function () {
-                                                                                        $dialogModif.dialog("close");
-                                                                                        $.ajax({    type: "POST",
-                                                                                                    url:  "{{url('article_ajax_update')}}",
-                                                                                                    data: {content: content, contentId: contentId, articleId: {{article.id}}}
-                                                                                            
-                                                                                                });
-
-                                                                                    },
-                                                            },
-                                                    });
-
-
-
-            Aloha.settings = {
-                ribbon: true,
-                locale: 'en',
-                floatingmenu: {
-                    width: 900,
-                    behaviour: 'topalign'
-                },
-                repositories: {
-                    linklist: {
-                        data: [
-                            { name: 'Aloha Developers Wiki', url:'https://github.com/alohaeditor/Aloha-Editor/wiki', type:'website', weight: 0.50 },
-                            { name: 'Aloha Editor - The HTML5 Editor', url:'http://aloha-editor.com', type:'website', weight: 0.90 },
-                            { name: 'Aloha Demo', url:'http://www.aloha-editor.com/demos.html', type:'website', weight: 0.75 },
-                            { name: 'Aloha Wordpress Demo', url:'http://www.aloha-editor.com/demos/wordpress-demo/index.html', type:'website', weight: 0.75 },
-                            { name: 'Aloha Logo', url:'http://www.aloha-editor.com/images/aloha-editor-logo.png', type:'image', weight: 0.10 }
-                        ]
-                    }
-                },
-                plugins: {
-                    format: {
-                        // all elements with no specific configuration get this configuration
-                        config: [  'b', 'i', 'sub', 'sup', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ],
-                        editables: {
-                            // no formatting allowed for title
-                            '#articleTitle': [],                            
-                        }
-                    }
-                }
-            };
-    
-            {# Gestion de l'édition en place #}
-            Aloha.ready( function() {
-                
-                
-                
-                var $ = Aloha.jQuery;
-                $('.editable').aloha();
-
-                Aloha.bind('aloha-editable-activated', function() {
-                    $memContent=Aloha.activeEditable.getContents();
-                });
-
-                Aloha.bind('aloha-editable-deactivated', function() {
-                    content = Aloha.activeEditable.getContents();
-                    contentId = Aloha.activeEditable.obj[0].id;
-                    pageId = window.location.pathname;
-
-                    if($memContent!=content){
-                        $dialogModif.dialog('open');
-                    }
-                });
-            });
-
-    });
 </script>
 
 {% endblock %}

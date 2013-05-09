@@ -1,7 +1,7 @@
 <div class="article_informations">
     {%if article.auteur|length>0 %}
         <div class="article_auteur" style="display: inline">
-            <span itemprop="author">{{article.auteur.nom}} {{article.auteur.prenom}}</span>
+            <span itemprop="author"><a href="https://plus.google.com/111109823858731272872?rel=author">{{article.auteur.prenom}} {{article.auteur.nom}}</a></span>            
         </div>
     {%endif%}
     <div class="article_date" title="{{article.created|date('c')}}">

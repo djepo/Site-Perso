@@ -5,7 +5,190 @@
     Description: Description des styles des articles
 */
 
-
+.blog {
+    font-family: Verdana;    
+}
 .blog .footer {}
 .blog .boite_image_header {overflow:hidden;border: 5px solid #FFFFFF;border-radius: 4px 4px 4px 4px;box-shadow: 0 1px 4px #979797;background-color: #FFFFFF; width:450px;height:150px;text-align: center;vertical-align: middle;margin-left: auto;margin-right:auto}
 .blog .header_image {height: 100%}
+
+.blog h1, h2, h3, h4, h5, h6 {
+    color: #FFB300;    
+}
+
+/* Headers */
+.blog h1 {
+    font-size: 2em;
+    line-height: 130%;
+    font-weight: bold;    
+}
+
+.blog h2 {
+    font-size: 1.8em;
+}
+
+.blog h3 {
+    font-size: 1.6em;
+}
+
+.blog h4 {
+    font-size: 1.3em;
+}
+
+.blog h5 {
+    font-size: 1.2em;
+}
+
+.blog h6 {
+    font-size: 1em;
+}
+
+/* Paragraphes */
+.blog p {
+    font-size: 1em;
+    color: #FFFFFF;
+    line-height: 140%;
+    padding-top: 0px;
+    padding-bottom: 10px;
+    padding-left:10px;
+    text-align: justify;    
+}
+
+/* Listes à puces */
+.blog ul, ol {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 25px;    
+    padding: 0;
+    text-align: justify;
+    line-height: 140%
+}
+
+.blog li {
+    padding-bottom: 5px;
+}
+
+.blog .articleIntroduction {
+    padding-left:50px;
+    padding-right: 50px;
+    padding-top: 30px;
+    padding-bottom:20px;
+    text-align: justify;
+    line-height: 140%;
+    font-size: 1em;
+    color: #FFFFFF;
+}
+
+.blog .articleIntroduction::first-letter {
+    font-size: 360%;
+    float: left;
+    padding-right: 5px;
+    font-weight: bold;
+}
+
+.blog table {
+    margin: 20px;
+    color: #666;
+    /*font-size: 12px;*/
+    -moz-border-radius: 3px;
+    -moz-box-shadow: 0 1px 2px #d1d1d1;
+    -webkit-border-radius: 3px;
+    -webkit-box-shadow: 0 1px 2px #d1d1d1;
+    background: #eaebec;
+    border: #ccc 1px solid;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px #d1d1d1;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    text-shadow: 1px 1px 0px #fff;
+    border-collapse: separate;
+}
+
+.blog table tr.alt td {
+    background: #f6f6f6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+    background: -moz-linear-gradient(top, #f8f8f8, #f6f6f6);
+}
+
+.blog table th {
+    padding: 21px 25px 22px 25px;
+    border-bottom: 0px solid #e0e0e0; border-top: 0px solid #fafafa;
+    background: #ededed;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+    background: -moz-linear-gradient(top, #ededed, #ebebeb);
+}
+
+.blog table th:first-child {
+    padding-left: 20px;
+    text-align: left
+}
+
+.blog table a:visited {
+    color: #999999;
+    font-weight: bold;
+    text-decoration: none
+}
+
+.blog table a:active,
+.blog table a:hover {
+    color: #bd5a35;
+    text-decoration: underline
+}
+
+.blog table a:link {
+    color: #666;
+    font-weight: bold;
+    text-decoration: none
+}
+
+.blog table tr {
+    padding-left: 20px;
+    text-align: center
+}
+
+.blog table tr:first-child th:first-child {
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.blog table tr:first-child th:last-child {
+    -moz-border-radius-topright: 3px;
+    -webkit-border-top-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.blog table tr:last-child td {    border-bottom: 0 }
+
+.blog table tr:last-child td:first-child {
+    -moz-border-radius-bottomleft: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.blog table tr:last-child td:last-child {
+    -moz-border-radius-bottomright: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.blog table tr:hover td {
+    background: #f2f2f2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+    background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
+}
+
+.blog table tr td {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 0px solid #e0e0e0; border-left: 0px solid #e0e0e0; border-top: 0px solid #ffffff;
+    background: #fafafa;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+    background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
+}
+
+.blog table tr td:first-child {
+    padding-left: 20px;
+    border-left: 0;
+    text-align: left
+}

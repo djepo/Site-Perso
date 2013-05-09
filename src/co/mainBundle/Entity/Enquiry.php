@@ -1,7 +1,5 @@
 <?php
 
-// src/co/mainBundle/Entity/Enquiry.php
-
 namespace co\mainBundle\Entity;
 
 use Symfony\Component\Validator\Mapping\ClassMetadata;

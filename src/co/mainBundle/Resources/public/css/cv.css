@@ -1,0 +1,357 @@
+#cv html,#cv body,#cv div,#cv span,#cv object,#cv iframe,#cv h1,#cv h2,#cv h3,#cv h4,#cv h5,#cv h6,#cv p,#cv blockquote,#cv pre,#cv abbr,#cv address,#cv cite,#cv code,#cv del,#cv dfn,#cv em,#cv img,#cv ins,#cv kbd,#cv q,#cv samp,#cv small,#cv strong,#cv sub,#cv sup,#cv var,#cv b,#cv i,#cv dl,#cv dt,#cv dd,#cv ol,#cv ul,#cv li,#cv fieldset,#cv form,#cv label,#cv legend,#cv table,#cv caption,#cv tbody,#cv tfoot,#cv thead,#cv tr,#cv th,#cv td,#cv article,#cv aside,#cv canvas,#cv details,#cv figcaption,#cv figure,#cv footer,#cv header,#cv hgroup,#cv menu,#cv nav,#cv section,#cv summary,#cv time,#cv mark,#cv audio,#cv video {
+border:0;
+font:inherit;
+font-size:100%;
+margin:0;
+padding:0;
+vertical-align:baseline;
+color: #000000;
+}
+
+#cv article,#cv aside,#cv details,#cv figcaption,#cv figure,#cv footer,#cv header,#cv hgroup,#cv menu,#cv nav,#cv section {
+display:block;
+}
+
+#cv html, #cv body {background: #181818; font-family: 'Lato', helvetica, arial, sans-serif; font-size: 16px; color: #222;}
+
+#cv .clear {clear: both;}
+
+#cv p {
+	font-size: 1em;
+	line-height: 1.4em;
+	margin-bottom: 20px;
+	color: #444;
+}
+
+#cv {
+	width: 100%;
+	max-width: 800px;
+	background: #f3f3f3;
+	margin: 30px auto;
+}
+
+#cv .mainDetails {
+	padding: 25px 35px;
+	border-bottom: 2px solid #cf8a05;
+	background: #ededed;
+}
+
+#cv #name h1 {
+	font-size: 2.5em;
+	font-weight: 700;
+	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+	margin-bottom: -6px;
+}
+
+#cv #name h2 {
+	font-size: 2em;
+	margin-left: 2px;
+	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+}
+
+#cv #mainArea {
+	padding: 0 40px;
+}
+
+#cv #headshot {
+	width: 12.5%;
+	float: left;
+	margin-right: 30px;
+}
+
+#cv #headshot img {
+	width: 100%;
+	height: auto;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+
+#cv #name {
+	float: left;
+}
+
+#cv #contactDetails {
+	float: right;
+}
+
+#cv #contactDetails ul {
+	list-style-type: none;
+	font-size: 0.9em;
+	margin-top: 2px;
+}
+
+#cv #contactDetails ul li {
+	margin-bottom: 3px;
+	color: #444;
+}
+
+#cv #contactDetails ul li a, #cv a[href^=tel] {
+	color: #444; 
+	text-decoration: none;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	transition: all .3s ease-in;
+}
+
+#cv #contactDetails ul li a:hover { 
+	color: #cf8a05;
+}
+
+
+#cv section {
+	border-top: 1px solid #dedede;
+	padding: 20px 0 0;
+}
+
+#cv section:first-child {
+	border-top: 0;
+}
+
+#cv section:last-child {
+	padding: 20px 0 10px;
+}
+
+#cv .sectionTitle {
+	float: left;
+	width: 25%;
+}
+
+#cv .sectionContent {
+	float: right;
+	width: 72.5%;
+}
+
+#cv .sectionTitle h1 {
+	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+	font-style: italic;
+	font-size: 1.5em;
+	color: #cf8a05;
+}
+
+#cv .sectionContent h2 {
+	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+	font-size: 1.5em;
+	margin-bottom: -2px;
+}
+
+#cv .subDetails {
+	font-size: 0.8em;
+	font-style: italic;
+	margin-bottom: 3px;
+}
+
+#cv .keySkills {
+	list-style-type: none;
+	-moz-column-count:3;
+	-webkit-column-count:3;
+	column-count:3;
+	margin-bottom: 20px;
+	font-size: 1em;
+	color: #444;
+}
+
+#cv .keySkills ul li {
+	margin-bottom: 3px;
+}
+
+@media all and (min-width: 602px) and (max-width: 800px) {
+	#cv #headshot {
+		display: none;
+	}
+	
+	#cv .keySkills {
+	-moz-column-count:2;
+	-webkit-column-count:2;
+	column-count:2;
+	}
+}
+
+@media all and (max-width: 601px) {
+	#cv {
+		width: 95%;
+		margin: 10px auto;
+		min-width: 280px;
+	}
+	
+	#cv #headshot {
+		display: none;
+	}
+	
+	#cv #name, #cv #contactDetails {
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	
+	#cv .sectionTitle, #cv .sectionContent {
+		float: none;
+		width: 100%;
+	}
+	
+	#cv .sectionTitle {
+		margin-left: -2px;
+		font-size: 1.25em;
+	}
+	
+	#cv .keySkills {
+		-moz-column-count:2;
+		-webkit-column-count:2;
+		column-count:2;
+	}
+}
+
+@media all and (max-width: 480px) {
+	#cv .mainDetails {
+		padding: 15px 15px;
+	}
+	
+	#cv section {
+		padding: 15px 0 0;
+	}
+	
+	#cv #mainArea {
+		padding: 0 25px;
+	}
+
+	
+	#cv .keySkills {
+	-moz-column-count:1;
+	-webkit-column-count:1;
+	column-count:1;
+	}
+	
+	#cv #name h1 {
+		line-height: .8em;
+		margin-bottom: 4px;
+	}
+}
+
+@media print {
+    #cv {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@-webkit-keyframes reset {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	40% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes reset {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@-moz-keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	40% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes reset {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	40% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.instaFade {
+    -webkit-animation-name: reset, fade-in;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-timing-function: ease-in;
+	
+	-moz-animation-name: reset, fade-in;
+    -moz-animation-duration: 1.5s;
+    -moz-animation-timing-function: ease-in;
+	
+	animation-name: reset, fade-in;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in;
+}
+
+.quickFade {
+    -webkit-animation-name: reset, fade-in;
+    -webkit-animation-duration: 2.5s;
+    -webkit-animation-timing-function: ease-in;
+	
+	-moz-animation-name: reset, fade-in;
+    -moz-animation-duration: 2.5s;
+    -moz-animation-timing-function: ease-in;
+	
+	animation-name: reset, fade-in;
+    animation-duration: 2.5s;
+    animation-timing-function: ease-in;
+}
+ 
+.delayOne {
+	-webkit-animation-delay: 0, .5s;
+	-moz-animation-delay: 0, .5s;
+	animation-delay: 0, .5s;
+}
+
+.delayTwo {
+	-webkit-animation-delay: 0, 1s;
+	-moz-animation-delay: 0, 1s;
+	animation-delay: 0, 1s;
+}
+
+.delayThree {
+	-webkit-animation-delay: 0, 1.5s;
+	-moz-animation-delay: 0, 1.5s;
+	animation-delay: 0, 1.5s;
+}
+
+.delayFour {
+	-webkit-animation-delay: 0, 2s;
+	-moz-animation-delay: 0, 2s;
+	animation-delay: 0, 2s;
+}
+
+.delayFive {
+	-webkit-animation-delay: 0, 2.5s;
+	-moz-animation-delay: 0, 2.5s;
+	animation-delay: 0, 2.5s;
+}

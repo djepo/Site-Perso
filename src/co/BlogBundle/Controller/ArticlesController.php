@@ -20,7 +20,8 @@ class ArticlesController extends Controller {
      *
      */
     public function articlesAction() {
-        $em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+        //$em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+        $em = $this->getDoctrine()->getManager(); //initialisation de l'entitymanager
         $articles = $em->getRepository('coBlogBundle:article')->findAll();
         return $this->render('coBlogBundle:article:indexarticles.html.twig', array('articles' => $articles,));
     }
@@ -29,22 +30,30 @@ class ArticlesController extends Controller {
      * @Route("/article/{id}", defaults={"id" = 0}, requirements={"id" = "\d+"}, name="article")
      * @Template()
      * @method({"GET"|"POST"})
+     * 
+     * 
+     * 
      */
     public function articleAction($id = 0) {
-        $em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+        //$em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+        $em = $this->getDoctrine()->getManager(); //initialisation de l'entitymanager
         
         if ($id > 0) {
             $article = $em->getRepository('coBlogBundle:article')->find($id);   //on mémorise l'article en l'appelant par son id'
 
             if (!$article) {    //si on n'a rien trouvé
-                throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
+                //throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
+                $this->get('session')->setFlash('error', 'Impossible de trouver l\'article désiré.');
+                return $this->redirect($this->generateUrl('homepage'));
             }
 
             //Mise à jour du nombre de vues sur l'article
+            //Mise à 0 si aucune données de nombre de vues
             if ($article->getviewsCount()==null) {
                 $article->setviewsCount(0);
-            } 
-            
+            }
+            //si l'utilisateur connecté est l'auteur, on n'incrémente pas le nombre de vues
+            //si il n'est pas l'auteur, ou qu'il n'y a pas d'utilisateur connecté, on incrémente
             $username = $this->container->get('security.context')->getToken()->getUser();
             if (is_object($username)) {
                 if ($article->getAuteur()!=$username){
@@ -53,14 +62,16 @@ class ArticlesController extends Controller {
             } else {
                 $article->setviewsCount($article->getviewsCount()+1);
             }
-            
+            //sauvegarde de l'entité article (pour la modif du nombre de vues)
             $em->persist($article);
             $em->flush();
             
             //on lance un rendu de la page article avec en paramètre, l'array représentant l'article
             return $this->render('coBlogBundle:article:show.html.twig', array('article' => $article,));
         } else {
-            throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
+            //throw $this->createNotFoundException('Impossible de trouver l\'article désiré.');   //on lance une exception
+            $this->get('session')->setFlash('error', 'Impossible de trouver l\'article désiré.');
+            return $this->redirect($this->generateUrl('homepage'));
         }
     }
     
@@ -70,7 +81,8 @@ class ArticlesController extends Controller {
      * @method({"GET"|"POST"})
      */
     public function ajaxArticleAction($id = 0) {
-        $em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+        //$em = $this->getDoctrine()->getEntityManager(); //initialisation de l'entitymanager
+        $em = $this->getDoctrine()->getManager(); //initialisation de l'entitymanager
         
         if ($id > 0) {
             $article = $em->getRepository('coBlogBundle:article')->find($id);   //on mémorise l'article en l'appelant par son id'
@@ -113,7 +125,8 @@ class ArticlesController extends Controller {
             throw new AccessDeniedException('Vous n\'êtes pas authentifié.');
         } else {
 
-            $em = $this->getDoctrine()->getEntityManager();
+            //$em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $article = $em->getRepository('coBlogBundle:article')->find($id);
 
             if (!$article) {
@@ -155,7 +168,8 @@ class ArticlesController extends Controller {
         if (!$article) {
             throw $this->createNotFoundException('Impossible de créer un nouvel article.');   //on lance une exception
         } else {
-            $em = $this->getDoctrine()->getEntityManager();
+            //$em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             
 
             // On crée le FormBuilder grâce à la méthode du contrôleur.
@@ -198,7 +212,8 @@ class ArticlesController extends Controller {
             throw new AccessDeniedException('Vous n\'êtes pas authentifié.');
         } else {
 
-            $em = $this->getDoctrine()->getEntityManager();
+            //$em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $article = $em->getRepository('coBlogBundle:article')->find($id);
 
             if (!$article) {
@@ -232,7 +247,8 @@ class ArticlesController extends Controller {
                 throw new AccessDeniedException('Au moins un des paramètre attendu est manquant');
             }
             
-            $em=$this->getDoctrine()->getEntityManager();
+            //$em=$this->getDoctrine()->getEntityManager();
+            $em=$this->getDoctrine()->getManager();
             $article = $em->getRepository('coBlogBundle:article')->find($articleId);
             
             if ($article->getAuteur()->getId()!=$user->getId())

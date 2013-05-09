@@ -107,10 +107,10 @@ stfalcon_tinymce:
             theme_advanced_toolbar_location: "top"
             theme_advanced_toolbar_align: "left"
             theme_advanced_statusbar_location: "bottom"
-            theme_advanced_resizing: true
+            theme_advanced_resizing: false            
             width: 100%
             height: 600
             theme_advanced_resizing_min_width : 100%
             theme_advanced_resizing_max_width : 100%
-            content_css : "../../../bundles/comain/themes/black/habillage.css"
+            content_css : "../../../bundles/comain/css/articles.css, ../../../bundles/comain/themes/black/habillage.css"
             file_browser_callback : "tinyBrowser" #Affiche le browser TinyBrower, qui permet d'uploader des fichiers dans les plugins images, medias et files

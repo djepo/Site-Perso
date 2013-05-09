@@ -1,13 +1,17 @@
 {% extends 'comainBundle::layout.html.twig' %}   {# Héritage du layout principal (app/ressources/views/base.html.twig) #}
 
 {% block body %}    {# Surcharge du bloc body de notre layout principal #}
+    <div class="col_9">
+        <div id="contentwrapper">
+            {%block BlogSnippets %}
+                {%include ('comainBundle:Blocks:Blog_Snippets.html.twig')%}
+            {%endblock%}
+        </div>
+    </div>
 
-    {%block BlogSnippets %}
-        {%include ('comainBundle:Blocks:Blog_Snippets.html.twig')%}
-    {%endblock%}
-
+    <div class="col_3">
+        {# Publicités Google #}            
+        <iframe src="//www.facebook.com/plugins/likebox.php?href=http://www.facebook.com/pages/CAILBAUT-Olivier-Créateur-de-Solutions/365054276854994&amp;width=220&amp;height=600&amp;colorscheme=dark&amp;show_faces=true&amp;border_color=%23161616&amp;stream=false&amp;header=false&amp;appId=460355224016867" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:220px; height:600px;" allowTransparency="true"></iframe>
+        {% include 'comainBundle:Blocks:PubliciteGoogle.html.twig' %}        
+    </div>
 {% endblock %}
-
-{% block commentaires%}
-    {#Pas de commentaires sur la page principale#}
-{%endblock%}

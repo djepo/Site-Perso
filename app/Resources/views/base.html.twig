@@ -3,23 +3,27 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+        {# La balise suivante est destinée à Bing #}
+        <meta name="msvalidate.01" content="8E58865EC5B5A70CB8C11C9CD0D959DC" />
 
         <title>{% block title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}</title>
         <meta property="og:title" content="{% block opengraph_title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">
         {#<meta itemprop="name" content="{% block microdata_title %}CAILBAUT Olivier - Créateur de Solutions{% endblock %}">#}
 
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('bundles/comain/themes/black/habillage.css') }}" type="text/css" media="all" />
+        {% block stylesheets %}            
             <link rel="stylesheet" href="{{ asset('bundles/comain/css/usermenu.css') }}" type="text/css" media="all" />
             <link rel="stylesheet" href="{{ asset('bundles/comain/css/slide_down_box_menu.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/comain/css/framework/htmlkickstart/css/kickstart.css')}}" type="text/css" media="all" />  <!-- PRETTIFY -->
+            <link rel="stylesheet" href="{{ asset('bundles/comain/themes/black/habillage.css') }}" type="text/css" media="all" />
         {% endblock %}
 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="author" href="https://plus.google.com/111109823858731272872" />
 
         <meta property="og:url" content="{{app.request.uri}}">
         <meta property="og:type" content="{% block opengraph_type %}website{% endblock %}">
         <meta property="fb:admins" content="100002583175945">
-        <meta property="fb:app_id" content="232953266786752"/>
+        <meta property="fb:app_id" content="460355224016867"/>
 
         {% block header_image %}
             <meta property="og:image" content="http://djepo.craym.eu/images/VignetteSite.jpg">
@@ -32,175 +36,201 @@
             <meta property="og:description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
             <meta itemprop="description" content="Site personnel de CAILBAUT Olivier. CV, réalisation informatiques en dotNet, PHP et VBA.">
         {% endblock %}
-
-        <!-- JQuery -->
-        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery-1.7.2.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery-ui-1.8.21.custom.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery.easing.1.3.js')}}"></script>        
-        <!-- JQuery -->
+            
+        {% block baliseMetaDiverses %}
+            <meta name="viewport" content="width=device-width"/>    {# Définition du viewport à la largeur par défaut du terminal #}
+        {% endblock %}
+            
+        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery-1.7.2.min.js') }}"></script>              <!-- JQuery -->
+        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery-ui-1.8.22.custom.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/comain/js/jquery/jquery.easing.1.3.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/comain/css/framework/htmlkickstart/js/kickstart.js')}}"></script> <!-- KICKSTART -->
+        <script type="text/javascript" src="{{ asset('bundles/comain/css/framework/htmlkickstart/js/prettify.js')}}"></script>  <!-- PRETTIFY -->
+        
         {%block included_javascripts %}        
         {%endblock%}
         
         {% block google_analytics %}
-        {%if not app.debug%}
-            <script type="text/javascript">
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-28321544-1']);
-                _gaq.push(['_trackPageview']);
-
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-        </script>
-        {%endif%}
-        {% endblock %}
-
-    </head>
-
-    <body itemscope itemtype="http://schema.org/WebPage">
-        <div id="wrapper">
-            <div id="header">
-                {% block header %}
-                    <div class="accueil">
-                        <strong id="nom_site">
-                            <a href="{{ path('homepage') }}" style="color: white;">CAILBAUT Olivier</a>
-                        </strong>                    
-                        <div id="slogan_site">Créateur de Solutions</div>
-                    </div>                
-                
-                    <!-- Inclusion du bloc permettant la gestion utilisateurs (connexions, déconnexions, gestion ... -->
-                    {% include 'comainBundle:Blocks:GestionUser.html.twig' %}
-
-                {% endblock %}                
-            </div>
-                
-            <div style="clear: both"></div>
-        
-            <div id="container_menu" style="z-index: 1000; height:85px">
-                {% include 'comainBundle:Blocks:slide_down_box_menu.html.twig' %}
-            </div>        
-        
-            <div class="wrap">
-                <div id="arbre" itemprop="breadcrumb">
-                    {% block arbre %}
-                        <a href="{{path('homepage')}}">Accueil</a>
-                    {%endblock%}
-                </div>
-                
-                <div class="col1">
-                    <div id="contentwrapper">
-                        {% block body %}
-                        {% endblock %}
-                    </div>
-                
-                    <div>
-                        {% block commentaires%}
-                            {% include 'comainBundle:Blocks:Commentaires.html.twig' %}
-                        {%endblock%}
-                    </div>                    
-                </div> 
-                
-                <div class="col2">
-                    {# Publicités Google #}
-                    {% include 'comainBundle:Blocks:PubliciteGoogle.html.twig' %}
-                </div>                
-            </div>
-        
-            <div style="clear: both; height: 50px;"></div>
-            
-            <div id="footer" style="z-index:1000">
-                {%block footer%}
-                    <p>
-                        <span style="float: left">
-                        <a href="{{ path('fos_user_security_login') }}"><img width="16" height="16" src="{{ asset('bundles/comain/themes/black/img/cadenas-32.png') }}" alt="connexion"></a>
-                        &copy; <span itemprop="copyrightYear">2012</span> - <span itemprop="author">CAILBAUT Olivier</span> - Téléphone: 06.19.84.05.02. - SIRET:532 356 805 000 12 - <a href="https://plus.google.com/111109823858731272872?rel=author">Google+</a>
-                        </span>
-                            
-                        <a href="{{path('cv')}}" style="color: #ffffff; font-size: 1.8em;">
-                            <marquee behavior="scroll" direction="down" scrollamount="2" height="35" width="420" style="text-align: center; margin-top: -10px;">A la recherche d'un nouvel emploi</br></br></br>Now looking for a new job</marquee> 
-                        </a>                        
-                        
-                        <span style="float:right">
-                            <a href="{{ path('contact') }}">Formulaire de contact</a> - 
-                            <a href="{{path('articles')}}">Liste des articles</a>
-                        </span>
-                    </p>
-                {%endblock%}
-            </div>
- 
-            {% block javascripts %}            
-                <!-- Bouton Google -->                
+            {%if not app.debug%}
                 <script type="text/javascript">
-                    window.___gcfg = {lang: 'fr'};
+                    var _gaq = _gaq || [];
+                    _gaq.push(['_setAccount', 'UA-28321544-1']);
+                    _gaq.push(['_trackPageview']);
+
                     (function() {
-                        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                        po.src = 'https://apis.google.com/js/plusone.js';
-                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
                     })();
-                </script>                
-                <!-- Bouton Google -->
+            </script>
+            {%endif%}
+        {% endblock %}
+            
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        
+    </head> 
+    
+    <body itemscope itemtype="http://schema.org/WebPage">
+        
+        <div id="fb-root"></div>
+        <script>
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=460355224016867";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        
+        <a id="top-of-page"></a>
+        
+        <div id="wrap" class="clearfix">
+            <div class="col_12">                
+                <div id="wrapper">                    
+                    {% block header %}
+                        <div id="header">
+                            <div class="accueil">
+                                <div id="nom_site">
+                                    <a href="{{ path('homepage') }}" style="color: white;">CAILBAUT Olivier</a>
+                                </div>                    
+                                <div id="slogan_site">Créateur de Solutions</div>
+                            </div>                
+                            <!-- Inclusion du bloc permettant la gestion utilisateurs (connexions, déconnexions, gestion ... -->
+                            {% include 'comainBundle:Blocks:GestionUser.html.twig' %}
+                        </div>
+                        <div style="clear: both"></div>
+                    {% endblock %}                                                        
 
+                    {% block menu %}
+                        <div id="container_menu" style="z-index: 1000; height:85px">
+                            {% include 'comainBundle:Blocks:slide_down_box_menu.html.twig' %}
+                        </div>        
+                    {% endblock %}
 
-                <!-- Script pour le menu slide_down_box_menu -->	
-                <script type="text/javascript">
-                    $(function() {
-				/**
-				* for each menu element, on mouseenter, 
-				* we enlarge the image, and show both sdt_active span and 
-				* sdt_wrap span. If the element has a sub menu (sdt_box),
-				* then we slide it - if the element is the last one in the menu
-				* we slide it to the left, otherwise to the right
-				*/
-                        $('#sdt_menu > li').bind('mouseenter',function(){
-					var $elem = $(this);
-					$elem.find('img')
-						 .stop(true)
-						 .animate({
-							'width':'170px',
-							'height':'170px',
-							'left':'0px'
-						 },400,'easeOutBack')
-						 .andSelf()
-						 .find('.sdt_wrap')
-					     .stop(true)
-						 .animate({'top':'140px'},500,'easeOutBack')
-						 .andSelf()
-						 .find('.sdt_active')
-					     .stop(true)
-						 .animate({'height':'170px'},300,function(){
-						var $sub_menu = $elem.find('.sdt_box');
-						if($sub_menu.length){
-							var left = '170px';
-							if($elem.parent().children().length == $elem.index()+1)
-								left = '-170px';
-							$sub_menu.show().animate({'left':left},200);
-						}	
-					});
-				}).bind('mouseleave',function(){
-					var $elem = $(this);
-					var $sub_menu = $elem.find('.sdt_box');
-					if($sub_menu.length)
-						$sub_menu.hide().css('left','0px');
-					
-					$elem.find('.sdt_active')
-						 .stop(true)
-						 .animate({'height':'0px'},300)
-						 .andSelf().find('img')
-						 .stop(true)
-						 .animate({
-							'width':'0px',
-							'height':'0px',
-							'left':'85px'},400)
-						 .andSelf()
-						 .find('.sdt_wrap')
-						 .stop(true)
-						 .animate({'top':'25px'},500);
+                    {%if app.session %}
+                        <div class="inner">
+                            {% for type, flashMessages in app.session.flashbag.all() %}
+                                {% for flashMessage in flashMessages %}
+                                    <div class="notice {{ type }}">
+                                        {% if type=="error" %}<span class="icon medium" data-icon="X"></span>{% endif %}
+                                        {% if type=="notice" %}<span class="icon medium" data-icon="!"></span>{% endif %}
+                                        {% if type=="success" %}<span class="icon medium" data-icon="C"></span>{% endif %}
+                                        {{ flashMessage|trans({}, 'FOSUserBundle')}}
+                                        <a class="icon close" data-icon="x" href="#close"></a>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}   
+                        </div>
+                    {%endif%}                
+                    
+                    {% block arbre %}
+                        <div class="arbre col_12" itemprop="breadcrumb">
+                            <a href="{{path('homepage')}}">Accueil</a>                    
+                        </div>
+                    {%endblock%}
+
+                    {%block débutContainerBody%}
+                        <div class="col_12 fondContenu" style="margin-top: 0; margin-bottom: 0">
+                    {%endblock%}
+                            {% block body %}                        
+                            {% endblock %}
+                    {%block finContainerBody%}
+                        </div>
+                    {%endblock%}
+                    
+                    
+                    {%block footer%}
+                        <div style="clear: both; height: 50px;"></div>
+                        
+                        <div id="footer" style="z-index:10000">
+                                <p>
+                                    <span style="float: left">
+                                    <a href="{{ path('fos_user_security_login') }}"><img width="16" height="16" src="{{ asset('bundles/comain/themes/black/img/cadenas-32.png') }}" alt="connexion"></a>
+                                    &copy; <span itemprop="copyrightYear">2012</span> - <span itemprop="author">CAILBAUT Olivier</span> - Téléphone: 06.19.84.05.02. - SIRET:532 356 805 000 12 - <a href="https://plus.google.com/111109823858731272872?rel=author">Google+</a>
+                                    </span>
+
+                                    <span style="float:right">
+                                        <a href="{{ path('contact') }}">Formulaire de contact</a> - 
+                                        <a href="{{path('articles')}}">Liste des articles</a>
+                                    </span>
+                                </p>                        
+                        </div>
+                    {%endblock%}
+
+                {% block javascripts %}            
+                    <!-- Bouton Google -->                
+                    <script type="text/javascript">
+                        (function() {
+                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                            po.src = 'https://apis.google.com/js/plusone.js';
+                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                        })();
+                    </script>
+                    <!-- Bouton Google -->
+
+                    <!-- Script pour le menu slide_down_box_menu -->	
+                    <script type="text/javascript">
+                        $(function() {
+                                    /**
+                                    * for each menu element, on mouseenter, 
+                                    * we enlarge the image, and show both sdt_active span and 
+                                    * sdt_wrap span. If the element has a sub menu (sdt_box),
+                                    * then we slide it - if the element is the last one in the menu
+                                    * we slide it to the left, otherwise to the right
+                                    */
+                            $('#sdt_menu > li').bind('mouseenter',function(){
+                                            var $elem = $(this);
+                                            $elem.find('img')
+                                                     .stop(true)
+                                                     .animate({
+                                                            'width':'170px',
+                                                            'height':'170px',
+                                                            'left':'0px'
+                                                     },400,'easeOutBack')
+                                                     .andSelf()
+                                                     .find('.sdt_wrap')
+                                                 .stop(true)
+                                                     .animate({'top':'140px'},500,'easeOutBack')
+                                                     .andSelf()
+                                                     .find('.sdt_active')
+                                                 .stop(true)
+                                                     .animate({'height':'170px'},300,function(){
+                                                    var $sub_menu = $elem.find('.sdt_box');
+                                                    if($sub_menu.length){
+                                                            var left = '170px';
+                                                            if($elem.parent().children().length == $elem.index()+1)
+                                                                    left = '-170px';
+                                                            $sub_menu.show().animate({'left':left},200);
+                                                    }	
+                                            });
+                                    }).bind('mouseleave',function(){
+                                            var $elem = $(this);
+                                            var $sub_menu = $elem.find('.sdt_box');
+                                            if($sub_menu.length)
+                                                    $sub_menu.hide().css('left','0px');
+
+                                            $elem.find('.sdt_active')
+                                                     .stop(true)
+                                                     .animate({'height':'0px'},300)
+                                                     .andSelf().find('img')
+                                                     .stop(true)
+                                                     .animate({
+                                                            'width':'0px',
+                                                            'height':'0px',
+                                                            'left':'85px'},400)
+                                                     .andSelf()
+                                                     .find('.sdt_wrap')
+                                                     .stop(true)
+                                                     .animate({'top':'25px'},500);
+                                });
                             });
-                        });
-                </script>
-            {% endblock %}
+                    </script>
+                {% endblock %}
+                </div>
+            </div>
         </div>
     </body>
 </html>

@@ -210,7 +210,7 @@ class article
     }
 
      /**
-     * @ORM\preUpdate
+     * @ORM\PreUpdate
      */
     public function setUpdatedValue()
     {

@@ -16,15 +16,7 @@
     <header>
         <h1>Edition d'un article</h1>
     </header>
-    
-    {# Définition de l'information de réussite d'envoi du formulaire (Envoyé par le controleur) #}
-    {% if app.session.hasFlash('notification') %}
-        <div class="notification">
-            {{ app.session.flash('notification') }}
-        </div>
-    {% endif %}
-    {# Fin de définition de l'information de réussite d'envoi du formulaire #}
-    
+        
         <form action="{{ app.request.uri }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
             <div>                
                 {{ form_label(form.title, "Titre de l'article") }}

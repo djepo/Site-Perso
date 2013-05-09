@@ -11,11 +11,21 @@
     </header> 
  
     {# Définition de l'information de réussite d'envoi du formulaire (Envoyé par le controleur) #}
+ {#
     {% if app.session.hasFlash('notification') %}
         <div class="notification">
             {{ app.session.flash('notification') }}
         </div>
     {% endif %}
+ #}
+    {% for type, flashMessages in app.session.flashbag.all() %}
+        {% for flashMessage in flashMessages %}
+            <div class="notification">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+ 
     {# Fin de définition de l'information de réussite d'envoi du formulaire #}
  
     <p>Vous voulez me contacter ?</p>
